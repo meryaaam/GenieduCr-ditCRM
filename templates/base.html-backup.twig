@@ -27,7 +27,11 @@
 		<!--end::Global Stylesheets Bundle-->
 	
         
-		
+		/**
+ * Require ROLE_ADMIN for all the actions of this controller
+ *
+ * @IsGranted("IS_AUTHENTICATED_FULLY")
+ */
 		{# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
