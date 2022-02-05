@@ -35,18 +35,11 @@ class EditAgentType extends AbstractType
                 ],'required' => false
         
             ])
-       /* ->add('concessionnairemarchands', ConcessionnairemarchandType::class)*/
-        //->add('typeagent',)
+       
         ->add('typeagent',EntityType::class,[
             'class' => Typeagent::class,
-            'choice_label' => function ($ag) {
-              # return sprintf('<img src="%s"/>', $fab->getMedia()->getLien());
-             
-               return $ag->gettype();
-            },
-            'expanded' => false
-            
-        ])
+            'choice_label' => function ($ag) {   return $ag->gettype();
+            }, 'expanded' => false   ])
         
         ->add('utilisateur', EditUtilisateurType::class)
     

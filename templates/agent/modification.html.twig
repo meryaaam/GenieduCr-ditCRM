@@ -244,9 +244,9 @@
 												<div class="row mb-6">
 												    {% for typeagent in form.typeagent %}
 												
-												{{ form_label(form.utilisateur.typeagent, "Type Agent :", {'label': 'Type','label_attr': {'class':"col-lg-4 col-form-label required fw-bold fs-6"}}) }}
+												{{ form_label(form.utilisateur.typeagent, "Type Agent :",  {'class':"col-lg-4 col-form-label required fw-bold fs-6"}) }}
 												
-												<div class="col-lg-8 fv-row fv-plugins-icon-container">
+												<div class="col-lg-8 fv-plugins-icon-container">
 													{{ form_widget(form.utilisateur.typeagent, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
 											      {% endfor %}
 											</div>

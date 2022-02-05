@@ -16,6 +16,8 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+
 
 class ConcessionnairemarchandType extends AbstractType
 {
@@ -39,7 +41,11 @@ class ConcessionnairemarchandType extends AbstractType
 
         
         
-            ->add('actif')
+            ->add('actif',CheckboxType::class,[
+                'label_attr' => [
+                    'class' => 'checkbox-switch'
+                ],'required' => false]
+            )
             ->add('siteweb')
             ->add('liendealertrack')
             ->add('description',TextareaType::class)

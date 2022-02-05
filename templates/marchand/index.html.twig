@@ -4,8 +4,7 @@
 
 {% set page_title = 'Liste des Marchands ' %}
 
-{% block title %}Liste des Marchands{% endblock %}
-
+ 
 {% block body %}
     <!--begin::Body-->
     <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
@@ -16,7 +15,7 @@
         <div class="page d-flex flex-row flex-column-fluid">
 
             <!--begin::Wrapper-->
-            <div >
+            <div>
        
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -46,7 +45,7 @@
 										
 										<!--end::Item-->
 										<!--begin::Item-->
-										<li class="breadcrumb-item text-dark"><a href="{{path("marchand")}}">Liste des Marchands</a></li>
+										<li class="breadcrumb-item text-dark"><a href="{{path("marchand")}}">{{page_title}}</a></li>
 										<!--end::Item-->
 									</ul>
 									<!--end::Breadcrumb-->
@@ -65,7 +64,7 @@
                             <div class="card">
                                 <!--begin::Card header-->
                                 <div class="card-header border-0 pt-6">
-                                    <div><h1>Listes des Marchands</h1></div>
+                                    <div><h1>{{page_title}}</h1></div>
                                     <!--begin::Card toolbar-->
                                     <div class="card-toolbar"  style="display: block!important;">
                                         <!--begin::Toolbar-->
