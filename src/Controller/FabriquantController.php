@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 class FabriquantController extends AbstractController
 {
 
+    
 
     public function __construct(ObjectManager $om, FabriquantRepository $fabriquantRepository){
         $this->om = $om;
@@ -51,7 +52,7 @@ class FabriquantController extends AbstractController
     }
 
 
-    #[Route('/fabriquant-mofification/{id}', name: 'modification_fabriquant', methods:'GET|POST')]
+    #[Route('/fabriquant-modifier/{id}', name: 'modification_fabriquant', methods:'GET|POST')]
     public function modification(Fabriquant $fabriquants = null, TypemediaRepository $repository, Request $request)
     {
 
@@ -104,7 +105,7 @@ class FabriquantController extends AbstractController
             $om->flush();
             return $this->redirectToRoute("fabriquant");
         }
-        return $this->render('fabriquant/modificationetajoutFabriquant.html.twig', [
+        return $this->render('fabriquant/updateF.html.twig', [
             'fabriquant' => $fabriquants,
             'form' => $form->createView()
             //'isModification' => $fabriquants->getId() !== null
@@ -162,7 +163,7 @@ class FabriquantController extends AbstractController
             $om->flush();
             return $this->redirectToRoute("fabriquant");
         }
-        return $this->render('fabriquant/modification.html.twig', [
+        return $this->render('fabriquant/AddF.html.twig', [
             'fabriquant' => $fabriquants,
             'form' => $form->createView()
            // 'isModification' => $fabriquants->getId() !== null

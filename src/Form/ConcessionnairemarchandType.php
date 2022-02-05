@@ -44,54 +44,18 @@ class ConcessionnairemarchandType extends AbstractType
             ->add('liendealertrack')
             ->add('description',TextareaType::class)
             ->add('utilisateur', UtilisateurType::class)
-            /*->add('fabriquants', CollectionType::class, [
-                'entry_type' => FabriquantType::class])
-
-                ->add('fabriquants', ChoiceType::class, [
-                    'choices'   => function (Fabriquant $fab) {
-                        # return sprintf('<img src="%s"/>', $fab->getMedia()->getLien());
-                       
-                         return $fab->getMedia();
-                      },
-                ])
-                ->add('fabriquants', EntityType::class, [
-                    'class' => Fabriquant::class,
-                    'choices' => function (Fabriquant $fab) {
-                        # return sprintf('<img src="%s"/>', $fab->getMedia()->getLien());
-                       
-                         return $fab->getMedia();
-                      }
-                ])*/
-               // ->add('fabriquants', 'Fabriquant', array('class' => 'Fabriquant:class',  'property' => 'media' , 'multiple' => true , 'expanded' => true) )    
-       
            ->add('fabriquants',EntityType::class,[
                 'class' => Fabriquant::class,
                 'choice_label' => function ($fab) {
-                  # return sprintf('<img src="%s"/>', $fab->getMedia()->getLien());
-                 
+                  
                    return $fab->getNom();
                 },
                 'expanded' => true,
                 'multiple' => true,
                 'by_reference' => false
                 
-            ])
-
-           /* ->add('agents',EntityType::class,[
-                'class' => Agent::class,
-                'choice_label' => function ($ag) {
-                  
-                   return $ag->getUtilisateur()->getNom();
-                },
-                'expanded' => true,
-                'multiple' => true,
-                'by_reference' => false
-            ])*/
-
-          
-
-
-              ->add('agents', EntityType::class,array(
+                                               ])
+           ->add('agents', EntityType::class,array(
                     'class' => Agent::class,
                     'choice_label' => 'utilisateur.nom', 
                     'query_builder' => function(AgentRepository $repo)

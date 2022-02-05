@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% set page_title = 'Modifier Concessionnaires ' %}
+{# {% set page_title = 'Modifier Concessionnaires ' %} #}
+
+  {% if isModification %}
+ {% set page_title = 'Modification concessionnaire' %}
+
+    {% else %}
+ {% set page_title = 'Ajout concessionnaire' %}
+    {% endif %}
+
 
 {% block title %}Concessionnaire{% endblock %}
 
@@ -8,13 +16,8 @@
 
 
 
-    <head>
-    
-        <title>Concessionnaire</title>
-       
-    </head>
-    <!--end::Head-->
-    <!--begin::Body-->
+ 
+     <!--begin::Body-->
     <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
     <!--begin::Main-->
     <!--begin::Root-->
@@ -98,7 +101,6 @@
                                             <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
                                                
                                                 <img src="{{asset('/media/logos/' ~ concessionnaire.concessionnairemarchand.media.nom )}}" alt="logo-concessionnaire" width="150" >
-                                                <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-white h-20px w-20px"></div>
                                             </div>
                                         </div>
                                         <!--end::Pic-->
@@ -191,7 +193,7 @@
                                 <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
                                     <!--begin::Card title-->
                                     <div class="card-title m-0">
-                                        <h3 class="fw-bolder m-0">Modification Concessionnaire</h3>
+                                        <h3 class="fw-bolder m-0">   </h3>
                                     </div>
                                     <!--end::Card title-->
                                 </div>
@@ -204,12 +206,13 @@
                                         {{ form_start(form, {'attr': {'class': 'form fv-plugins-bootstrap5 fv-plugins-framework'}}) }}
 
                                         <div class="row mb-6">
-                                            <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                                                {{ form_widget(form.concessionnairemarchand.actif, {'attr': {'class': 'form-check-input'}}) }}
-                                            </div>
+                                           
                     
                                             {{ form_label(form.concessionnairemarchand.actif, "Actif :", {'label_attr': {'class':"col-lg-4 col-form-label required fw-bold fs-6"}}) }}
-                    
+                                             
+                                             <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                {{ form_widget(form.concessionnairemarchand.actif, {'attr': {'class': 'checkbox-switch'}}) }}
+                                            </div>
                     
                                         </div>
                                         <div class="row mb-6">
@@ -326,22 +329,7 @@
                                 </div>
 
                             </div>
-                            <!--end::Basic info-->
-                            <!--begin::Sign-in Method-->
-
-                            <!--end::Sign-in Method-->
-                            <!--begin::Connected Accounts-->
-
-                            <!--end::Connected Accounts-->
-                            <!--begin::Notifications-->
-
-                            <!--end::Notifications-->
-                            <!--begin::Notifications-->
-
-                            <!--end::Notifications-->
-                            <!--begin::Deactivate Account-->
-
-                            <!--end::Deactivate Account-->
+                          
 
                         </div>
                         <!--end::Container-->
@@ -349,33 +337,7 @@
                     <!--end::Post-->
                 </div>
                 <!--end::Content-->
-                <!--begin::Footer-->
-                <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
-                    <!--begin::Container-->
-                    <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
-                        <!--begin::Copyright-->
-                        <div class="text-dark order-2 order-md-1">
-                            <span class="text-muted fw-bold me-1">2021©</span>
-                            <a href="#" target="_blank" class="text-gray-800 text-hover-primary">smartegy</a>
-                        </div>
-                        <!--end::Copyright-->
-                        <!--begin::Menu-->
-                        <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
-                            <li class="menu-item">
-                                <a href="#" target="_blank" class="menu-link px-2">About</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" target="_blank" class="menu-link px-2">Support</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" target="_blank" class="menu-link px-2">Purchase</a>
-                            </li>
-                        </ul>
-                        <!--end::Menu-->
-                    </div>
-                    <!--end::Container-->
-                </div>
-                <!--end::Footer-->
+              
             </div>
             <!--end::Wrapper-->
         </div>
@@ -384,46 +346,8 @@
     <!--end::Root-->
     <!--end::Main-->
 
-    <!--begin::Scrolltop-->
-    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
-        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-        <span class="svg-icon">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-					<rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="black" />
-					<path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="black" />
-				</svg>
-			</span>
-        <!--end::Svg Icon-->
-    </div>
-    <!--end::Scrolltop-->
-    <!--begin::Modals-->
-
-    <!--end::Modals-->
-    <!--begin::Javascript-->
-    <script>var hostUrl = "assets/";</script>
-    <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="assets/plugins/global/plugins.bundle.js"></script>
-    <script src="assets/js/scripts.bundle.js"></script>
-    <!--end::Global Javascript Bundle-->
-    <!--begin::Page Vendors Javascript(used by this page)-->
-    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
-    <!--end::Page Vendors Javascript-->
-    <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="assets/js/custom/account/settings/signin-methods.js"></script>
-    <script src="assets/js/custom/account/settings/profile-details.js"></script>
-    <script src="assets/js/custom/account/settings/deactivate-account.js"></script>
-    <script src="assets/js/custom/widgets.js"></script>
-    <script src="assets/js/custom/apps/chat/chat.js"></script>
-    <script src="assets/js/custom/modals/upgrade-plan.js"></script>
-    <script src="assets/js/custom/modals/create-app.js"></script>
-    <script src="assets/js/custom/modals/offer-a-deal/type.js"></script>
-    <script src="assets/js/custom/modals/offer-a-deal/details.js"></script>
-    <script src="assets/js/custom/modals/offer-a-deal/finance.js"></script>
-    <script src="assets/js/custom/modals/offer-a-deal/complete.js"></script>
-    <script src="assets/js/custom/modals/offer-a-deal/main.js"></script>
-    <script src="assets/js/custom/modals/two-factor-authentication.js"></script>
-    <script src="assets/js/custom/modals/users-search.js"></script>
-    <!--end::Page Custom Javascript-->
-    <!--end::Javascript-->
+ 
+ 
+   
     </body>
 {% endblock %}

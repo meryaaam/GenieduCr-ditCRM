@@ -2,7 +2,7 @@
 		<!--begin::Global Stylesheets Bundle-->
 		<!--bigin::Fonts-->
         <meta charset="UTF-8">
-        <title>{% block title %}Genie du credit -   {% endblock %}</title>
+        <title>{% block title %}Genie du credit - {{ page_title }}  {% endblock %}</title>
 		<meta name="description" content="Genie du credit - CRM" />
 		<meta name="keywords" content="CRM, Genie, genie du credit , smartegy" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +24,31 @@
 		<link href="{{asset('/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('/css/custom.css')}}" rel="stylesheet" type="text/css" />
         
+		
+		
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="assets/plugins/global/plugins.bundle.js"></script>
+		<script src="assets/js/scripts.bundle.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Vendors Javascript(used by this page)-->
+		<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+		<!--end::Page Vendors Javascript-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<script src="assets/js/custom/account/settings/signin-methods.js"></script>
+		<script src="assets/js/custom/account/settings/profile-details.js"></script>
+		<script src="assets/js/custom/account/settings/deactivate-account.js"></script>
+		<script src="assets/js/custom/widgets.js"></script>
+		<script src="assets/js/custom/apps/chat/chat.js"></script>
+		<script src="assets/js/custom/modals/upgrade-plan.js"></script>
+		<script src="assets/js/custom/modals/create-app.js"></script>
+		<script src="assets/js/custom/modals/offer-a-deal/type.js"></script>
+		<script src="assets/js/custom/modals/offer-a-deal/details.js"></script>
+		<script src="assets/js/custom/modals/offer-a-deal/finance.js"></script>
+		<script src="assets/js/custom/modals/offer-a-deal/complete.js"></script>
+		<script src="assets/js/custom/modals/offer-a-deal/main.js"></script>
+		<script src="assets/js/custom/modals/two-factor-authentication.js"></script>
+		<script src="assets/js/custom/modals/users-search.js"></script>
+
 		<!--end::Global Stylesheets Bundle-->
 		<!--end::Fonts-->
 	
@@ -33,7 +58,6 @@
 
         {% block javascripts %}
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>

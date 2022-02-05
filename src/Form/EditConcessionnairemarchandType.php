@@ -16,6 +16,8 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+
 
 class EditConcessionnairemarchandType extends AbstractType
 {
@@ -39,30 +41,16 @@ class EditConcessionnairemarchandType extends AbstractType
 
         
         
-            ->add('actif')
+            ->add('actif' ,CheckboxType::class,[
+                'label_attr' => [
+                    'class' => 'checkbox-switch'
+                ],'required' => false
+        
+            ])
             ->add('siteweb')
             ->add('liendealertrack')
             ->add('description',TextareaType::class)
-            ->add('utilisateur',EditUtilisateurType ::class)
-            /*->add('fabriquants', CollectionType::class, [
-                'entry_type' => FabriquantType::class])
-
-                ->add('fabriquants', ChoiceType::class, [
-                    'choices'   => function (Fabriquant $fab) {
-                        # return sprintf('<img src="%s"/>', $fab->getMedia()->getLien());
-                       
-                         return $fab->getMedia();
-                      },
-                ])
-                ->add('fabriquants', EntityType::class, [
-                    'class' => Fabriquant::class,
-                    'choices' => function (Fabriquant $fab) {
-                        # return sprintf('<img src="%s"/>', $fab->getMedia()->getLien());
-                       
-                         return $fab->getMedia();
-                      }
-                ])*/
-               // ->add('fabriquants', 'Fabriquant', array('class' => 'Fabriquant:class',  'property' => 'media' , 'multiple' => true , 'expanded' => true) )    
+            ->add('utilisateur',EditUtilisateurType ::class) 
        
            ->add('fabriquants',EntityType::class,[
                 'class' => Fabriquant::class,
@@ -75,17 +63,7 @@ class EditConcessionnairemarchandType extends AbstractType
                 'multiple' => true,
                 'by_reference' => false
             ])
-
-           /* ->add('agents',EntityType::class,[
-                'class' => Agent::class,
-                'choice_label' => function ($ag) {
-                  
-                   return $ag->getUtilisateur()->getNom();
-                },
-                'expanded' => true,
-                'multiple' => true,
-                'by_reference' => false
-            ])*/
+ 
 
           
 
