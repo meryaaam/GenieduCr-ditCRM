@@ -6,11 +6,7 @@
 	
 {% block body %}
 	<!--begin::Head-->
-	<head><base href="../">
-		<title> Consultation Partenaire </title>
-	
-	
-	</head>
+ 
 	<!--end::Head-->
 	<!--begin::Body-->
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
@@ -198,9 +194,23 @@
 									<!--begin::Card body-->
 									<div class="card-body p-9">
 										<!--begin::Row-->
-										<div class="row mb-7">
 											<!--begin::Label-->
                                          
+                                         <div class="row mb-7">
+                                               <div class="col-lg-4">
+										      	<label class="col-lg-4 fw-bold text-muted">Actif  : </label>
+                                                    {% if partenaire.actif == 1  %}
+                                                         <span class="checkbox-switch">oui</span>
+                                                     {% else %}
+                                                      <span class="checkbox-switch">Non</span>   
+                                                      {% endif %}
+                                             </div>
+                                        </div>
+
+
+
+										<div class="row mb-7">
+
 											<label class="col-lg-4 fw-bold text-muted">Nom</label>
 											<!--end::Label-->
 											<!--begin::Col-->

@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
-
 {% set page_title = 'Consultation Fabriquant ' %}
 
-{# {% block title %}Consultation Fabriquant {% endblock %} #}
-
-{% block body %}
  
+{% block body %}
+  
+    <!--end::Head-->
     <!--begin::Body-->
     <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
     <!--begin::Main-->
@@ -18,7 +17,7 @@
             <!--end::Aside-->
             <!--begin::Wrapper-->
             <div>
-         
+            
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                     <!--begin::Toolbar-->
@@ -28,8 +27,7 @@
                             <!--begin::Page title-->
                             <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                                 <!--begin::Title-->
-                                {# <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Consultation Fabriquant</h1> #}
-                                <!--end::Title-->
+                                 <!--end::Title-->
                                 <!--begin::Separator-->
                                 <span class="h-20px border-gray-300 border-start mx-4"></span>
                                 <!--end::Separator-->
@@ -45,6 +43,7 @@
                                         <span class="bullet bg-gray-300 w-5px h-2px"></span>
                                     </li>
                                     <!--end::Item-->
+                                
                                     <!--begin::Item-->
                                     <li class="breadcrumb-item text-muted">Fabriquant</li>
                                     <!--end::Item-->
@@ -54,28 +53,13 @@
                                     </li>
                                     <!--end::Item-->
                                     <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted">Fabriquant</li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item">
-                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-dark">Consultation fabriquant</li>
+                                    <li class="breadcrumb-item text-dark">{{page_title}}</li>
                                     <!--end::Item-->
                                 </ul>
                                 <!--end::Breadcrumb-->
                             </div>
                             <!--end::Page title-->
-                            <!--begin::Actions-->
-                            <!-- Button create -->
-                            <!--<div class="d-flex align-items-center py-1">
-
-                                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Create</a>
-
-                            </div>-->
-                            <!--end::Actions-->
+                    
                         </div>
                         <!--end::Container-->
                     </div>
@@ -106,8 +90,7 @@
                                                     <!--begin::Name-->
                                                     <div class="d-flex align-items-center mb-2">
                                                         <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{fabriquant.nom}}</a>
-                                          
-                                          
+                                                       
 
                                                     </div>
                                                     <!--end::Name-->
@@ -124,9 +107,7 @@
                                                 <!--begin::Wrapper-->
 
                                                 <!--end::Wrapper-->
-                                                <!--begin::Progress-->
-
-                                                <!--end::Progress-->
+                                  
                                             </div>
                                             <!--end::Stats-->
                                         </div>
@@ -144,11 +125,7 @@
                                         <li class="nav-item mt-2">
                                             <a class="nav-link text-active-primary ms-0 me-10 py-5" href="{{path("modification_fabriquant",{ 'id' : fabriquant.id})}}">Modifier</a>
                                         </li>
-                                        <!--end::Nav item-->
-                                      
-                                        <!--begin::Nav item-->
-
-                                        <!--end::Nav item-->
+                                     
 
                                     </ul>
                                     <!--begin::Navs-->
@@ -173,6 +150,42 @@
                                 <!--begin::Card body-->
                                 <div class="card-body p-9">
                                     <!--begin::Row-->
+
+
+
+                                        <div class="row mb-7">
+                                         	 <div class="col-lg-4">
+										      	<label class="col-lg-4 fw-bold text-muted">Actif - Acceuil : </label>
+                                                    {% if fabriquant.actifaccueil == 1  %}
+                                                         <span class="checkbox-switch">oui</span>
+                                                     {% else %}
+                                                      <span class="checkbox-switch">Non</span>   
+                                                      {% endif %}
+                                             </div>
+
+                                              <div class="col-lg-4">
+										      	<label class="col-lg-4 fw-bold text-muted">Actif - CRM : </label>
+                                                    {% if fabriquant.actifcrm == 1  %}
+                                                         <span class="checkbox-switch">oui</span>
+                                                     {% else %}
+                                                      <span class="checkbox-switch">Non</span>   
+                                                      {% endif %}
+                                             </div>
+
+                                               <div class="col-lg-4">
+										      	<label class="col-lg-4 fw-bold text-muted">Actif - Service : </label>
+                                                    {% if fabriquant.actifservice == 1  %}
+                                                         <span class="checkbox-switch">oui</span>
+                                                     {% else %}
+                                                      <span class="checkbox-switch">Non</span>   
+                                                      {% endif %}
+                                             </div>
+
+
+                                         
+                                
+
+                                        </div>
                                     <div class="row mb-7">
                                         <!--begin::Label-->
 
@@ -197,8 +210,8 @@
                                         <!--end::Col-->
                                     </div>
 
-
-                                     <div class="row mb-7">
+                                     <!--begin::Input group-->
+                                    <div class="row mb-7">
                                         <!--begin::Label-->
                                         <label class="col-lg-4 fw-bold text-muted">Description</label>
                                         <!--end::Label-->
@@ -224,7 +237,6 @@
                 </div>
                 <!--end::Content-->
           
-          
             </div>
             <!--end::Wrapper-->
         </div>
@@ -232,87 +244,6 @@
     </div>
     <!--end::Root-->
 
-    <!--begin::Modal - Users Search-->
-    <div class="modal fade" id="kt_modal_users_search" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header pb-0 border-0 justify-content-end">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-									<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
-								</svg>
-							</span>
-                        <!--end::Svg Icon-->
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--begin::Modal header-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-    <!--end::Modal - Users Search-->
-    <!--begin::Modal - Invite Friends-->
-    <div class="modal fade" id="kt_modal_invite_friends" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header pb-0 border-0 justify-content-end">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-									<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
-								</svg>
-							</span>
-                        <!--end::Svg Icon-->
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--begin::Modal header-->
-                <!--begin::Modal body-->
-
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-    <!--end::Modal - Invite Friend-->
-    <!--end::Modals-->
-    <!--begin::Javascript-->
-    <script>var hostUrl = "assets/";</script>
-    <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="assets/plugins/global/plugins.bundle.js"></script>
-    <script src="assets/js/scripts.bundle.js"></script>
-    <!--end::Global Javascript Bundle-->
-    <!--begin::Page Vendors Javascript(used by this page)-->
-    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
-    <!--end::Page Vendors Javascript-->
-    <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="assets/js/custom/widgets.js"></script>
-    <script src="assets/js/custom/apps/chat/chat.js"></script>
-    <script src="assets/js/custom/modals/upgrade-plan.js"></script>
-    <script src="assets/js/custom/modals/create-app.js"></script>
-    <script src="assets/js/custom/modals/offer-a-deal/type.js"></script>
-    <script src="assets/js/custom/modals/offer-a-deal/details.js"></script>
-    <script src="assets/js/custom/modals/offer-a-deal/finance.js"></script>
-    <script src="assets/js/custom/modals/offer-a-deal/complete.js"></script>
-    <script src="assets/js/custom/modals/offer-a-deal/main.js"></script>
-    <script src="assets/js/custom/modals/users-search.js"></script>
-    <!--end::Page Custom Javascript-->
-    <!--end::Javascript-->
+   
     </body>
 {% endblock %}

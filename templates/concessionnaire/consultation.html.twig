@@ -51,7 +51,9 @@
                                     <li class="breadcrumb-item text-muted"><a href="{{path("concessionnaire")}}" class="text-muted text-hover-primary">Liste des concessionnaire</a></li>
                                     <!--end::Item-->
                                     <!--begin::Item-->
-                                   
+                                   <li class="breadcrumb-item">
+                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
+                                    </li>
                                     <!--end::Item-->
                                     <!--begin::Item-->
                                     <li class="breadcrumb-item">
@@ -63,15 +65,7 @@
                                 </ul>
                                 <!--end::Breadcrumb-->
                             </div>
-                            <!--end::Page title-->
-                            <!--begin::Actions-->
-                            <!-- Button create -->
-                            <!--<div class="d-flex align-items-center py-1">
-
-                                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Create</a>
-
-                            </div>-->
-                            <!--end::Actions-->
+                       
                         </div>
                         <!--end::Container-->
                     </div>
@@ -194,6 +188,33 @@
                                 <!--begin::Card body-->
                                 <div class="card-body p-9">
                                     <!--begin::Row-->
+                                       <div class="row mb-7">
+                                         	 
+
+                                            
+
+                                               <div class="col-lg-4">
+										      	<label class="col-lg-4 fw-bold text-muted">Actif  : </label>
+                                                    {% if concessionnaire.Concessionnairemarchand.actif == 1  %}
+                                                         <span class="checkbox-switch">oui</span>
+                                                     {% else %}
+                                                      <span class="checkbox-switch">Non</span>   
+                                                      {% endif %}
+                                             </div>
+
+
+                                         
+                                
+
+                                        </div>
+
+
+
+
+
+
+
+
                                     <div class="row mb-7">
                                         <!--begin::Label-->
 
@@ -232,10 +253,8 @@
                                     <!--begin::Input group-->
                                     <div class="row mb-7">
                                         <!--begin::Label-->
-                                        <label class="col-lg-4 fw-bold text-muted">Telephone
-                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Country of origination"></i></label>
-                                        <!--end::Label-->
-                                        <!--begin::Col-->
+                                        <label class="col-lg-4 fw-bold text-muted">Telephone </label>
+                                         <!--begin::Col-->
                                         <div class="col-lg-8">
                                             <span class="fw-bolder fs-6 text-gray-800">{{concessionnaire.concessionnairemarchand.utilisateur.telephone}}</span>
                                         </div>
