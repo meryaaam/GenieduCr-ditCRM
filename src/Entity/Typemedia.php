@@ -86,34 +86,5 @@ class Typemedia
 
         return $this;
     }
-
-    /**
-     * @return Collection|GalerieVehicule[]
-     */
-    public function getGalerieVehicules(): Collection
-    {
-        return $this->galerieVehicules;
-    }
-
-    public function addGalerieVehicule(GalerieVehicule $galerieVehicule): self
-    {
-        if (!$this->galerieVehicules->contains($galerieVehicule)) {
-            $this->galerieVehicules[] = $galerieVehicule;
-            $galerieVehicule->setType($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGalerieVehicule(GalerieVehicule $galerieVehicule): self
-    {
-        if ($this->galerieVehicules->removeElement($galerieVehicule)) {
-            // set the owning side to null (unless already changed)
-            if ($galerieVehicule->getType() === $this) {
-                $galerieVehicule->setType(null);
-            }
-        }
-
-        return $this;
-    }
+   
 }

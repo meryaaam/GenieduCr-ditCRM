@@ -88,12 +88,12 @@ class VehiculeController extends AbstractController
            
             $form -> handleRequest($request);
           
-           
-            if($form->isSubmitted() && $form->isValid()){
-               
+            //&& $form->isValid()
+            if($form->isSubmitted() ){
+                
                 $galerie =$form->getData()->getGalerie();
                 
-                
+               // dd($request->files);die;
                 foreach($galerie as $photogalerie){
 
                    
@@ -115,13 +115,6 @@ class VehiculeController extends AbstractController
                     $photogalerie ->setLien($photogalerielien);
 
                    
-
-                    //Ajoute le type du média
-                  
-                        $type = $repository->gettype('galerie');
-                      
-                        
-                        $photogalerie->setType($type);
                     
                    }
                        
@@ -145,7 +138,7 @@ class VehiculeController extends AbstractController
                 //Ajouter le nom
               
                 //Déplacer le fichier
-                $lien = '/media/logos/'.$mame;
+                $lien = '/media/logos/'.$name;
                 $mediafile->move('../public/media/logos', $name);
 
                 //Définit les valeurs

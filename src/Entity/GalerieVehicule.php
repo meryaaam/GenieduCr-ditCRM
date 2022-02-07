@@ -29,12 +29,8 @@ class GalerieVehicule
      */
     private $lien;
 
+  
     /**
-     * @ORM\ManyToOne(targetEntity=Typemedia::class, inversedBy="galerieVehicules")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $type;
-        /**
      *
      * @var File
      */
@@ -70,18 +66,6 @@ class GalerieVehicule
     public function setLien(?string $lien): self
     {
         $this->lien = $lien;
-
-        return $this;
-    }
-
-    public function getType(): ?Typemedia
-    {
-        return $this->type;
-    }
-
-    public function setType(?Typemedia $type): self
-    {
-        $this->type = $type;
 
         return $this;
     }
