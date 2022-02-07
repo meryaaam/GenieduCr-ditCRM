@@ -22,6 +22,7 @@ use App\Repository\ConcessionnairemarchandRepository;
 use App\Repository\GalerieVehiculeRepository;
 use App\Repository\MediasRepository;
 use App\Repository\TypemediaRepository;
+use Symfony\Component\Console\Input\Input;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,50 +77,68 @@ class VehiculeController extends AbstractController
 
          
             
-           
-
-           if ($vehicules->getGalerie()->isEmpty()) {
-                $image = new GalerieVehicule();
-                $image->setVehicule($vehicules);  
-                $vehicules->getGalerie()->add($image);
-           }
             
             $form = $this->createForm(VehiculeType::class,$vehicules);
            
             $form -> handleRequest($request);
-          
-            //&& $form->isValid()
-            if($form->isSubmitted() ){
+        
+               // dd($request->files->get('galerie')); die;
+            if($form->isSubmitted()&& $form->isValid()){
+                
                 
                 $galerie =$form->getData()->getGalerie();
                 
-               // dd($request->files);die;
-                foreach($galerie as $photogalerie){
 
-                   
-
-                    $photogaleriefile = $photogalerie->getImageFile();
-                    
+                    // Should be array of "UploadedFile" objects
+                    $files = $request->files;
                   
-                    //Ajouter le nom
-                   if ($photogaleriefile){ $photogalerienom= $photogaleriefile->getClientOriginalName();
+                    if($files)
+                    {
+                        // Iterating over the array
+                        // "file" should be an instance of UploadedFile
+                        foreach( $files as $file)
+                        {
+                                        $galerie = $file['galerie'];
+                                        $file_count = count($galerie);
+                                        
+                                
+                                            
+                                            for ($i=0; $i<$file_count; $i++) {
+
+
+                                                $photogalerienom[$i] = $galerie[$i]->getClientOriginalName();
+
+                                                //Déplacer le fichier
+                                                $photogalerielien[$i] = '/media/galerie/'.$photogalerienom[$i];
+                                                $galerie[$i]->move('../public/media/galerie', $photogalerienom[$i]);
+                                                $vehiculegalerie = new GalerieVehicule();
+                                                $vehiculegalerie->setNom($photogalerienom[$i]);
+                                                $vehiculegalerie->setLien($photogalerielien[$i]);
+                                                $vehicules->addGalerie($vehiculegalerie);
+                                            }
+                            
+                        }  
+
+                    }
                   
 
-                    //Déplacer le fichier
-                   $photogalerielien = '/media/galerie/'.$photogalerienom;
-                    $photogaleriefile->move('../public/media/galerie', $photogalerienom);
+                   //$photogalerie ->setNom($photogalerienom);
+                   //$photogalerie ->setLien($photogalerielien);
 
-                   
+                  
+                                    
+                      
 
-                    $photogalerie ->setNom($photogalerienom);
-                    $photogalerie ->setLien($photogalerielien);
-
-                   
-                    
-                   }
                        
+
                     
-                } 
+
+
+
+
+
+
+               
             
             
                
@@ -129,9 +148,10 @@ class VehiculeController extends AbstractController
 
                 //Récupère l'image
               $media = $form->getData()->getMedia();
-               if ($media){ 
+               
                 //Récupère le fichier image
                 $mediafile = $form->getData()->getMedia()->getImageFile();
+                if ($mediafile){ 
                 
                 $name = $mediafile->getClientOriginalName();
             

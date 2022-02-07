@@ -145,25 +145,28 @@ class VehiculeType extends AbstractType
                
                'required'  => false 
                ))
-
+           
             
          
-            ->add('galerie', FileType::class, [
+          /*   ->add('galerie', FileType::class, [
                 'label' => false,
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false
-            ])
+            ])*/
 
-     /*    ->add('galerie', GalerieVehiculeType ::class,[
-            'allow_file_upload'=>true
-         ]
-            )*/
+       // ->add('galerie', GalerieVehiculeType ::class)
+        ->add('galerie', FileType::class, [
+            'label' => false,
+            'multiple' => true,
+            'mapped' => false,
+            'required' => false
+        ])
 
           //  ->add('galerie',GalerieVehiculeType::class)
       
 
-           /* ->add('galerie', CollectionType::class, array(
+           /*->add('galerie', CollectionType::class, array(
                 'entry_type'        => GalerieVehiculeType::class,
                 'prototype'         => true,
                 'allow_add'         => true,
@@ -178,12 +181,12 @@ class VehiculeType extends AbstractType
 
            
          
-         /*    ->add('galerie', FileType::class,[
+          /*   ->add('galerie', FileType::class,[
            
             'label'=> false ,
             'multiple'=>true 
-        ])
-*/
+        ])*/
+
 
             ->add('disponiblefinance')
           
