@@ -155,9 +155,14 @@
 																		
 																		<input type="hidden" name="_method" value="delete">
 																		<input type="hidden" name="_token" value="{{csrf_token('SUP' ~ vehicule.id)}}">
+
+																		
+											
 																		
 																		
-																		<a href="#"data-bs-toggle="modal" data-bs-target="#kt_modal_1">
+																		<a href="{{path('delete-vehicule', {'id' : vehicule.id})}}"class="confirmModalLink btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+																		
+
 																		<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
 																		<span class="svg-icon svg-icon-3">
 																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -171,30 +176,34 @@
 																		</a>
                                                                         
 																		
+															
+
+
+
+
 																						<div class="modal fade" tabindex="-1" id="kt_modal_1">
 																							<div class="modal-dialog">
 																								<div class="modal-content">
 																									<div class="modal-header">
-																										<h5 class="modal-title">Modal title</h5>
+																										<h5 class="modal-title">Confirmation de suppression</h5>
 																						
+																										
 																										<!--begin::Close-->
 																										<div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
 																											<span class="svg-icon svg-icon-2x"></span>
 																										</div>
 																										<!--end::Close-->
 																									</div>
-																						
 																									<div class="modal-body">
-																										<p>Voulez-vous vraiment supprimer <span><b>{{vehicule.vin}}</b></span></p>
+																										<p>Voulez-vous vraiment supprimer vehicule n°<span><b>{{vehicule.vin}}</b></span></p>
 																									</div>
 																						
 																									<div class="modal-footer">
-																										<form  method="POST" style="display:inline-block"   action="{{path('delete-vehicule', {'id' : vehicule.id})}}"  ></form>
-																										<button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
-																										<button type="submit"  class="btn btn-primary">Supprimer</button>
-																									</form>
-																									</div>
+																										<button type="button" class="btn btn-light" data-bs-dismiss="modal" id="confirmModalNo">Annuler</button>
+																										<button type="submit"  class="btn btn-primary" id="confirmModalYes">Supprimer</button>
+																									
 																								</div>
+																							</div>
 																							</div>
 																						</div>
                                                                         
@@ -266,5 +275,31 @@
   ">"
 });
 </script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	var theHREF;
+	$(".confirmModalLink").click(function(e) {
+			e.preventDefault();
+			theHREF = $(this).attr("href");
+			console.log(theHREF);
+			$("#kt_modal_1").modal("show");
+		});
+
+		$("#confirmModalNo").click(function(e) {
+			$("#kt_modal_1").modal("hide");
+		});
+
+		$("#confirmModalYes").click(function(e) {
+		//	window.location.href = theHREF;
+			$('#myform'). attr('action', theHREF);
+
+			document.getElementById("myform").submit();
+		});
+
+});
+
+</script> 
 	</body>
 {% endblock %}

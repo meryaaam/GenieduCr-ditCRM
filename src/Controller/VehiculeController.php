@@ -201,8 +201,8 @@ class VehiculeController extends AbstractController
     }     
             
 
-    #[Route('/delete-vehicule/{id}', name: 'delete-vehicule', methods:'delete')]
-    public function delete (Vehicule $vehicules,TypemediaRepository $repository,Request $request,ObjectManager $objectManager)
+    #[Route('/delete-vehicule/{id}', name: 'delete-vehicule')]
+    public function delete (Vehicule $vehicules, Request $request,ObjectManager $objectManager)
     {
      
       
@@ -212,6 +212,9 @@ class VehiculeController extends AbstractController
   
 
     }
+  
+
+   
      
 
          
