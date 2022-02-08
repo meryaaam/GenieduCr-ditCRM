@@ -1,65 +1,14 @@
-
-
 {% extends 'base.html.twig' %}
-
 {% set page_title = 'Liste des administrateurs' %}
+{% set P_page_title = '' %}
+{% set P_path = '/administrateur' %} 
 
-{% block title %} {{ page_title }} {% endblock %}
+ 
  	
 {% block body %}
-
-
-
-	<!--begin::Body-->
-	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
-		<!--begin::Main-->
-		<!--begin::Root-->
-		<div class="d-flex flex-column flex-root">
-			<!--begin::Page-->
-			<div class="page d-flex flex-row flex-column-fluid">
-			
-				<!--begin::Wrapper-->
-				<div >
-			 
-					<!--begin::Content-->
-					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-						<!--begin::Toolbar-->
-						<div class="toolbar" id="kt_toolbar">
-							<!--begin::Container-->
-							<div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-								<!--begin::Page title-->
-								<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-								
-									<!--begin::Separator-->
-									<span class="h-20px border-gray-300 border-start mx-4"></span>
-									<!--end::Separator-->
-									<!--begin::Breadcrumb-->
-									<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-										<!--begin::Item-->
-										<li class="breadcrumb-item text-muted">
-											<a href="{{path("index")}}" class="text-muted text-hover-primary">Accueil</a>
-										</li>
-										<!--end::Item-->
-										<!--begin::Item-->
-										<li class="breadcrumb-item">
-											<span class="bullet bg-gray-300 w-5px h-2px"></span>
-										</li>
-										<!--end::Item-->
-										
-										
-										<!--end::Item-->
-										<!--begin::Item-->
-										<li class="breadcrumb-item text-dark"><a href="{{path("administrateur")}}">Liste des Administrateurs</a></li>
-										<!--end::Item-->
-									</ul>
-									<!--end::Breadcrumb-->
-								</div>
-								<!--end::Page title-->
-
-							</div>
-							<!--end::Container-->
-						</div>
-						<!--end::Toolbar-->
+ 
+		 
+  					 
 						<!--begin::Post-->
 
 		
@@ -218,16 +167,8 @@
 										<!--end::Table-->
 									</div>
 									<!--end::Card body-->
-								</div>
-								<!--end::Card-->
-							</div>
-							<!--end::Container-->
-						</div>
-
-						<!--end::Post-->
-
-					</div>
-					<!--end::Content-->
+							 
+ 				 
 				
 
 		<!--begin::Javascript-->
@@ -313,8 +254,8 @@
 
 		});
 
-</script>
+</script> 
   
     
-</body>
-{% endblock %}
+ 
+{% endblock %} 

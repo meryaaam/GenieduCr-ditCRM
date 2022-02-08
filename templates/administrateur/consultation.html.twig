@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+
+{% set P_page_title = 'Liste des Administrateur' %}
+{% set P_path = '/administrateur' %}
+
 {% set page_title = 'Consultation Administrateur' %}
 
 {% block title %} {{ page_title }} {% endblock %}
@@ -26,65 +30,7 @@
          
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-                    <!--begin::Toolbar-->
-                    <div class="toolbar" id="kt_toolbar">
-                        <!--begin::Container-->
-                        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-                            <!--begin::Page title-->
-                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                                
-                                <!--begin::Separator-->
-                                <span class="h-20px border-gray-300 border-start mx-4"></span>
-                                <!--end::Separator-->
-                                <!--begin::Breadcrumb-->
-                                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted">
-                                        <a href="{{path("administrateur")}}" class="text-muted text-hover-primary">Accueil</a>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item">
-                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                                    </li>
-                                    <!--end::Item-->
-                                    
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item">
-                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted"><a href="{{path("administrateur")}}" class="text-muted text-hover-primary">Liste des administrateurs</a></li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted">
-                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item">
-                                        <a href="{{path("consultation_administrateur",{'id':administrateurs.id})}}" class="text-hover-primary">Consultation Administrateur</a>
-                                    </li>
-                                  
-                                 
-                                    <!--end::Item-->
-                                </ul>
-                                <!--end::Breadcrumb-->
-                            </div>
-                            <!--end::Page title-->
-                            <!--begin::Actions-->
-                            <!-- Button create -->
-                            <!--<div class="d-flex align-items-center py-1">
-
-                                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Create</a>
-
-                            </div>-->
-                            <!--end::Actions-->
-                        </div>
-                        <!--end::Container-->
-                    </div>
-                    <!--end::Toolbar-->
+               
                     <!--begin::Post-->
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <!--begin::Container-->
@@ -140,14 +86,7 @@
                                             </div>
                                             <!--end::Title-->
                                             <!--begin::Stats-->
-                                            <div class="d-flex flex-wrap flex-stack">
-                                                <!--begin::Wrapper-->
-
-                                                <!--end::Wrapper-->
-                                                <!--begin::Progress-->
-
-                                                <!--end::Progress-->
-                                            </div>
+                              
                                             <!--end::Stats-->
                                         </div>
                                         <!--end::Info-->

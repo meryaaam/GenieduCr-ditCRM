@@ -172,10 +172,7 @@ class AdministrateurController extends AbstractController
  public function consultation(AdministrateurRepository $repository,Administrateur $administrateurs): Response
  {
      
-     
-     $administrateurs = $repository ->findOneById ($administrateurs->getId());
-      
-                         
+     $administrateurs = $repository ->findOneById ($administrateurs->getId());              
 
      return $this->render('administrateur/consultation.html.twig', [
          'administrateurs' => $administrateurs

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
- 
- {{ include('layout/import.html.twig') }}
+ <head>
+  
+	
+     {{ include('layout/Stylesheets.html.twig') }}
+	</head>
  
     <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
     	<!--begin::Main-->
@@ -16,11 +19,19 @@
 				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
 					<div id="kt_header" style="" class="header align-items-stretch">
 					<h1>{% block PageTitle %}{% endblock %}</h1>
-                    {{ include('layout/topbar.html.twig') }}
+                    {# {{ include('layout/topbar.html.twig') }}
+					{{ include('layout/header.html.twig') }} #}
+
+							  {{ include('layout/navbar.html.twig') }}
+
+	 	                {{ include('layout/toolbar.html.twig') }}
+
 					</div>
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 					<div id="kt_content_container" class="container-xxl">
 				 		{% block body %}
+				
+
 						 {% endblock %}
 					 </div>
 				 </div>
@@ -31,15 +42,22 @@
 		</div>
 		<!--end::Root-->
         <!--begin::Scrolltop-->
-			{{ include('layout/scrolltop.html.twig') }}
+			{# {{ include('layout/scrolltop.html.twig') }} #}
 		<!--end::Scrolltop-->
 		<!--end::Main-->
 
-		{{ include('layout/importjs.html.twig') }}
+   {# {{ include('layout/footer.html.twig') }} #}
 
     </body>
 
-{{ include('layout/footer.html.twig') }}
+
+	{{ include('layout/import.html.twig') }}
+
 
 	
 </html>
+
+
+	 
+
+

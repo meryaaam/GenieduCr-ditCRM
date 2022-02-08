@@ -19,35 +19,7 @@ class AdministrateurRepository extends ServiceEntityRepository
         parent::__construct($registry, Administrateur::class);
     }
 
-    // /**
-    //  * @return Administrateur[] Returns an array of Administrateur objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*  
-    public function findById($value)
-    {
-        return $this->createQueryBuilder('administrateur')
-            ->andWhere('administrateur.id = :val')
-            ->setParameter('val', $value)
-           ->getQuery('administrateur.password')
-            
-            ->getResult()
-        ;
-    }
- */
+    
     
     public function findOneById($value): ?Administrateur
     {
@@ -58,17 +30,18 @@ class AdministrateurRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-   /*
-    public function findOneBySomeField($value): ?Administrateur
+ 
+
+    public function findOneByUtilisateur_Id($value): ?Administrateur
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
+        return $this->createQueryBuilder('admin')
+            ->andWhere('administrateur.utilisateur_id = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
-
+ 
+    
 
 }

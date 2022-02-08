@@ -3,10 +3,10 @@
 
 {% extends 'base.html.twig' %}
 {% set page_title = 'Ajouter Administrateur' %}
+{% set P_page_title = 'Liste des Administrateur' %}
+{% set P_path = '/administrateur' %}
 
-{% block title %} {{ page_title }}{% endblock %}
 {% block PageTitle %} 
-Ajout d'un administrateur
 {% endblock %}
 {% block body %}
 
@@ -24,57 +24,7 @@ Ajout d'un administrateur
        
             <!--begin::Content-->
             <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-                <!--begin::Toolbar-->
-                <div class="toolbar" id="kt_toolbar">
-                    <!--begin::Container-->
-                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-                        <!--begin::Page title-->
-                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                            
-                            <!--begin::Separator-->
-                            <span class="h-20px border-gray-300 border-start mx-4"></span>
-                            <!--end::Separator-->
-                           <!--begin::Breadcrumb-->
-                                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted">
-                                        <a href="{{path("administrateur")}}" class="text-muted text-hover-primary">Accueil</a>
-                                    </li>
-                                    <!--end::Item-->
-                                   
-                                    <!--end::Item-->
-                                    
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item">
-                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted"><a href="{{path("administrateur")}}" class="text-muted text-hover-primary">Liste des administrateurs</a></li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted">
-                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item">
-                                        <a href="{{path("add_administrateur")}}" class="text-hover-primary">Ajout Administrateur</a>
-                                    </li>
-                                  
-                                 
-                                    <!--end::Item-->
-                                </ul>
-                                <!--end::Breadcrumb-->
-                        </div>
-                        <!--end::Page title-->
-                        <!--begin::Actions-->
-                      
-                        <!--end::Actions-->
-                    </div>
-                    <!--end::Container-->
-                </div>
-                <!--end::Toolbar-->
+              
                 <!--begin::Post-->
                 <div class="post d-flex flex-column-fluid" id="kt_post">
                     <!--begin::Container-->

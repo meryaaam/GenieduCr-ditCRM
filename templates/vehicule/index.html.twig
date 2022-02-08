@@ -1,13 +1,10 @@
 
 
 {% extends 'base.html.twig' %}
-{% set page_title = 'Liste des Véhicules  ' %}
-
+{% set page_title = 'Liste des Véhicules' %}
+ {% set P_page_title = '' %}
 {% block title %} {{ page_title}} {% endblock %}
-	
 {% block body %}
-
-	
 	<!--begin::Body-->
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 		<!--begin::Main-->
@@ -15,16 +12,11 @@
 		<div class="d-flex flex-column flex-root">
 			<!--begin::Page-->
 			<div class="page d-flex flex-row flex-column-fluid">
-			
 				<!--begin::Wrapper-->
 				<div >
-			
 					<!--begin::Content-->
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-				
 						<!--begin::Post-->
-
-		
 						<div class="post d-flex flex-column-fluid" id="kt_post">
 							<!--begin::Container-->
 							<div id="kt_content_container" class="container-xxl">
@@ -37,30 +29,21 @@
 										<div class="card-toolbar">
 											<!--begin::Toolbar-->
 											<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-											
-												
 												<!--end::Export-->
 												<!--begin::Add user-->
 												<button type="button" class="btn btn-primary" >
-										    <a href="{{path("add_vehicule")}}" >	
+										         <a href="{{path("add_vehicule")}}" >	
 												<!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
 												<span class="svg-icon svg-icon-2">
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 														<rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
 														<rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
 													</svg>
-													
 												</span>
 											</a>
-											
 												<!--end::Svg Icon-->
-                                                  
 											   </button>
-											   
-											   
-											</div>
-											
-										
+											</div> 
 											<!--begin::Modal - Add task-->
 											<div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
 												<!--begin::Modal dialog-->
@@ -84,11 +67,9 @@
 																<!--end::Svg Icon-->
 															</div>
 															<!--end::Close-->
-														</div>
-													
+														</div> 
 														<!--end::Modal header-->
-														<!--begin::Modal body-->
-														
+														<!--begin::Modal body--> 
 														<!--end::Modal body-->
 													</div>
 													<!--end::Modal content-->

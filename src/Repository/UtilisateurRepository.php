@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\Administrateur;
+
 use App\Entity\Agent;
 use App\Entity\Utilisateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -42,34 +44,7 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
         $this->_em->flush();
     }
 
-    // /**
-    //  * @return Utilisateur[] Returns an array of Utilisateur objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Utilisateur
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+ 
      
 
 
@@ -97,5 +72,21 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
 
     }
 
+
+    // public function findOneByIdJoinedToUser(int $UserID): ?Utilisateur
+    // {
+    //     $entityManager = $this->getEntityManager();
+
+    //     $query = $entityManager->createQuery(
+    //         'SELECT a, u
+    //         FROM App\Entity\Administrateur a
+    //         INNER JOIN a.utilisateur u
+    //         WHERE a.id = :id'
+    //     )->setParameter('id', $UserID);
+
+    //     return $query->getOneOrNullResult();
+    // }
+
    
+    
 }

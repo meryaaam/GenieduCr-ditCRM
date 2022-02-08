@@ -78,87 +78,46 @@ class MarchandController extends AbstractController
     #[Route('/marchand-modif/{id}', name: 'modification_marchand', methods:'GET|POST')]
     public function modification(Marchand $marchand = null, TypemediaRepository $repository, Request $request)
     {
-
-     
         if(!$marchand){
-
             $marchand = new Marchand();
-            
         }
         $om=$this->om;
-
-       
-
-
         $medias = new Medias();
-
-       
-
         $cr = $this->MR->findAll();
-        //$medias->Concessionnairemarchand::class->getfabriquants()->setMedia($cr);
-
-        //Ici on va creeer un tableau pour les liens des logos des fabricants
         $lienLogo = [];
-
         //On recupere tous les Fabs depuis le repo instancié dans le __construct()
         $fabs = $this->fabriquantRepository->findAll();
-
         //On crée une boucle sur tous les fabs
         foreach($fabs as $fab){
             //Pour chaque fab on recupere l'id et le liens du logo
             //Puis on l'enregistre dans le tableau
             //L'id ce met en KEY et le lien en VALUE
-
             $lienLogo[$fab->getId()] = $fab->getMedia()->getLien();
         }
-
-        
         $form = $this->createForm(EditMarchandType::class, $marchand)->remove("password");
 
 
         //On recupere le concessmarchand
         $concessvalue = $form->get('concessionnairemarchand')->getData();
-
-        
         if($concessvalue != null){
-          
         //On recupere les vendeurs liés au Marchand
-       
        $vdrs = $this->AgentRepository->fillVendeursbyConcessionnairemarchand($concessvalue->getId());
-        
-        
-       
         //On ajoute les valeurs selected dans la select list Vendeurs
         $form->get('concessionnairemarchand')->get('vendeurs')->setData($vdrs);
-         
         }
-        
         $form -> handleRequest($request);
 
 
         if($form->isSubmitted() && $form->isValid()){
 
-
-            //$modif = $marchand->getId() !== null;
-
-            /*$om->persist($marchand);
-            $om->flush();
-            $this->addFlash("success", ($modif) ? "La modification a été effectuée" : "L'ajout a été effectuée");
-            return $this->redirectToRoute("marchand");*/
-
             $vendeurs =$form->get('concessionnairemarchand')->get('vendeurs')->getData();
-          
-           
             //Ajoute la liste des vendeurs (unmapped)
             foreach ($vendeurs as $vendeur){
                 $marchand->getConcessionnairemarchand()->addAgent($vendeur);
                  
             }
-           
-            
             //Récupère l'image
             $media = $form->getData()->getConcessionnairemarchand()->getMedia();
-            
             //Récupère le fichier image
             $mediafile = $form->getData()->getConcessionnairemarchand()->getMedia()->getImageFile();
             if ( $mediafile) {
@@ -196,64 +155,36 @@ class MarchandController extends AbstractController
     #[Route('/marchand/creation', name: 'creation_marchand')]
     public function ajout_modification(Marchand $marchand = null, TypemediaRepository $repository, UserPasswordHasherInterface $userPasswordHasher, Request $request)
     {
-
-
         if(!$marchand){
-
             $marchand = new Marchand();
-
         }
         $om=$this->om;
-
-
-
-
         $medias = new Medias();
-
-
-
         $cr = $this->MR->findAll();
         //$medias->Concessionnairemarchand::class->getfabriquants()->setMedia($cr);
-
         //Ici on va creeer un tableau pour les liens des logos des fabricants
         $lienLogo = [];
-
         //On recupere tous les Fabs depuis le repo instancié dans le __construct()
         $fabs = $this->fabriquantRepository->findAll();
-
         //On crée une boucle sur tous les fabs
         foreach($fabs as $fab){
             //Pour chaque fab on recupere l'id et le liens du logo
             //Puis on l'enregistre dans le tableau
             //L'id ce met en KEY et le lien en VALUE
-
             $lienLogo[$fab->getId()] = $fab->getMedia()->getLien();
         }
-
-
         $form = $this->createForm(MarchandType::class, $marchand);
-
-
         //On recupere le concessmarchand
         $concessvalue = $form->get('concessionnairemarchand')->getData();
-
-
         if($concessvalue != null){
             //On recupere les vendeurs liés au Marchand
             $vdrs = $this->AgentRepository->fillVendeursbyConcessionnairemarchand($concessvalue->getId());
-
-
             //On ajoute les valeurs selected dans la select list Vendeurs
             $form->get('concessionnairemarchand')->get('vendeurs')->setData($vdrs);
-
         }
 
         $form -> handleRequest($request);
-
         $user= new Utilisateur();
-
-
-
         if($form->isSubmitted() && $form->isValid()){
 
             // encode the plain password
@@ -340,11 +271,7 @@ class MarchandController extends AbstractController
         $form = $this->createForm(SecUtilisateurType::class,$user);
         $form -> handleRequest($request);
 
-
-
-
-
-
+ 
 
         if($form->isSubmitted() && $form->isValid()){
 

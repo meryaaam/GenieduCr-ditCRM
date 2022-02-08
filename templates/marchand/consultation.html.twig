@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 {% set page_title = 'Consulter marchand ' %}
+{% set P_page_title = 'Liste des marchands ' %}
+{% set P_path = '/marchand' %}
 
  
 {% block body %}
@@ -22,7 +24,7 @@
                     <div class="toolbar" id="kt_toolbar">
                         <!--begin::Container-->
                         <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-                            <!--begin::Page title-->
+                            {# <!--begin::Page title-->
                             <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                         
                                 <!--begin::Separator-->
@@ -58,7 +60,7 @@
                                 </ul>
                                 <!--end::Breadcrumb-->
                             </div>
-                            <!--end::Page title-->
+                            <!--end::Page title--> #}
                
                         </div>
                         <!--end::Container-->
@@ -174,6 +176,7 @@
                                 <div class="card-body p-9">
                                     <!--begin::Row-->
 
+
                                           <div class="row mb-7">
                                                <div class="col-lg-4">
 										      	<label class="col-lg-4 fw-bold text-muted">Actif  : </label>
@@ -268,6 +271,7 @@
 
                                         {% for vendeur in vendeurs %}
                                         <span class="fw-bolder fs-6 text-gray-800">  {{vendeur.utilisateur.nom}}</span>
+                                        <br>
                                         {% endfor %}
                                                 </span>
                                     </div>
