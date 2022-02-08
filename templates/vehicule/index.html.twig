@@ -3,7 +3,10 @@
 {% extends 'base.html.twig' %}
 {% set page_title = 'Liste des Véhicules' %}
  {% set P_page_title = '' %}
-{% block title %} {{ page_title}} {% endblock %}
+ 
+ {% set P_path = '/vehicule' %} 
+
+
 {% block body %}
 	<!--begin::Body-->
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
@@ -243,7 +246,6 @@
 
 
 		
-		{{ include('layout/importjs.html.twig') }}
 
 						<script>
 							$("#kt_datatable_example_5").DataTable({

@@ -2,8 +2,8 @@
 {% extends 'base.html.twig' %}
 {% set page_title = 'Modification Véhicule  ' %}
 {% set P_page_title = 'Liste Véhicules  ' %}
+{% set P_path = '/vehicule' %}
 
-{% block title %} Modification Véhicule {% endblock %}
 {% block PageTitle %}
 
 d'un Véhicule{% endblock %}
@@ -501,6 +501,10 @@ d'un Véhicule{% endblock %}
 								{% for galerie in vehicules.galerie %}
 								<div>
 									<img src="{{asset('/media/galerie/' ~ galerie.nom )}}" alt="Photo" width="150" >
+
+									<a href="{{ path('galerie_delete_image', {id: galerie.id}) }}">Supprimer</a>
+
+									
 									
 								</div>
 								{% endfor %}
@@ -1279,7 +1283,7 @@ d'un Véhicule{% endblock %}
 							<!--end::Container-->
 						</div>
 						</div>
-		{% endblock %}
-		{% block javascripts %}
-    <script src="{{ asset('js/images.js') }}"></script>
+		
+	
+    
 {% endblock %}

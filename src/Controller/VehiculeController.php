@@ -77,7 +77,7 @@ class VehiculeController extends AbstractController
 
          
             
-            
+     
             $form = $this->createForm(VehiculeType::class,$vehicules);
            
             $form -> handleRequest($request);
@@ -195,6 +195,7 @@ class VehiculeController extends AbstractController
             'vehicules' => $vehicules,
              'form' => $form->createView(),
              'isModification' => $vehicules->getId() !== null
+       
             
         ]);   
     }     
@@ -204,65 +205,31 @@ class VehiculeController extends AbstractController
     public function delete (Vehicule $vehicules,TypemediaRepository $repository,Request $request,ObjectManager $objectManager)
     {
      
-        if($this->isCsrfTokenValid("SUP". $vehicules->getId(),$request->get('_token'))){
+      
             $objectManager->remove($vehicules);
             $objectManager->flush();
             return $this->redirectToRoute("vehicule");
-        }
+  
 
     }
      
-     #[Route('/image/{id}', name:'galerie_delete_image',methods:'delete')]
+
+         
+    #[Route('/image/{id}', name:'galerie_delete_image')]
      
-    public function deleteImage(Medias $image, Request $request,ObjectManager $objectManager){
-        $data = json_decode($request->getContent(), true);
+    public function deleteImage(GalerieVehicule $galerie, Request $request,ObjectManager $objectManager){
 
-        // On vérifie si le token est valide
-        if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
-            // On récupère le nom de l'image
-            $nom = $image->getNom();
-            // On supprime le fichier
-            unlink($this->getParameter('/media/media/').'/'.$nom);
 
-            // On supprime l'entrée de la base
-          
-            $objectManager->remove($image);
+       $referer= $request->headers->get('referer');
+
+            $objectManager->remove($galerie);
             $objectManager->flush();
 
-            // On répond en json
-            return new JsonResponse(['success' => 1]);
-        }else{
-            return new JsonResponse(['error' => 'Token Invalide'], 400);
-        }
-    
-        
-    }
+        return $this->redirect($referer);
+       
+    }    
 
-   #[Route('/supprimeimage/{id}', name:'delete_image',methods:'delete')]
-     
-    public function deletephoto(GalerieVehicule $image, Request $request,ObjectManager $objectManager){
-        $data = json_decode($request->getContent(), true);
 
-        // On vérifie si le token est valide
-        if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
-            // On récupère le nom de l'image
-            $nom = $image->getNom();
-            // On supprime le fichier
-            unlink($this->getParameter('/media/galerie/').'/'.$nom);
-
-            // On supprime l'entrée de la base
-          
-            $objectManager->remove($image);
-            $objectManager->flush();
-
-            // On répond en json
-            return new JsonResponse(['success' => 1]);
-        }else{
-            return new JsonResponse(['error' => 'Token Invalide'], 400);
-        }
-    
-        
-    }
 
 
 
