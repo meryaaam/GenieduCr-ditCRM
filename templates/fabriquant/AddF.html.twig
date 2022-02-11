@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% set page_title = 'Ajouter Fabriquant ' %}
 {% set P_page_title = 'Liste Fabriquants ' %}
+{% set P_path = 'fabriquant' %}
 {# {% set IsChild = True %} #}
 
  
@@ -15,54 +16,7 @@
 
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-                    <!--begin::Toolbar-->
-                    <div class="toolbar" id="kt_toolbar">
-                        <!--begin::Container-->
-                        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-                            <!--begin::Page title-->
-                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                                <!--begin::Title-->
-                                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">   </h1>
-                                <!--end::Title-->
-                                <!--begin::Separator-->
-                                <span class="h-20px border-gray-300 border-start mx-4"></span>
-                                <!--end::Separator-->
-                                <!--begin::Breadcrumb-->
-                                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted">
-                                        <a href="/index" class="text-muted text-hover-primary">Accueil</a>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item">
-                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted"> {{ P_page_title }} </li>
-                                    <!--end::Item-->
-                                     <!--begin::Item-->
-                                    <li class="breadcrumb-item text-dark">{{ page_title }}</li>
-                                    <!--end::Item-->
-                                </ul>
-                                <!--end::Breadcrumb-->
-                            </div>
-                            <!--end::Page title-->
-                            <!--begin::Actions-->
-                            <div class="d-flex align-items-center py-1">
-                                <!--begin::Wrapper-->
-
-                                <!--end::Wrapper-->
-                                <!--begin::Button-->
-
-                                <!--end::Button-->
-                            </div>
-                            <!--end::Actions-->
-                        </div>
-                        <!--end::Container-->
-                    </div>
-                    <!--end::Toolbar-->
+                  
                     <!--begin::Post-->
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <!--begin::Container-->
@@ -77,8 +31,11 @@
 
                                 <div id="kt_account_settings_profile_details" class="collapse show">
                                     <div id="kt_account_settings_profile_details" class="collapse show">
-                                        {{ form_start(form, {'attr': {'class': 'form fv-plugins-bootstrap5 fv-plugins-framework'}}) }}
-										<div class="row mb-6">
+                                        {{ form_start(form, {'attr': {'class': 'form fv-plugins-bootstrap5 fv-plugins-framework needs-validation" ' ,
+                                                                 novalidate : 'novalidate' } 
+                                                      }) 
+                                                     
+                                    }}	<div class="row mb-6">
                                              <div class="col-sm-4">
                                                {{ form_row(form.actifcrm, {"label":"Actif - CRM"}) }}
                                               </div>
@@ -97,6 +54,8 @@
 
                                                 <div class="col-lg-8 fv-row fv-plugins-icon-container">
                                                 {{ form_widget(form.nom)}}
+                                                {{ form_errors(form.nom)}}
+
                                             </div>
                                         </div>
 
@@ -105,6 +64,8 @@
 
                                                 <div class="col-lg-8 fv-row fv-plugins-icon-container">
                                                 {{ form_widget(form.lien)}}
+                                                {{ form_errors(form.lien)}}
+
                                                  </div>
                                         </div>
                                         <div class="row mb-6">
@@ -112,6 +73,8 @@
 
                                                 <div class="col-lg-8 fv-row fv-plugins-icon-container">
                                                 {{ form_widget(form.description)}}
+                                                {{ form_errors(form.description)}}
+
                                                  </div>
                                         </div>
                                         <div class="row mb-6">

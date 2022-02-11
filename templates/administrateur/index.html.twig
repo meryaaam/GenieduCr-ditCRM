@@ -9,6 +9,11 @@
  
 		 
   					 
+					        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
 						<!--begin::Post-->
 
 		
@@ -19,17 +24,17 @@
 								<div class="card">
 									<!--begin::Card header-->
 									<div class="card-header border-0 pt-6">
-										<div><h1>Liste des Administrateurs</h1></div>
+										<div> <h1>Liste des Administrateurs</h1></div>
 										<!--begin::Card toolbar-->
 										<div class="card-toolbar">
 											<!--begin::Toolbar-->
 											<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
 											
 												
-												<!--end::Export-->
+												<!--begin::Export-->  <!--end::Export-->
 												<!--begin::Add user-->
 												<button type="button" class="btn btn-primary" >
-										    <a href="{{path("add_administrateur")}}" >
+										         <a href="{{path("add_administrateur")}}" >
 												<!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
 												<span class="svg-icon svg-icon-2">
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -38,7 +43,7 @@
 													</svg>
 												</span>
 
-											</a>
+											    </a>
 
 													<a href="{{path("add_administrateur")}}" style="color:#ffffff;">Ajouter</a>
 												<!--end::Svg Icon-->
@@ -62,7 +67,7 @@
 													<th class="min-w-125px sorting" style="width: 180px;">Nom</th>
 													<th class="min-w-125px sorting" style="width: 180px;">Courriel</th>
 													<th class="min-w-125px sorting" style="width: 180px;">Télephone</th>
-													<th class="min-w-125px sorting" style="width: 125px;">Action</th>
+													<th class="min-w-125px sorting " style="width: 125px;">Action</th>
 													
 												</tr>
 											</thead>
@@ -82,7 +87,7 @@
 																	</div>
 																	
 																</div></td>
-																<td><div class="d-flex justify-content-end flex-shrink-0">
+																<td><div class="d-flex  flex-shrink-0">
 																		
 																	<a href="{{path("consultation_administrateur",{ 'id' : administrateur.Id})}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 																		<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
@@ -165,36 +170,28 @@
 											</tbody>
 										</table>
 										<!--end::Table-->
-									</div>
+												</div>
 									<!--end::Card body-->
-							 
- 				 
+								</div>
+								<!--end::Card-->
+							</div>
+							<!--end::Container-->
+						</div>
+
+						<!--end::Post-->
+
+					</div>
+					<!--end::Content-->
 				
-
-		<!--begin::Javascript-->
-		<script>var hostUrl = "assets/";</script>
-		<!--begin::Global Javascript Bundle(used by all pages)-->
-	
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Page-->
+		</div>
+		<!--end::Root-->
+		<!--begin::Drawers-->
 		
-		<!--end::Global Javascript Bundle-->
-		<!--begin::Page Vendors Javascript(used by this page)-->
-		<script src="{{asset('/plugins/global/plugins.bundle.js')}}"></script>
-		<script src="{{asset('/js/scripts.bundle.js')}}"></script>
-		<!--end::Global Javascript Bundle-->
-		<!--begin::Page Vendors Javascript(used by this page)-->
-		<script src="{{asset('/plugins/custom/datatables/datatables.bundle.js')}}"></script>
-		<!--end::Page Vendors Javascript-->
-		<!--begin::Page Custom Javascript(used by this page)-->
 		
-		<script src="{{asset('/js/custom/apps/user-management/users/list/export-users.js')}}"></script>
-		<script src="{{asset('/js/custom/apps/user-management/users/list/add.js')}}"></script>
-		<script src="{{asset('/js/custom/apps/user-management/users/list/table.js')}}"></script>
-		<script src="{{asset('/js/custom/widgets.js')}}"></script>
-		<script src="{{asset('/js/custom/apps/chat/chat.js')}}"></script>
-		<script src="{{asset('/js/custom/modals/upgrade-plan.js')}}"></script>
-		<script src="{{asset('/js/custom/modals/create-app.js')}}"></script>
-		<script src="{{asset('/js/custom/modals/users-search.js')}}"></script>
-
 						<script>
 							$("#kt_datatable_example_5").DataTable({
  "language": {

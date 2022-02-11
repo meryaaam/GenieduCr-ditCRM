@@ -10,7 +10,8 @@
     {% endif %}
 
 
-{% block title %}Concessionnaire{% endblock %}
+{% set P_page_title = 'Liste des concessionnaire' %}
+{% set P_path = '/concessionnaire' %}
 
 {% block body %}
 
@@ -33,57 +34,7 @@
                     <!--begin::Toolbar-->
                     <div class="toolbar" id="kt_toolbar">
                         <!--begin::Container-->
-                        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-                            <!--begin::Page title-->
-                           <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                                
-                                <!--begin::Separator-->
-                                <span class="h-20px border-gray-300 border-start mx-4"></span>
-                                <!--end::Separator-->
-                                <!--begin::Breadcrumb-->
-                                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted">
-                                        <a href="{{path("administrateur")}}" class="text-muted text-hover-primary">Accueil</a>
-                                    </li>
-                                    <!--end::Item-->
-                                  
-                                    
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item">
-                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted"><a href="{{path("concessionnaire")}}" class="text-muted text-hover-primary">Liste des Concessionnaires</a></li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted">
-                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item">
-                                        <a href="{{path("modification_administrateur",{'id':concessionnaire.id})}}" class="text-hover-primary">Modification Concessionnaire</a>
-                                    </li>
-                                  
-                                 
-                                    <!--end::Item-->
-                                </ul>
-                                <!--end::Breadcrumb-->
-                            </div>
-                            <!--end::Page title-->
-                            <!--begin::Actions-->
-                            <div class="d-flex align-items-center py-1">
-                                <!--begin::Wrapper-->
-
-                                <!--end::Wrapper-->
-                                <!--begin::Button-->
-
-                                <!--end::Button-->
-                            </div>
-                            <!--end::Actions-->
-                        </div>
+                   
                         <!--end::Container-->
                     </div>
                     <!--end::Toolbar-->
@@ -98,7 +49,7 @@
                                     <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                                         <!--begin: Pic-->
                                         <div class="me-7 mb-4">
-                                            <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                                            <div class="symbol symbol-100px symbol-lg-210px symbol-fixed position-relative">
                                                
                                                 <img src="{{asset('/media/logos/' ~ concessionnaire.concessionnairemarchand.media.nom )}}" alt="logo-concessionnaire" width="150" >
                                             </div>
@@ -203,7 +154,11 @@
 
                                 <div id="kt_account_settings_profile_details" class="collapse show">
                                     <div id="kt_account_settings_profile_details" class="collapse show">
-                                        {{ form_start(form, {'attr': {'class': 'form fv-plugins-bootstrap5 fv-plugins-framework'}}) }}
+                                        {{ form_start(form , {'attr': {'class': 'form fv-plugins-bootstrap5 fv-plugins-framework needs-validation" ' ,
+                                                                 novalidate : 'novalidate' } 
+                                                      }) 
+                                                     
+                                    }}
 
                                         <div class="row mb-6">
                                            
@@ -299,18 +254,17 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mb-6">
+                                        <div class="row mb-6 p-5">
 
                                             
-                                            <div class="row padding-1">
                                                 {%for fabNom in form.concessionnairemarchand.fabriquants %}
-                                                    <div class="img_checkbox col-lg-4  col-sm-4">
+                                                    <div class="img_checkbox col-lg-2  col-sm-2">
 
                                                         {{form_row(fabNom)}}{#pour rendre le input  checkbox#}
 
                                                         {# Ici pour chaque choix on recupere l'id puis on avec l'id on recupere le liens du logo #}
                                                         {# #}
-                                                        <img src="{{asset(listeLogo[fabNom.vars.name])}}" />{# pour connaitre les variables disponible#}
+                                                        <img src="{{asset(listeLogo[fabNom.vars.name])}}"  width="45%" />{# pour connaitre les variables disponible#}
 
                                                     </div>
                                                 {%endfor%}

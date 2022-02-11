@@ -2,8 +2,8 @@
 
 {% set page_title = 'Consultation Concessionnaire ' %}
 
-{% block title %}  {% endblock %}
-
+{% set P_page_title = 'Liste des concessionnaire' %}
+{% set P_path = '/concessionnaire' %}
 {% block body %}
  
     <!--begin::Body-->
@@ -21,55 +21,7 @@
            
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-                    <!--begin::Toolbar-->
-                    <div class="toolbar" id="kt_toolbar">
-                        <!--begin::Container-->
-                        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-                            <!--begin::Page title-->
-                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                                
-                                <!--begin::Separator-->
-                                <span class="h-20px border-gray-300 border-start mx-4"></span>
-                                <!--end::Separator-->
-                                <!--begin::Breadcrumb-->
-                                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted">
-                                        <a href="{{path("administrateur")}}" class="text-muted text-hover-primary">Accueil</a>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item">
-                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                                    </li>
-                                    <!--end::Item-->
-                                    
-                                    <!--begin::Item-->
-                                
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted"><a href="{{path("concessionnaire")}}" class="text-muted text-hover-primary">Liste des concessionnaire</a></li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                   <li class="breadcrumb-item">
-                                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                                    </li>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <li class="breadcrumb-item">
-                                        <a href="{{path("consultation_administrateur",{'id':concessionnaire.id})}}" class="text-hover-primary">Consultation Concessionnaire</a>
-                                    </li>
-                                  
-                                 
-                                    <!--end::Item-->
-                                </ul>
-                                <!--end::Breadcrumb-->
-                            </div>
-                       
-                        </div>
-                        <!--end::Container-->
-                    </div>
-                    <!--end::Toolbar-->
+                   
                     <!--begin::Post-->
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <!--begin::Container-->
@@ -81,10 +33,10 @@
                                     <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                                         <!--begin: Pic-->
                                         <div class="me-7 mb-4">
-                                            <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                                            <div class="symbol symbol-250px symbol-lg-100px symbol-fixed position-relative">
                                              
-                                                
-                                                <img src="{{asset('/media/logos/' ~ concessionnaire.concessionnairemarchand.media.nom )}}" alt="logo-concessionnaire" width="150" >
+                                                 <img src="{{asset('/media/logos/' ~ concessionnaire.concessionnairemarchand.media.nom )}}" alt="logo-concessionnaire" width="150" >
+                                               
                                             </div>
                                         </div>
                                         <!--end::Pic-->
@@ -304,13 +256,9 @@
                                           
                                           {%for fab in concessionnaire.Concessionnairemarchand.fabriquants %}
                                           
-                                                 <div class="img_checkbox col-lg-4  col-sm-4">
-                                                         {{ fab.nom}}
-                                                     
-                                                       
-                                                         <img src="{{fab.media.lien }}" alt="logo-fabriquant" width="150" >
-                                                         
-
+                                                 <div class="img_checkbox col-lg-2  col-sm-2">
+                                                          <img src="{{fab.media.lien }}" alt="logo-fabriquant" width="45%" height="52%">
+ 
                                                   </div>
                                                 {% endfor %}
                                                 

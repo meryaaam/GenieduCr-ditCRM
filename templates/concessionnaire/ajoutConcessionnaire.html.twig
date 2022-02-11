@@ -1,17 +1,17 @@
 
 
 {% extends 'base.html.twig' %}
-
-
-{% block title %} Modification Concessionnaire {% endblock %}
-{% block PageTitle %}
-    {% if isModification %}
+{% if isModification %}
  {% set page_title = 'Modification concessionnaire' %}
 
     {% else %}
  {% set page_title = 'Ajout concessionnaire' %}
     {% endif %}
-    {% endblock %}
+
+
+
+{% set P_page_title = 'Liste des concessionnaire' %}
+{% set P_path = '/concessionnaire' %}
 {% block body %}
 
 
@@ -22,27 +22,7 @@
         <div id="kt_header" style="" class="header align-items-stretch">
             <!--begin::Container-->
             <div class="container-fluid d-flex align-items-stretch justify-content-between">
-                <!--begin::Aside mobile toggle-->
-                <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show aside menu">
-                    <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px" id="kt_aside_mobile_toggle">
-                        <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
-                        <span class="svg-icon svg-icon-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-											<path d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z" fill="black"></path>
-											<path opacity="0.3" d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z" fill="black"></path>
-										</svg>
-									</span>
-                        <!--end::Svg Icon-->
-                    </div>
-                </div>
-                <!--end::Aside mobile toggle-->
-                <!--begin::Mobile logo-->
-                <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-                    <a href="../../demo1/dist/index.html" class="d-lg-none">
-                        <img alt="Logo" src="/media/logos/logo-2.svg" class="h-30px">
-                    </a>
-                </div>
-                <!--end::Mobile logo-->
+             
                 <!--begin::Wrapper-->
                 <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_wrapper">
                     <!--begin::Navbar-->
@@ -231,9 +211,11 @@
             <div class="card-body border-top p-9" class="card-header border-0 cursor-pointer" class="collapse show">
 
                 <div id="kt_account_settings_profile_details" class="collapse show">
-                    {{ form_start(form, {'attr': {'class': 'form fv-plugins-bootstrap5 fv-plugins-framework'}}) }}
-
-             
+                    {{ form_start(form,{'attr': {'class': 'form fv-plugins-bootstrap5 fv-plugins-framework needs-validation" ' ,
+                                                                 novalidate : 'novalidate' } 
+                                                      }) 
+                                                     
+                                    }}
 
 
                     <div class="row mb-6">
@@ -255,6 +237,8 @@
 
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             {{ form_widget(form.concessionnairemarchand.utilisateur.nom, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
+                            {{ form_errors(form.concessionnairemarchand.utilisateur.nom)}}
+                        
                         </div>
                     </div>
 
@@ -264,6 +248,8 @@
 
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             {{ form_widget(form.concessionnairemarchand.description, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
+                             {{ form_errors(form.concessionnairemarchand.description)}}
+
                         </div>
                     </div>
 
@@ -273,6 +259,8 @@
 
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             {{ form_widget(form.concessionnairemarchand.utilisateur.courriel, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
+                            {{ form_errors(form.concessionnairemarchand.utilisateur.courriel)}}
+
                         </div>
                     </div>
 
@@ -282,6 +270,8 @@
 
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             {{ form_widget(form.concessionnairemarchand.utilisateur.telephone, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
+                            {{ form_errors(form.concessionnairemarchand.utilisateur.telephone)}}
+
                         </div>
                     </div>
                     <div class="row mb-6">
@@ -290,6 +280,7 @@
 
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             {{ form_widget(form.concessionnairemarchand.utilisateur.nomutilisateur, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
+                            {{ form_errors(form.concessionnairemarchand.utilisateur.nomutilisateur)}}
                         </div>
                     </div>
                     <div class="row mb-6">
@@ -298,6 +289,8 @@
 
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             {{ form_widget(form.concessionnairemarchand.utilisateur.password, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
+                            {{ form_errors(form.concessionnairemarchand.utilisateur.password)}}
+
                         </div>
                     </div>
                     <div class="row mb-6">
@@ -306,6 +299,8 @@
 
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             {{ form_widget(form.concessionnairemarchand.siteweb, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
+                            {{ form_errors(form.concessionnairemarchand.siteweb)}}
+
                         </div>
                     </div>
                     <div class="row mb-6">
@@ -314,6 +309,8 @@
 
                         <div class="col-lg-6">
                             {{ form_widget(form.concessionnairemarchand.vendeurs) }}
+                            {{ form_errors(form.concessionnairemarchand.vendeurs)}}
+
                         </div>
                     </div>
                     <div class="row mb-6">
@@ -322,6 +319,7 @@
 
                         <div class="col-lg-6">
                             {{ form_widget(form.concessionnairemarchand.agents) }}
+                            {{ form_errors(form.concessionnairemarchand.agents)}}
                         </div>
                     </div>
                     <div class="row mb-6">
@@ -330,24 +328,32 @@
 
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             {{ form_widget(form.concessionnairemarchand.liendealertrack, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
+                            {{ form_errors(form.concessionnairemarchand.liendealertrack)}}
+
                         </div>
                     </div>
 
-                    <div class="row mb-6">
+                    <div class="row mb-6 pb-2">
 
-                        {{ form_row(form.concessionnairemarchand.media)}}
-                        <div class="row padding-1">
+                        {{ form_label(form.concessionnairemarchand.media, "Logo:", {'label_attr': {'class':"col-lg-4 col-form-label required fw-bold fs-6"}}) }}
+                       <div class="col-lg-8 fv-row fv-plugins-icon-container">
+
+                        {{ form_widget(form.concessionnairemarchand.media)}}
+                        {{ form_errors(form.concessionnairemarchand.media)}}
+                        </div>
+                     </div>
+                        <div class="row mb-6 pb-2">
+
                             {%for fabNom in form.concessionnairemarchand.fabriquants %}
                                 <div class="img_checkbox col-lg-4  col-sm-4">
 
                                     {{form_row(fabNom)}}{#pour rendre le input  checkbox#}
-
-                                    {# Ici pour chaque choix on recupere l'id puis on avec l'id on recupere le liens du logo #}
-                                    {# #}
-                                    <img src="{{asset(listeLogo[fabNom.vars.name])}}" />{# pour connaitre les variables disponible#}
-
+                                     <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                     <img src="{{asset(listeLogo[fabNom.vars.name])}}" style="width:45%"/>{# pour connaitre les variables disponible#}
+                                 </div>
                                 </div>
                             {%endfor%}
+                            </div>
                     </div>
 
 
@@ -365,56 +371,8 @@
     </div>
 
 
-    <div class="toolbar" id="kt_toolbar">
-        <!--begin::Container-->
-        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-            <!--begin::Page title-->
-            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Ajout d'un Concessionnaire</h1>
-                <!--end::Title-->
-                <!--begin::Separator-->
-                <span class="h-20px border-gray-300 border-start mx-4"></span>
-                <!--end::Separator-->
-                <!--begin::Breadcrumb-->
-                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">
-                        <a href="{{path("concessionnaire")}}" class="text-muted text-hover-primary">Accueil</a>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item">
-                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Concessionnaires</li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item">
-                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Concessionnaires</li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item">
-                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Ajout d'un Concessionnaire</li>
-                    <!--end::Item-->
-                </ul>
-                <!--end::Breadcrumb-->
-            </div>
-            <!--end::Page title-->
-          
-          
-        </div>
-        <!--end::Container-->
+
+
     </div>
     </div>
 {% endblock %}
