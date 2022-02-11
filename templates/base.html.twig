@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
- <head>
-  
-	
+    <head>	
      {{ include('layout/Stylesheets.html.twig') }}
 	</head>
  
@@ -22,8 +20,7 @@
                     {# {{ include('layout/topbar.html.twig') }}
 					{{ include('layout/header.html.twig') }} #}
 
-							  {{ include('layout/navbar.html.twig') }}
-
+					    {{ include('layout/navbar.html.twig') }}
 	 	                {{ include('layout/toolbar.html.twig') }}
 
 					</div>
@@ -46,12 +43,12 @@
 		<!--end::Scrolltop-->
 		<!--end::Main-->
 
-   {# {{ include('layout/footer.html.twig') }} #}
 
     </body>
 
+   {{ include('layout/footer.html.twig') }}
 
-	{{ include('layout/import.html.twig') }}
+
 
 
 	
@@ -59,5 +56,6 @@
 
 
 	 
+	{{ include('layout/import.html.twig') }}
 
 
