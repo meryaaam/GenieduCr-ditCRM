@@ -148,7 +148,7 @@ class VehiculeController extends AbstractController
 
                 //Récupère l'image
               $media = $form->getData()->getMedia();
-               
+              if ($media){ 
                 //Récupère le fichier image
                 $mediafile = $form->getData()->getMedia()->getImageFile();
                 if ($mediafile){ 
@@ -175,7 +175,7 @@ class VehiculeController extends AbstractController
 
 
             }
-            
+        }
             
             $this->om->persist($vehicules);
            
@@ -205,7 +205,7 @@ class VehiculeController extends AbstractController
     public function delete (Vehicule $vehicules, Request $request,ObjectManager $objectManager)
     {
      
-      
+  
             $objectManager->remove($vehicules);
             $objectManager->flush();
             return $this->redirectToRoute("vehicule");

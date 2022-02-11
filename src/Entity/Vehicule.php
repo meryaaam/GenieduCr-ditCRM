@@ -485,11 +485,13 @@ class Vehicule
 
     /**
      * @ORM\OneToOne(targetEntity=Medias::class, inversedBy="vehicule", cascade={"persist", "remove"})
+     * * @ORM\JoinColumn(nullable=false)
      */
     private $media;
 
     /**
      * @ORM\OneToMany(targetEntity=GalerieVehicule::class, mappedBy="vehicule", cascade={"persist", "remove"})
+     * * @ORM\JoinColumn(nullable=false)
      */
     private $galerie;
 

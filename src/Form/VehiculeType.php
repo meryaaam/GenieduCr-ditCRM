@@ -55,6 +55,7 @@ class VehiculeType extends AbstractType
             ->add('Passagers')
             ->add('prixdetail')
             ->add('prixwholesale')
+           
             ->add('Aileronarriere')
             ->add('antipatinage')
             ->add('chargeurdc')
@@ -227,9 +228,11 @@ class VehiculeType extends AbstractType
        
             ->add('status',EntityType::class,array(
                 'class' => Status::class,
-                'choice_label' => 'nom',
-            
-                
+                'choice_label' => function ($statu) {
+                 
+                    return $statu->getNom();
+                 },
+                 'expanded' => false
   
             ))
           

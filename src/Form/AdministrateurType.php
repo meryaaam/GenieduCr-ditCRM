@@ -23,7 +23,7 @@ class AdministrateurType extends AbstractType
             ])
             ->add('authenvoisms',CheckboxType::class,[
                 'label_attr' => [
-                    'class' => 'checkbox-switch'
+                    'class' => 'input-checkbox'
                 ],'required' => false
         
             ])

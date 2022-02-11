@@ -146,8 +146,8 @@
 																		<!--end::Svg Icon-->
 																	</a>
 																	
-																	<form  method="POST" style="display:inline-block"   action="{{path('delete-vehicule', {'id' : vehicule.id})}}"    onsubmit="return">
-																		
+																	<form  method="POST" style="display:inline-block" id="myform"  action="{{path('delete-vehicule', {'id' : vehicule.id})}}"    onsubmit="return">
+																			
 																	
 																	 
 																		   
@@ -160,7 +160,10 @@
 											
 																		
 																		
-																		<a href="{{path('delete-vehicule', {'id' : vehicule.id})}}"class="confirmModalLink btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+																		<a href="{{path('delete-vehicule', {'id' : vehicule.id})}}" class="confirmModalLink btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+
+
+
 																		
 
 																		<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
@@ -176,7 +179,7 @@
 																		</a>
                                                                         
 																		
-															
+																 
 
 
 
@@ -207,8 +210,8 @@
 																							</div>
 																						</div>
                                                                         
-																	</form>
 																
+																					</form>
 																
 																</div></td>
 															
@@ -253,7 +256,6 @@
 
 
 
-
 		
 
 						<script>
@@ -275,6 +277,8 @@
   ">"
 });
 </script>
+
+
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -283,7 +287,7 @@ $(document).ready(function(){
 	$(".confirmModalLink").click(function(e) {
 			e.preventDefault();
 			theHREF = $(this).attr("href");
-			console.log(theHREF);
+			
 			$("#kt_modal_1").modal("show");
 		});
 
@@ -292,7 +296,7 @@ $(document).ready(function(){
 		});
 
 		$("#confirmModalYes").click(function(e) {
-		//	window.location.href = theHREF;
+			window.location.href = theHREF;
 			$('#myform'). attr('action', theHREF);
 
 			document.getElementById("myform").submit();
@@ -300,6 +304,7 @@ $(document).ready(function(){
 
 });
 
-</script> 
-	</body>
+</script>
+
+
 {% endblock %}

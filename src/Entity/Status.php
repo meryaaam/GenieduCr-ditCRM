@@ -32,15 +32,16 @@ class Status
     }
 
 
-    public function getNom(): ?bool
+    public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setNom(?bool $nom): self
+    public function setNom(?string $nom): self
     {
         $this->nom = $nom;
 
         return $this;
     }
 }
+
