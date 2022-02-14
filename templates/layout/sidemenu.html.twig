@@ -32,13 +32,18 @@
 							<!--begin::Menu-->
 							<div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
 								
-								<div class="menu-item">
+								<div class="menu-item " >
 									<div class="menu-content pb-2">
 										<span class="menu-section text-muted text-uppercase fs-8 ls-1">Administration</span>
 									</div>
 								</div>
 								<div class="menu-item">
-									<a class="menu-link " href="{{path("index")}}">
+								{% if page_title == "Dashboard" %}
+									<a class="menu-link active" href="{{path("index")}}">
+								{% else %}
+								<a class="menu-link " href="{{path("index")}}">
+								{% endif %}
+
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -55,7 +60,14 @@
 									</a>
 								</div>
 								<div class="menu-item">
-									<a class="menu-link" href="{{path("administrateur")}}">
+
+										{% if page_title == "Liste des administrateurs" %}
+									     <a class="menu-link active" href="{{path("administrateur")}}">
+							         	{% else %}
+								         <a class="menu-link " href="{{path("administrateur")}}">
+								       {% endif %}
+
+
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/art/art002.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -70,8 +82,13 @@
 									</a>
 								</div>
 								<div class="menu-item">
-									<a class="menu-link" href="{{path("agent")}}">
-										<span class="menu-icon">
+	                                   {% if page_title == "Liste des Agents" %}
+									     <a class="menu-link active" href="{{path("agent")}}">
+							         	{% else %}
+								         <a class="menu-link" href="{{path("agent")}}">
+								       {% endif %}										
+									   
+									   <span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/art/art002.svg-->
 											<span class="svg-icon svg-icon-2">
 												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -85,7 +102,11 @@
 									</a>
 								</div>
 								<div class="menu-item">
-									<a class="menu-link" href="{{path('concessionnaire')}}">
+                                            {% if page_title == "Listes des Concessionnaires" %}
+									          <a class="menu-link active" href="{{path("concessionnaire")}}">
+							         	    {% else %}
+								         	<a class="menu-link" href="{{path('concessionnaire')}}">
+								             {% endif %}	
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -101,7 +122,11 @@
 								</div>
 
 								<div class="menu-item">
+									 {% if page_title == "Liste des Fabriquants" %}
+									          <a class="menu-link active" href="{{path("fabriquant")}}">
+							         	    {% else %}
 									<a class="menu-link" href="{{path('fabriquant')}}">
+								             {% endif %}	
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -116,7 +141,12 @@
 									</a>
 								</div>
 								<div class="menu-item">
-									<a class="menu-link" href="{{path('marchand')}}">
+ 
+										 {% if page_title == "Liste des Marchands" %}
+									          <a class="menu-link active" href="{{path("marchand")}}">
+							         	    {% else %}
+								     	<a class="menu-link" href="{{path('marchand')}}">
+								             {% endif %}	
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/layouts/lay010.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -131,7 +161,12 @@
 									</a>
 								</div>
 								<div class="menu-item">
-									<a class="menu-link" href="{{path('partenaire')}}">
+								 {% if page_title == "Liste des Partenaires" %}
+									<a class="menu-link active" href="{{path('partenaire')}}">
+                                  {% else %}
+								  	<a class="menu-link" href="{{path('partenaire')}}">
+								    {% endif %}	
+
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/communication/com001.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -152,7 +187,13 @@
 									</div>
 								</div>
 								<div class="menu-item">
+
+                                   {% if page_title == "Liste des Véhicules" %}
+									<a class="menu-link active" href="{{path('vehicule')}}">
+                                  {% else %}
 									<a class="menu-link" href="{{path('vehicule')}}">
+								    {% endif %}	
+									
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/communication/com001.svg-->
 											<span class="svg-icon svg-icon-2">
