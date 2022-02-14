@@ -254,7 +254,9 @@
 
 
     <!--begin::Javascript-->
-		<script>var hostUrl = "assets/";</script>
+	{{ include('layout/import.html.twig') }}
+			<script src="{{asset('/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+
 	 
    	<script>
 							$("#kt_datatable_example_5").DataTable({
