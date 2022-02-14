@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 /**
@@ -39,20 +41,23 @@ class Fabriquant
      */
     private $actifaccueil;
 
-   
-
     /**
      * @ORM\Column(type="string", length=255)
+         * @Assert\NotBlank(message="veuillez remplir le lien") 
+
      */
     private $lien;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+          * @Assert\NotBlank(message="veuillez remplir la description") 
+
      */
     private $description;
 
     /**
      * @ORM\Column(type="datetime")
+
      */
     private $datecreation;
 
@@ -62,23 +67,23 @@ class Fabriquant
     private $datemodification;
 
 
-    
-
-
-
     /**
      * @ORM\ManyToMany(targetEntity=Concessionnairemarchand::class, inversedBy="fabriquants")
+     * @Assert\Valid()
      */
     private $concessionnairesmarchand;
 
     /**
      * @ORM\OneToOne(targetEntity=Medias::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
+
      */
     private $media;
 
     /**
      * @ORM\Column(type="string", length=255)
+      * @Assert\NotBlank(message="veuillez remplir le nom ") 
+
      */
     private $nom;
 

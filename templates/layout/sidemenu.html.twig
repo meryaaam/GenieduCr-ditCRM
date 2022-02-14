@@ -1,3 +1,7 @@
+	{{ include('layout/Stylesheets.html.twig') }}
+  <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+
+
 	<!--begin::Aside-->
 				 <div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
 					<!--begin::Brand-->
@@ -34,7 +38,7 @@
 									</div>
 								</div>
 								<div class="menu-item">
-									<a class="menu-link active" href="#">
+									<a class="menu-link " href="{{path("index")}}">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -658,16 +662,7 @@
 								</div>
 
 
-
-
-
-								<div class="menu-item">
-									<div class="menu-content">
-										<div class="separator mx-1 my-4"></div>
-									</div>
-								</div>
-								
-								
+							
 							</div>
 							<!--end::Menu-->
 						</div>
@@ -691,3 +686,16 @@
 					<!--end::Footer-->
 				</div>
 				<!--end::Aside-->
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+      $("div a").click(function(){
+           $(this).parent().addClass('active');   
+      });
+});
+
+ </script>
+<script src="assets/js/scripts.bundle.js"></script>

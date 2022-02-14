@@ -168,23 +168,21 @@
 
                                             <div class="col-lg-8 fv-row fv-plugins-icon-container">
                               
-                                            {{ form_widget(form.concessionnairemarchand.media)}}
-                                            {{ form_errors(form.concessionnairemarchand.media)}}
+                                                {{ form_widget(form.concessionnairemarchand.media)}}
+                                                {{ form_errors(form.concessionnairemarchand.media)}}
 
-                                            
                                             </div>
+
                                         </div>
-                                            <div class="row mb-6  ">
+
+                                            <div class="row mb-6 pb-2 ">
                                                 {%for fabNom in form.concessionnairemarchand.fabriquants %}
-                                                    <div class="img_checkbox col-lg-3  col-sm-3 justify-content-center">
+                                                    <div class="img_checkbox col-lg-2  col-sm-2 justify-content-center">
 
                                                         {{form_row(fabNom)}} 
-
-                                                        {# <div class="col-lg-8 fv-row fv-plugins-icon-container"> #}
-
+ 
                                                         <img src="{{asset(listeLogo[fabNom.vars.name])}}" style="width:45%" />{# pour connaitre les variables disponible#}
-                                            {# </div> #}
-                                                    </div>
+                                                     </div>
                                                 {%endfor%}
                                             </div>
 
@@ -194,7 +192,6 @@
                                                 <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Ajouter</button>
                                             </div>
 
-                                            {# Fermeture de la balise <form> du formulaire HTML #}
                                             {{ form_end(form) }}
                                         </div>
                                     </div>

@@ -61,6 +61,7 @@ class Agent
     /**
      * @ORM\ManyToOne(targetEntity=Typeagent::class, inversedBy="agents")
      * @ORM\JoinColumn(nullable=false)
+       * @Assert\Valid()
      */
     
     private $typeagent;

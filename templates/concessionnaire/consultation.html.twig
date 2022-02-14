@@ -7,8 +7,7 @@
 {% block body %}
  
     <!--begin::Body-->
-    <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
-    <!--begin::Main-->
+     <!--begin::Main-->
     <!--begin::Root-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Page-->
@@ -32,8 +31,8 @@
                                     <!--begin::Details-->
                                     <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                                         <!--begin: Pic-->
-                                        <div class="me-7 mb-4">
-                                            <div class="symbol symbol-250px symbol-lg-100px symbol-fixed position-relative">
+                                        <div class="me-7 mb-5">
+                                            <div class="position-relative pt-5">  
                                              
                                                  <img src="{{asset('/media/logos/' ~ concessionnaire.concessionnairemarchand.media.nom )}}" alt="logo-concessionnaire" width="150" >
                                                
@@ -63,7 +62,7 @@
 																	<path d="M12 22C14.6 22 17 21 18.7 19.4C17.9 16.9 15.2 15 12 15C8.8 15 6.09999 16.9 5.29999 19.4C6.99999 21 9.4 22 12 22Z" fill="black"></path>
 																</svg>
 															</span>
-                                                            <!--end::Svg Icon-->Concessionnaire</a>
+                                                            <!--end::Svg Icon-->{{concessionnaire.concessionnairemarchand.utilisateur.nom}}</a>
 
                                                     </div>
                                                     <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
@@ -138,7 +137,7 @@
 
                                 <!--begin::Card header-->
                                 <!--begin::Card body-->
-                                <div class="card-body p-9">
+                                <div class="card-body p-9 justify-content-center">
                                     <!--begin::Row-->
                                        <div class="row mb-7">
                                          	 
@@ -250,17 +249,18 @@
                                         </div>
                                     </div>
                                     
-                                    
                                     <div class="row mb-6">
-                                     <label class="col-lg-4 fw-bold text-muted">Liste des Fabriquants</label>
-                                          
-                                          {%for fab in concessionnaire.Concessionnairemarchand.fabriquants %}
-                                          
-                                                 <div class="img_checkbox col-lg-2  col-sm-2">
-                                                          <img src="{{fab.media.lien }}" alt="logo-fabriquant" width="45%" height="52%">
+
+                                              <label class="col-lg-4 fw-bold text-muted"> Liste des Fabriquants</label>
  
-                                                  </div>
+                                           {%for fab in concessionnaire.Concessionnairemarchand.fabriquants %}
+                                          
+                                                 <div class="img_checkbox col-lg-2  col-sm-2 justify-content-between">
+ 
+                                                          <img src="{{fab.media.lien }}" alt="logo-fabriquant" style="max-width: 42%">
+                                                 </div>
                                                 {% endfor %}
+                                         
                                                 
                                     </div>
 
@@ -288,5 +288,5 @@
     <!--end::Root-->
 
 
-    </body>
+ 
 {% endblock %}

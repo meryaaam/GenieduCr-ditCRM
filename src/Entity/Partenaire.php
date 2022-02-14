@@ -4,6 +4,8 @@ use App\Repository\PartenaireRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass=PartenaireRepository::class)
  */
@@ -17,15 +19,20 @@ class Partenaire
     private $id;
     /**
      * @ORM\OneToOne(targetEntity=Utilisateur::class, inversedBy="partenaire", cascade={"persist", "remove"})
+     * @Assert\Valid()
+
      */
     private $utilisateur;
     /**
      * @ORM\ManyToMany(targetEntity=Agent::class, inversedBy="partenaire")
+  
+
      */
     private $agents;
    
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="veuillez remplir le Nom d'utilisateur") 
      */
     private $description;
     /**

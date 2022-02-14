@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
+
 /**
  * @ORM\Entity(repositoryClass=ConcessionnairemarchandRepository::class)
  */
@@ -68,12 +69,14 @@ class Concessionnairemarchand
     /**
      * @ORM\OneToOne(targetEntity=Utilisateur::class, inversedBy="concessionnairemarchand", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     
     private $Utilisateur;
 
     /**
      * @ORM\OneToOne(targetEntity=Marchand::class, mappedBy="Concessionnairemarchand", cascade={"persist", "remove"})
+   
      */
     private $marchand;
 

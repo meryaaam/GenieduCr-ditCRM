@@ -31,13 +31,7 @@
          
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-                    <!--begin::Toolbar-->
-                    <div class="toolbar" id="kt_toolbar">
-                        <!--begin::Container-->
-                   
-                        <!--end::Container-->
-                    </div>
-                    <!--end::Toolbar-->
+                    
                     <!--begin::Post-->
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <!--begin::Container-->
@@ -49,7 +43,7 @@
                                     <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                                         <!--begin: Pic-->
                                         <div class="me-7 mb-4">
-                                            <div class="symbol symbol-100px symbol-lg-210px symbol-fixed position-relative">
+                                            <div class=" position-relative">
                                                
                                                 <img src="{{asset('/media/logos/' ~ concessionnaire.concessionnairemarchand.media.nom )}}" alt="logo-concessionnaire" width="150" >
                                             </div>
@@ -254,11 +248,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mb-6 p-5">
+                                        <div class="row mb-6">
 
                                             
                                                 {%for fabNom in form.concessionnairemarchand.fabriquants %}
-                                                    <div class="img_checkbox col-lg-2  col-sm-2">
+                                                    <div class="img_checkbox col-lg-3  col-sm-3">
 
                                                         {{form_row(fabNom)}}{#pour rendre le input  checkbox#}
 

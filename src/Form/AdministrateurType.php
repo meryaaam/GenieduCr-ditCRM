@@ -16,14 +16,14 @@ class AdministrateurType extends AbstractType
      {
         $builder
             ->add('authenvoiemails',CheckboxType::class,[
-                'label_attr' => [
-                    'class' => 'checkbox-switch'
+                   'label_attr' => [ 
+                   'class' => 'checkbox-switch'
                 ],'required' => false
         
             ])
             ->add('authenvoisms',CheckboxType::class,[
                 'label_attr' => [
-                    'class' => 'input-checkbox'
+                    'class' => 'checkbox-switch'
                 ],'required' => false
         
             ])
