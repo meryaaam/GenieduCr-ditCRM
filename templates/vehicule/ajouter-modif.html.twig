@@ -1,6 +1,11 @@
 
 {% extends 'base.html.twig' %}
+	{% if isModification %}
 {% set page_title = 'Modification Véhicule  ' %}
+{% else %}
+{% set page_title = 'Modification Véhicule  ' %}
+{% endif %}
+
 {% set P_page_title = 'Liste Véhicules  ' %}
 {% set P_path = '/vehicule' %}
 
@@ -32,20 +37,78 @@
 							<!--begin::Container-->
 							<div id="kt_content_container" class="container-xxl">
 								<!--begin::Navbar-->
+								{% if isModification %}
 								<div class="card mb-5 mb-xl-10">
+									
 									<div class="card-body pt-9 pb-0">
 										<!--begin::Details-->
 										<div class="d-flex flex-wrap flex-sm-nowrap mb-3">
 											<!--begin: Pic-->
-											
+											<div class="me-7 mb-4">
+												<div class="position-relative">
+                                                   
+                                                        <img src="{{asset('/media/logos/' ~ vehicules.media.nom )}}" alt="Photo-Principale" width="65%" >
+                                                       
+                                                   
+													<div class="position-absolute translate-middle  mb-6  rounded-circle border border-4 border-white h-20px w-20px"></div>
+												</div>
+											</div>
 											<!--end::Pic-->
 											<!--begin::Info-->
 											<div class="flex-grow-1">
 												<!--begin::Title-->
-												
+												<div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+													<!--begin::User-->
+													<div class="d-flex flex-column">
+														<!--begin::Name-->
+														<div class="d-flex align-items-center mb-2">
+															<a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1"><b>{{vehicules.annee}}.{{vehicules.marque.nom}}.{{vehicules.modele.nom}}.{{vehicules.Couleurexterieur}}</b></a>
+															<a href="#">
+																<!--begin::Svg Icon | path: icons/duotune/general/gen026.svg-->
+															
+																<!--end::Svg Icon-->
+															</a>
+															
+														</div>
+                                                  
+														<!--end::Name-->
+														<!--begin::Info-->
+														<div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+															<a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+															<!--begin::Svg Icon | path: icons/duotune/communication/com006.svg-->
+														
+															<!--end::Svg Icon--> {{vehicules.category.nom}}</a>
+														
+														</div>
+														<div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+															
+															<a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
+															<!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
+														
+															<!--end::Svg Icon-->  {{vehicules.vin}}<br/></a>
+														</div>
+                                                        <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+															
+															<a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
+															<!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
+														
+															<!--end::Svg Icon-->    {{vehicules.carproof}}<br/><br/></a>
+														</div>
+														<!--end::Info-->
+													</div>
+													<!--end::User-->
+													
+												</div>
 												<!--end::Title-->
 												<!--begin::Stats-->
-												
+												<div class="d-flex flex-wrap flex-stack">
+													<!--begin::Wrapper-->
+													
+													<!--end::Wrapper-->
+													<!--begin::Progress-->
+													
+													<!--end::Progress-->
+												</div>
 												<!--end::Stats-->
 											</div>
 											<!--end::Info-->
@@ -73,7 +136,9 @@
 										</ul>
 										<!--begin::Navs-->
 									</div>
+									
 								</div>
+								{% endif %}
 								<!--end::Navbar-->
 				<div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
 				<!--begin::Card title-->
