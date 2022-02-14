@@ -61,7 +61,7 @@
 								</div>
 								<div class="menu-item">
 
-										{% if page_title == "Liste des administrateurs" %}
+										{% if (page_title == "Liste des administrateurs" or page_title == "Ajouter administrateurs"  or page_title == "Modification Administrateur"  or page_title == "Sécurité Administrateur"  or page_title == "Consultation Administrateur") %}
 									     <a class="menu-link active" href="{{path("administrateur")}}">
 							         	{% else %}
 								         <a class="menu-link " href="{{path("administrateur")}}">
@@ -82,7 +82,7 @@
 									</a>
 								</div>
 								<div class="menu-item">
-	                                   {% if page_title == "Liste des Agents" %}
+	                                   {% if (page_title == "Liste des Agents" or page_title == "Ajouter Agent" or page_title == "Consultation Agent" or page_title == "Modifier Agent" or page_title == "Sécrurité Agent" ) %}
 									     <a class="menu-link active" href="{{path("agent")}}">
 							         	{% else %}
 								         <a class="menu-link" href="{{path("agent")}}">
@@ -102,7 +102,7 @@
 									</a>
 								</div>
 								<div class="menu-item">
-                                            {% if page_title == "Listes des Concessionnaires" %}
+                                            {% if (page_title == "Listes des Concessionnaires"  or page_title == "Ajout concessionnaire"  or page_title == "Modification concessionnaire"  or page_title == "Sécurité Concessionnaire"  or page_title == "Consultation Concessionnaire"   )%}
 									          <a class="menu-link active" href="{{path("concessionnaire")}}">
 							         	    {% else %}
 								         	<a class="menu-link" href="{{path('concessionnaire')}}">
@@ -122,7 +122,7 @@
 								</div>
 
 								<div class="menu-item">
-									 {% if page_title == "Liste des Fabriquants" %}
+									 {% if (page_title == "Liste des Fabriquants" or page_title == "Ajouter Fabriquant" or page_title == "Modifier Fabriquant" or page_title == "Consultation Fabriquant") %}
 									          <a class="menu-link active" href="{{path("fabriquant")}}">
 							         	    {% else %}
 									<a class="menu-link" href="{{path('fabriquant')}}">
@@ -142,7 +142,7 @@
 								</div>
 								<div class="menu-item">
  
-										 {% if page_title == "Liste des Marchands" %}
+									 {% if (page_title == "Ajouter Marchand" or page_title == "Liste des marchands" or page_title == "Modifier marchand" or page_title == "Sécurité marchand" or page_title == "Consulter marchand") %}
 									          <a class="menu-link active" href="{{path("marchand")}}">
 							         	    {% else %}
 								     	<a class="menu-link" href="{{path('marchand')}}">
@@ -161,7 +161,8 @@
 									</a>
 								</div>
 								<div class="menu-item">
-								 {% if page_title == "Liste des Partenaires" %}
+ 								 {% if (page_title == "Liste des Partenaires" or page_title == "Ajouter Partenaire" or page_title == "Consulter partenaire" or page_title == "Sécurité partenaire" or page_title == "Modifier du parteniare" ) %}
+
 									<a class="menu-link active" href="{{path('partenaire')}}">
                                   {% else %}
 								  	<a class="menu-link" href="{{path('partenaire')}}">
@@ -188,7 +189,7 @@
 								</div>
 								<div class="menu-item">
 
-                                   {% if page_title == "Liste des Véhicules" %}
+ 								 {% if (page_title == "Liste des Véhicules" or page_title == "Consultation Véhicule" or page_title == "Modification Véhicule" or page_title == "Ajouter Véhicule"  ) %}
 									<a class="menu-link active" href="{{path('vehicule')}}">
                                   {% else %}
 									<a class="menu-link" href="{{path('vehicule')}}">
