@@ -75,8 +75,10 @@ class Fabriquant
 
     /**
      * @ORM\OneToOne(targetEntity=Medias::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
 
+ 
      */
     private $media;
 

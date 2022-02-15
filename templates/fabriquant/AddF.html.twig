@@ -79,10 +79,11 @@
                                                  </div>
                                         </div>
                                         <div class="row mb-6">
-												{{ form_label(form.media, "Media :", {'label_attr': {'class':"col-lg-4 col-form-label fw-bold fs-6"}}) }}
+												{{ form_label(form.media, "Media :", {'label_attr': {'class':"col-lg-4 col-form-label fw-bold fs-6 required"}}) }}
 
                                             <div class="col-lg-8 fv-row fv-plugins-icon-container">
                                                 {{ form_widget(form.media)}}
+                                                {{ form_errors(form.media)}}
                                             </div>
                                         </div>
 

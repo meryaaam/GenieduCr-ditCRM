@@ -42,12 +42,9 @@ class FabriquantType extends AbstractType
                 'attr' => array('cols' => '5', 'rows' => '5')])
 
             ->add('media', MediasType::class,[
-                'required'=>true])
+                'required'=>true]  )
             ;
-            /*->add('datecreation')
-            ->add('datemodification')
-           ->add('concessionnairesmarchans')
-            ->add('media')*/
+           
         ;
     }
 
