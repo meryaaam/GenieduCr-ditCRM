@@ -28,20 +28,18 @@
 
                         <div class="row mb-6">
 							<div class="col-lg-6 fv-row fv-plugins-icon-container">
-								{{ form_widget(form.authenvoiemails, {'attr': {'class': 'form-check-input'}}) }}
+                               {{ form_row(form.authenvoiemails, {"label":"Authorisation Envoi Email "}) }}
 						    </div>
 							
-							{{ form_label(form.authenvoiemails, "Authorisation Envoi Email :", {'label_attr': {'class':"col-lg-4 col-form-label required fw-bold fs-6"}}) }}
-							
+ 							
 			 
 
 			 
 							<div class="col-lg-6 fv-row fv-plugins-icon-container">
-								{{ form_widget(form.authenvoisms, {'attr': {'class': 'form-check-input'}}) }}
+                               {{ form_row(form.authenvoisms, {"label":"Authorisation Envoi SMS "}) }}
 						</div>
 							
-							{{ form_label(form.authenvoisms, "Authorisation Envoi SMS :", {'label_attr': {'class':"col-lg-4 col-form-label required fw-bold fs-6"}}) }}
-							
+ 							
 		
 						</div>
 							
