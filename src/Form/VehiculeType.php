@@ -39,10 +39,31 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
+use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\NotNull;
+
 class VehiculeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+
+        // $imageConstraints = [
+        //     new NotNull([
+        //         'message' => 'Veuillez inserer une image'])
+        // ] ;
+        
+        // /** @var Medias $media  */
+        $media = new Medias() ;
+        
+        
+        if (! $media ) {
+            $imageConstraints[] = new NotNull([
+                'message' => 'Please upload an image',
+            ]);
+        }
+
+
         $builder
             ->add('stock')
             ->add('vin')
@@ -140,11 +161,16 @@ class VehiculeType extends AbstractType
                 )))
 
            
- */          
+
+                
+ */       
+
+
            //Photo prinicpale
            ->add('media', MediasType::class, array(
                
-               'required'  => false 
+               'required'  => false ,
+            //    'constraints' => $imageConstraints
                ))
            
             

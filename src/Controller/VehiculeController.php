@@ -9,8 +9,11 @@ use App\Entity\GalerieVehicule;
 use App\Entity\Marchand;
 use App\Entity\Medias;
 use App\Repository\VehiculeRepository;
+use App\Repository\ModeleRepository;
 use App\Repository\ConcessionnaireRepository;
+use App\Repository\FabriquantRepository;
 use App\Repository\MarchandRepository;
+use App\Repository\StatusRepository;
 use App\Repository\PartenaireRepository;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,12 +56,25 @@ class VehiculeController extends AbstractController
 
 
     #[Route('/vehicule', name: 'vehicule')]
-    public function index(VehiculeRepository $repository): Response
+    public function index(VehiculeRepository $repository , ModeleRepository $MRepo , FabriquantRepository $Frep , StatusRepository $Rstatus): Response
     {
         $vehicules = $repository -> findAll();
+        $vehicules = $repository -> findAll();
+        $modele = $MRepo -> findAll();
+        $marque = $Frep -> findAll();
+        $status = $Rstatus -> findAll();
+        $minimumYear = 1980 ;
+
+        // $concessionaire = $repository -> findAll();
+        // dd($vehicules);die;
        
         return $this->render('vehicule/index.html.twig', [
             'vehicules' => $vehicules,
+            'modeles' => $modele ,
+            'marque' => $marque ,
+            'status' => $status , 
+            'year' => $minimumYear 
+
         ]);
     }
 
@@ -126,25 +142,6 @@ class VehiculeController extends AbstractController
                    //$photogalerie ->setLien($photogalerielien);
 
                   
-                                    
-                      
-
-                       
-
-                    
-
-
-
-
-
-
-               
-            
-            
-               
-
-               
-
 
                 //Récupère l'image
               $media = $form->getData()->getMedia();

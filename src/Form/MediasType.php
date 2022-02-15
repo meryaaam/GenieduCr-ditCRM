@@ -16,28 +16,13 @@ class MediasType extends AbstractType
     
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $imageConstraints = [
-            // new Image([
-            //     'maxSize' => '5M'
-            // ]) ,
-            new NotNull([
-                'message' => 'Veuillez inserer une image'])
-        ] ;
-
-        /** @var Medias   $media ; */
-
-
-        // if (! $media->getNom() ) {
-        //     $imageConstraints[] = new NotNull([
-        //         'message' => 'Please upload an image',
-        //     ]);
-        // }
+       
 
         $builder
             ->add('ImageFile',FileType::class,[
-                'required' => true,
+                'required' => false,
                 'label'=>false ,
-                'constraints' => $imageConstraints
+               
                 
                 ])
         ;
