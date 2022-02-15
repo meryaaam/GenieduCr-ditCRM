@@ -32,37 +32,47 @@ class Concessionnairemarchand
 
     /**
      * @ORM\Column(type="string", length=255)
+      * @Assert\NotBlank(message="veuillez remplir le lien du site web ")
+
      */
     private $siteweb;
 
     /**
      * @ORM\Column(type="string", length=255)
+    * @Assert\NotBlank(message="veuillez remplir le lien du dealer track ")
+
      */
     private $liendealertrack;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="veuillez remplir la description ")
+
      */
     private $description;
 
     /**
      * @ORM\ManyToMany(targetEntity=Fabriquant::class, mappedBy="concessionnairesmarchand")
+      * @Assert\Valid()
      */
     private $fabriquants;
 
     /**
      * @ORM\ManyToMany(targetEntity=Agent::class, inversedBy="concessionnairemarchand")
+     * @Assert\Valid()
      */
     private $agents;
 
     /**
      * @ORM\OneToOne(targetEntity=Medias::class, cascade={"persist", "remove"})
+     * @Assert\Valid()
     
      */
     private $media;
 
     /**
      * @ORM\OneToOne(targetEntity=Concessionnaire::class, mappedBy="Concessionnairemarchand", cascade={"persist", "remove"})
+     * @Assert\Valid()
      */
     private $concessionnaire;
 
@@ -76,6 +86,7 @@ class Concessionnairemarchand
 
     /**
      * @ORM\OneToOne(targetEntity=Marchand::class, mappedBy="Concessionnairemarchand", cascade={"persist", "remove"})
+     * @Assert\Valid()
    
      */
     private $marchand;

@@ -48,7 +48,8 @@ class AgentType extends AbstractType
                  
                    return $ag->gettype();
                 },
-                'expanded' => false
+                'expanded' => false , 
+                'required' => True
                 
             ])
             

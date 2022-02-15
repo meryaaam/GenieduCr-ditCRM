@@ -49,25 +49,30 @@ class Agent
   
     /**
      * @ORM\ManyToMany(targetEntity=Concessionnairemarchand::class, mappedBy="agents")
+     * @Assert\Valid()
      */
     private $concessionnairemarchands;
 
     /**
      * @ORM\OneToOne(targetEntity=Utilisateur::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
+
      */
     private $utilisateur;
 
     /**
      * @ORM\ManyToOne(targetEntity=Typeagent::class, inversedBy="agents")
      * @ORM\JoinColumn(nullable=false)
-       * @Assert\Valid()
+     * @Assert\Valid()
+     
      */
     
     private $typeagent;
 
     /**
      * @ORM\ManyToMany(targetEntity=Partenaire::class, mappedBy="agents")
+         * @Assert\Valid()
      */
     private $partenaire;
 

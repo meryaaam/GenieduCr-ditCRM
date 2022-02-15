@@ -5,6 +5,7 @@ use App\Form\EditUtilisateurType;
 use App\Entity\Agent;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Typeagent;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -38,8 +39,9 @@ class EditAgentType extends AbstractType
        
         ->add('typeagent',EntityType::class,[
             'class' => Typeagent::class,
-            'choice_label' => function ($ag) {   return $ag->gettype();
-            }, 'expanded' => false   ])
+            'choice_label' => function ($ag) {   return $ag->gettype();},
+             'expanded' => false ,
+             'required' => True  ])
         
         ->add('utilisateur', EditUtilisateurType::class)
     

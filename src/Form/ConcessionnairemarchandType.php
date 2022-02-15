@@ -17,6 +17,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Validator\Constraints\NotNull;
+
 
 
 class ConcessionnairemarchandType extends AbstractType
@@ -34,31 +36,54 @@ class ConcessionnairemarchandType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
        
-        
+        $Constraints = [
+            
+            new NotNull([
+                'message' => 'Veuillez remplir ce champs'])
+        ] ;
+
         
         $builder
 
-
-        
-        
             ->add('actif',CheckboxType::class,[
                 'label_attr' => [
                     'class' => 'checkbox-switch'
-                ],'required' => false]
+                ],
+                'required' => false]) 
+
+            ->add('siteweb' , null , [
+                'required'   => true,
+                'constraints' => $Constraints ]
+
+
             )
-            ->add('siteweb')
-            ->add('liendealertrack')
-            ->add('description',TextareaType::class)
-            ->add('utilisateur', UtilisateurType::class)
-           ->add('fabriquants',EntityType::class,[
+
+            ->add('liendealertrack' , null , [
+                'required'   => true,
+                'constraints' => $Constraints ]
+            
+            )
+
+
+            ->add('description',TextareaType::class , 
+            [ 'required' => True , 
+            'constraints' => $Constraints
+            ] )
+
+
+            ->add('utilisateur', UtilisateurType::class ,  [ 'required' => True     ] )
+
+
+
+            ->add('fabriquants',EntityType::class,[
                 'class' => Fabriquant::class,
                 'choice_label' => function ($fab) {
-                  
                    return $fab->getNom();
                 },
                 'expanded' => true,
                 'multiple' => true,
-                'by_reference' => false
+                'by_reference' => false 
+                
                 
                                                ])
            ->add('agents', EntityType::class,array(

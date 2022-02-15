@@ -30,7 +30,7 @@ class ConcessionnaireType extends AbstractType
         $builder
 
          
-         ->add('concessionnairemarchand', ConcessionnairemarchandType::class, ['label' => false ]);
+         ->add('concessionnairemarchand', ConcessionnairemarchandType::class, ['label' => false , 'required' => true]);
         
         
     }
