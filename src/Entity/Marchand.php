@@ -24,9 +24,7 @@ class Marchand
     /**
      * @ORM\OneToOne(targetEntity=Concessionnairemarchand::class, inversedBy="marchand", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\Valid()
-
-     
+    
      */
     private $Concessionnairemarchand;
 

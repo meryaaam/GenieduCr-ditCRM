@@ -69,14 +69,13 @@ class Fabriquant
 
     /**
      * @ORM\ManyToMany(targetEntity=Concessionnairemarchand::class, inversedBy="fabriquants")
-     * @Assert\Valid()
+     
      */
     private $concessionnairesmarchand;
 
     /**
      * @ORM\OneToOne(targetEntity=Medias::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\Valid()
 
  
      */

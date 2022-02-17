@@ -72,7 +72,7 @@ class Concessionnairemarchand
 
     /**
      * @ORM\OneToOne(targetEntity=Concessionnaire::class, mappedBy="Concessionnairemarchand", cascade={"persist", "remove"})
-     * @Assert\Valid()
+     
      */
     private $concessionnaire;
 
