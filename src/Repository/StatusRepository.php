@@ -44,7 +44,19 @@ class StatusRepository extends ServiceEntityRepository
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
+            ->select('partial ca.{id, name}, users')
         ;
     }
     */
+
+
+    
+    public function findStatusName() 
+    {
+        return $this->createQueryBuilder('Status')
+             ->select('Status.nom')
+             ->getQuery()
+             ->getArrayResult()
+        ;
+    }
 }

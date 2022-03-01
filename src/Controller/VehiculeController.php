@@ -15,6 +15,7 @@ use App\Repository\FabriquantRepository;
 use App\Repository\MarchandRepository;
 use App\Repository\StatusRepository;
 use App\Repository\PartenaireRepository;
+use App\Repository\TestRepository;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\VehiculeType;
@@ -30,6 +31,21 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\UtilisateurRepository;
+
+
+use App\Entity\Fabriquant;
+use App\Entity\Modele;
+ 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
+ use App\Form\TestType;
+use App\Entity\Status;
+use App\Entity\Utilisateur;
+ use Symfony\Component\OptionsResolver\OptionsResolver;
+
+
 
 class VehiculeController extends AbstractController
 {
@@ -54,28 +70,221 @@ class VehiculeController extends AbstractController
         
     }
 
-
-    #[Route('/vehicule', name: 'vehicule')]
-    public function index(VehiculeRepository $repository , ModeleRepository $MRepo , FabriquantRepository $Frep , StatusRepository $Rstatus): Response
+    #[Route('/filter', name: 'filter')]
+    public function filter(VehiculeRepository $repository , ModeleRepository $MRepo , FabriquantRepository $Frep , StatusRepository $Rstatus)
     {
-        $vehicules = $repository -> findAll();
-        $vehicules = $repository -> findAll();
+         $vehicule = $repository -> findAll();
         $modele = $MRepo -> findAll();
         $marque = $Frep -> findAll();
         $status = $Rstatus -> findAll();
         $minimumYear = 1980 ;
 
-        // $concessionaire = $repository -> findAll();
-        // dd($vehicules);die;
-       
-        return $this->render('vehicule/index.html.twig', [
-            'vehicules' => $vehicules,
-            'modeles' => $modele ,
-            'marque' => $marque ,
-            'status' => $status , 
-            'year' => $minimumYear 
+        $searchbyVin = $repository -> findOneByVIN('5UXKR0C57F0K52986') ;
+        $searchbyYear = $repository -> findByYear(1970) ;
+        $searchbyInvNum  = $repository -> findByNumInv(25);
+        $searchbyStatus = $repository -> findBystatus(2) ;
+        $serachbyUser = $repository -> findByUser(72) ;
+        $serachbyMarque = $repository -> findByMarque(13) ;
+        $serachbyModel = $repository -> findByModel(2) ;
+        // dump($u.numinventaire);
+        // dd($serachbyModel);die;
+        $request = Request::createFromGlobals();
+        // $request->query->get('u.numinventaire') ;
+        
 
-        ]);
+    }
+
+    #[Route('/vehicule', name: 'vehicule')]
+    public function index( ModeleRepository $MRep , VehiculeRepository $repository,FabriquantRepository $Frep,  StatusRepository $Rstatus , Request $request , UtilisateurRepository $Users)
+    {
+        
+       $status = $Rstatus -> findAll();
+       $F = $Frep -> findAll();
+
+            $form = $this->createFormBuilder()
+            ->add('Year',
+                'Symfony\Component\Form\Extension\Core\Type\ChoiceType',[
+                'choices' => $this->getYears(1960) , 
+                'label' => false,
+                'required' => false
+            ])
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form -> handleRequest($request);
+            $y =$form->get('Year')->getData() ;
+         
+
+         
+            $SearchByYears = $repository->findByYear( $y);
+                        
+
+
+
+// ------------------------------------------------------------ 
+
+
+            $form2 = $this->createFormBuilder()
+            ->add('Status',EntityType::class,array(
+                'class' => Status::class,
+                'choice_label' => function ($status) {
+                 
+                    return $status->getNom();
+                 },
+                 'expanded' => false ,
+                 'required' => false ,
+                 'label' => false 
+  
+            ))
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form2 -> handleRequest($request);
+            $Status =$form2->get('Status')->getData() ;
+         
+
+            $SearchByStatus = $repository->findBystatus($Status);
+            //    dump($Status);die();
+// ----------------------------------------------------------------------------
+
+            $form3 = $this->createFormBuilder()
+            ->add('Marque',EntityType::class,array(
+                'class' => Fabriquant::class,
+                'choice_label' => function ($F) {
+                 
+                    return $F->getNom();
+                 },
+                 'required' => false ,
+                 'label' => false 
+  
+            ))
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form3 -> handleRequest($request);
+            $marque =$form3->get('Marque')->getData() ;
+         
+
+            $SearchByMarque = $repository->findByMarque($marque);
+            //    dump($Marque);die();
+
+// ------------------------------------------------------------------------------------
+            $M = $MRep -> findAll();
+
+            $form4 = $this->createFormBuilder()
+            ->add('Modele',EntityType::class,array(
+                'class' => Modele::class,
+                'choice_label' => function ($M) {
+                 
+                    return $M->getNom();
+                 },
+                 'required' => false ,
+                 'label' => false 
+  
+            ))
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form4 -> handleRequest($request);
+            $Modele =$form4->get('Modele')->getData() ;
+         
+
+            $SearchbyModele = $repository->findByModel($Modele);
+            //    dump($Modele);die();
+
+///////////////////////////////////////////////---------------------------------------------------------
+              $users = $Users -> FindAll() ; 
+
+            $form6 = $this->createFormBuilder()
+            ->add('Users',EntityType::class,array(
+                'class' => Utilisateur::class,
+                'choice_label' => function ($users) {
+                 
+                    return $users->getnom();
+                 },
+                 'required' => false ,
+                 'label' => false 
+  
+            ))
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form6 -> handleRequest($request);
+            $Users =$form6->get('Users')->getData();  
+
+            //  dump($repository->findByUser(12));die();
+
+            // dump($Users->getId());die();
+             if($Users)
+            { $SearchByUser = $repository->findByUser($Users->getId());  }
+           
+
+                $vehicules = $repository -> findAll();
+                // dump($SearchByYears);die();
+
+            $form5 = $this->createFormBuilder()
+            ->add('Inv',EntityType::class,array(
+                'class' => Vehicule::class,
+                'choice_label' => function ($vehicules) {
+                 
+                    return $vehicules->getNuminventaire();
+                 },
+                 'required' => false ,
+                 'label' => false 
+  
+            ))
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form5 -> handleRequest($request);
+       
+            $Inv =$form5->get('Inv')->getData();           
+            if ($Inv )
+             {  $SearchByInv = $repository->findByNumInv($Inv->getNuminventaire());}
+                // dump($SearchByInv);die();
+          
+           
+
+
+
+          if ($y)
+               { $filter = $SearchByYears ;
+            }
+          else if ($Inv)
+               { $filter = $SearchByInv ; }
+          else if ($Status )
+                { $filter = $SearchByStatus ;}
+          else if ($Modele)
+                {$filter = $SearchbyModele ;}
+          else if ($marque )
+                {$filter = $SearchByMarque ;}
+
+       
+          
+          else if ($Users  )
+               {$filter = $SearchByUser  ;}
+               
+          else 
+               {$filter = $vehicules  ;}
+
+                
+        return $this->render('vehicule/index.html.twig', [
+            
+            
+            'form' => $form->createView(),
+            'form2' => $form2->createView() , 
+            'form3' =>  $form3->createView() , 
+            'form4' => $form4->createView() , 
+            'form5' => $form5->createView() , 
+            'form6' => $form6->createView() , 
+             'vehicule' => $filter 
+        ]);   
     }
 
 
@@ -86,39 +295,22 @@ class VehiculeController extends AbstractController
     {
 
        if(!$vehicules){
-
-            $vehicules = new Vehicule();
-       }
+            $vehicules = new Vehicule(); }
             $om = $this->om;
-
-         
-            
-     
             $form = $this->createForm(VehiculeType::class,$vehicules);
-           
             $form -> handleRequest($request);
-        
                // dd($request->files->get('galerie')); die;
             if($form->isSubmitted()&& $form->isValid()){
-                
-                
                 $galerie =$form->getData()->getGalerie();
-                
-
                     // Should be array of "UploadedFile" objects
                     $files = $request->files;
-                  
                     if($files)
-                    {
-                        // Iterating over the array
+                    {   // Iterating over the array
                         // "file" should be an instance of UploadedFile
                         foreach( $files as $file)
                         {
                                         $galerie = $file['galerie'];
                                         $file_count = count($galerie);
-                                        
-                                
-                                            
                                             for ($i=0; $i<$file_count; $i++) {
 
 
@@ -136,14 +328,10 @@ class VehiculeController extends AbstractController
                         }  
 
                     }
-                  
-
                    //$photogalerie ->setNom($photogalerienom);
                    //$photogalerie ->setLien($photogalerielien);
-
-                  
-
                 //Récupère l'image
+
               $media = $form->getData()->getMedia();
               if ($media){ 
                 //Récupère le fichier image
@@ -151,9 +339,7 @@ class VehiculeController extends AbstractController
                 if ($mediafile){ 
                 
                 $name = $mediafile->getClientOriginalName();
-            
                 //Ajouter le nom
-              
                 //Déplacer le fichier
                 $lien = '/media/logos/'.$name;
                 $mediafile->move('../public/media/logos', $name);
@@ -163,13 +349,9 @@ class VehiculeController extends AbstractController
                 $media->setLien($lien);
 
                 //Ajoute le type du média
-
                 /* $type = 'photo';*/
                 $type = $repository->gettype('photo');
-
                 $media->setType($type);
-
-
 
             }
         }
@@ -263,6 +445,16 @@ class VehiculeController extends AbstractController
 }
 
     
+
+
+
+
+private function getYears($min, $max='current')
+{
+     $years = range($min, ($max === 'current' ? date('Y') : $max));
+
+     return array_combine($years, $years);
+}
 
 }    
 

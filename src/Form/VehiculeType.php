@@ -143,77 +143,21 @@ class VehiculeType extends AbstractType
                 'choices' => $this->getYears(1960)
             ])
 
-/*
-           //Photo prinicpale
-            ->add('photoprincipale', FileType::class,[
-                'label'=> false ,
-                'mapped' =>false
-            ])
-           
-
-            //Galerie
-        
-            ->add('media', CollectionType::class, array(
-                'type' => 'file',
-                'required' => false,
-                'attr' => array(
-                    'multiple' => 'multiple'
-                )))
-
-           
-
-                
- */       
-
-
            //Photo prinicpale
            ->add('media', MediasType::class, array(
                
                'required'  => false ,
             //    'constraints' => $imageConstraints
                ))
-           
-            
-         
-          /*   ->add('galerie', FileType::class, [
-                'label' => false,
-                'multiple' => true,
-                'mapped' => false,
-                'required' => false
-            ])*/
-
-       // ->add('galerie', GalerieVehiculeType ::class)
+        
         ->add('galerie', FileType::class, [
             'label' => false,
             'multiple' => true,
             'mapped' => false,
             'required' => false
-        ])
+                                         ])
 
-          //  ->add('galerie',GalerieVehiculeType::class)
-      
-
-           /*->add('galerie', CollectionType::class, array(
-                'entry_type'        => GalerieVehiculeType::class,
-                'prototype'         => true,
-                'allow_add'         => true,
-                'allow_delete'      => true,
-                'by_reference'      => false,
-                'required'          => false,
-               'label'             => false,
-               
-            ))*/
-     
-
-
-           
-         
-          /*   ->add('galerie', FileType::class,[
-           
-            'label'=> false ,
-            'multiple'=>true 
-        ])*/
-
+          
 
             ->add('disponiblefinance')
           
@@ -337,34 +281,15 @@ class VehiculeType extends AbstractType
                
 
 
-          
-           /* ->add('concessionnaires',EntityType::class,[
-                'class' => Partenaire::class,
-                
-               
-               /* 'choice_label' => function(ConcessionnairemarchandRepository $conmarchandRepository, PartenaireRepository $parRepository,AgentRepository $agenRepository) {
-                 
-                  // $concessionnaires = $conmarchandRepository->findAll();
-                  // $partenaires = $parRepository->findAll();
-                 //  $agent = $agenRepository->findAll();
-                   $comp = [];
-                 //  $comp .= $concessionnaires;
-                  // $comp .= $partenaires;
-                  // $comp .= $agent;
-                  // $comp = $rep->fillCompanies();
-                  var_dump($comp);
-                   return $comp;
-                },
-                ,
-                'mapped' => false,
-                'expanded' => false
-                
-            ])*/
+         
         
            
         ;
     }
 
+
+
+    
 
     private function getYears($min, $max='current')
     {

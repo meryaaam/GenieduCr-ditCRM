@@ -69,14 +69,22 @@ class Fabriquant
 
     /**
      * @ORM\ManyToMany(targetEntity=Concessionnairemarchand::class, inversedBy="fabriquants")
+<<<<<<< Updated upstream
      
      */
+=======
+      */
+>>>>>>> Stashed changes
     private $concessionnairesmarchand;
 
     /**
      * @ORM\OneToOne(targetEntity=Medias::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
+<<<<<<< Updated upstream
 
+=======
+ 
+>>>>>>> Stashed changes
  
      */
     private $media;

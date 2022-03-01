@@ -82,12 +82,12 @@ class Concessionnairemarchand
      * @Assert\Valid()
      */
     
+
     private $Utilisateur;
 
+    
     /**
      * @ORM\OneToOne(targetEntity=Marchand::class, mappedBy="Concessionnairemarchand", cascade={"persist", "remove"})
-     * @Assert\Valid()
-   
      */
     private $marchand;
 
