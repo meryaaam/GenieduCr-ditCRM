@@ -22,10 +22,7 @@ class Concessionnaire
     /**
      * @ORM\OneToOne(targetEntity=Concessionnairemarchand::class, inversedBy="concessionnaire", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-<<<<<<< Updated upstream
-=======
      
->>>>>>> Stashed changes
      */
     private $Concessionnairemarchand;
 
