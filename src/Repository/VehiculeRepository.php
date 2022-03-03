@@ -6,6 +6,8 @@ use App\Entity\Vehicule;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
+
 /**
  * @method Vehicule|null find($id, $lockMode = null, $lockVersion = null)
  * @method Vehicule|null findOneBy(array $criteria, array $orderBy = null)
@@ -46,6 +48,19 @@ class VehiculeRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }*/
+
+//  public function findAllByAll ()
+//  {             
+//     return $this->createQueryBuilder('v')
+//             ->addSelect('v,m')
+//             ->innerjoin('v.modele', 'm')
+//             ->where('m.id = v.modele')
+//             ->getQuery()
+//             ->getResult()
+//             ;
+
+//  }
+
 
  public function findOneById($value): ?Vehicule
     {

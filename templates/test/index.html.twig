@@ -26,249 +26,44 @@
 										<!--begin::Card toolbar-->
 										<div class="card-toolbar ">
 											<!--begin::Toolbar-->
-											<div class="d-flex " data-kt-user-table-toolbar="base">
-												<!--begin::Filter-->
-												<button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-											    Year</button>
-												 <!--begin::Menu 1-->
-												<div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">
-													<!--begin::Header-->
-												
-													<!--begin::Content-->
-													{{  form_start(form) }}
-													<div class="px-7 py-5" data-kt-user-table-filter="form">
-														<!--begin::Input group-->
-														<div class="mb-10">
-															<label class="form-label fs-6 fw-bold">Year :</label>
-															{# <select class="form-select form-select-solid fw-bolder" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="role" data-hide-search="true">
-															</select> #}
-
-															{{ form_row(form.Year) }}
-
-														</div>
-														
-													 
-														<div class="d-flex justify-content-end">
-															<button type="reset" class="btn btn-light btn-active-light-primary fw-bold me-2 px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="reset">Reset</button>
-															{{ form_row(form.Submit) }}
-															{# <button type="submit" class="btn btn-primary fw-bold px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="filter">Apply</button> #}
-														
-														</div>
-														<!--end::Actions-->
-													</div>
-													    {{ form_end(form) }}
-													<!--end::Content-->
-											</div> 
-
-												</div> 
-												 <!--begin::Menu 2-->
-											<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-												<!--begin::Filter-->
-												<button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-												<!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
-												<!--end::Svg Icon-->Status</button>
-												<!--begin::Menu 1-->
-												<div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">
-													<!--begin::Header-->
-												
-													<!--begin::Content-->
-												{{  form_start(form2) }}
-													<div class="px-7 py-5" data-kt-user-table-filter="form">
-														<!--begin::Input group-->
-														<div class="mb-10">
-															<label class="form-label fs-6 fw-bold">Status :</label>
-															{# <select class="form-select form-select-solid fw-bolder" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="role" data-hide-search="true">
-															</select> #}
-
-															{{ form_row(form2.Status) }}
-
-														</div>
-														
-													 
-														<div class="d-flex justify-content-end">
-															<button type="reset" class="btn btn-light btn-active-light-primary fw-bold me-2 px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="reset">Reset</button>
-															{{ form_row(form2.Submit) }}
-															{# <button type="submit" class="btn btn-primary fw-bold px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="filter">Apply</button> #}
-														
-														</div>
-														<!--end::Actions-->
-													</div>
-													    {{ form_end(form2) }}
-													<!--end::Content-->
-											</div>
-												<!--end::Menu-2-->
-
-
-												 <!--begin::Menu 3-->
-											<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-												<!--begin::Filter-->
-												<button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-											    Marque
-												 </button>
-												<!--begin::Menu 1-->
-												<div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">												
-													<!--begin::Content-->
-												{{  form_start(form3) }}
-													<div class="px-7 py-5" data-kt-user-table-filter="form">
-														<!--begin::Input group-->
-														<div class="mb-10">
-															<label class="form-label fs-6 fw-bold">Marque :</label>
-															{# <select class="form-select form-select-solid fw-bolder" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="role" data-hide-search="true">
-															</select> #}
-
-															{{ form_row(form3.Marque) }}
-
-														</div>
-														
-													 
-														<div class="d-flex justify-content-end">
-															<button type="reset" class="btn btn-light btn-active-light-primary fw-bold me-2 px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="reset">Reset</button>
-															{{ form_row(form3.Submit) }}
-															{# <button type="submit" class="btn btn-primary fw-bold px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="filter">Apply</button> #}
-														
-														</div>
-														<!--end::Actions-->
-													</div>
-													    {{ form_end(form3) }}
-													<!--end::Content-->
-											</div>
-												<!--end::Menu-3-->
+						 
+												<!--end::Export-->
+												<!--begin::Add user-->
+												<button type="button" class="btn btn-light-primary me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
+												<!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+																								<span class="svg-icon svg-icon-2">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+														<path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black" />
+													</svg>
+												</span>
+												<!--end::Svg Icon-->Filter</button>
+												<!--end::Add user-->
                                         
-
-	                                           <!--begin::Menu 3-->
-											<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-												<!--begin::Filter-->
-												<button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-											    Modele
-												 </button>
-												<!--begin::Menu 1-->
-												<div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">												
-													<!--begin::Content-->
-												{{  form_start(form4) }}
-													<div class="px-7 py-5" data-kt-user-table-filter="form">
-														<!--begin::Input group-->
-														<div class="mb-10">
-															<label class="form-label fs-6 fw-bold">Modele :</label>
-															{# <select class="form-select form-select-solid fw-bolder" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="role" data-hide-search="true">
-															</select> #}
-
-															{{ form_row(form4.Modele) }}
-
-														</div>
-														
-													 
-														<div class="d-flex justify-content-end">
-															<button type="reset" class="btn btn-light btn-active-light-primary fw-bold me-2 px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="reset">Reset</button>
-															{{ form_row(form4.Submit) }}
-															{# <button type="submit" class="btn btn-primary fw-bold px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="filter">Apply</button> #}
-														
-														</div>
-														<!--end::Actions-->
-													</div>
-													    {{ form_end(form4) }}
-													<!--end::Content-->
-											    </div>
-												<!--end::Menu-3-->
-
-                                            </div>
-
-	    <!--begin::Menu 3-->
-											<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-												<!--begin::Filter-->
-												<button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-											    Num inventaire
-												 </button>
-												<!--begin::Menu 1-->
-												<div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">												
-													<!--begin::Content-->
-												{{  form_start(form5) }}
-													<div class="px-7 py-5" data-kt-user-table-filter="form">
-														<!--begin::Input group-->
-														<div class="mb-10">
-															<label class="form-label fs-6 fw-bold">Num Inventaire :</label>
-															{# <select class="form-select form-select-solid fw-bolder" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="role" data-hide-search="true">
-															</select> #}
-
-															{{ form_row(form5.Inv) }}
-
-														</div>
-														
-													 
-														<div class="d-flex justify-content-end">
-															<button type="reset" class="btn btn-light btn-active-light-primary fw-bold me-2 px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="reset">Reset</button>
-															{{ form_row(form5.Submit) }}
-															{# <button type="submit" class="btn btn-primary fw-bold px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="filter">Apply</button> #}
-														
-														</div>
-														<!--end::Actions-->
-													</div>
-													    {{ form_end(form5) }}
-													<!--end::Content-->
-											    </div>
-												<!--end::Menu-3-->
-
-                                            </div>
-
-
-	    <!--begin::Menu 3-->
-											<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-												<!--begin::Filter-->
-												<button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-											    Compagnie
-												 </button>
-												<!--begin::Menu 1-->
-												<div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">												
-													<!--begin::Content-->
-												{{  form_start(form6) }}
-													<div class="px-7 py-5" data-kt-user-table-filter="form">
-														<!--begin::Input group-->
-														<div class="mb-10">
-															<label class="form-label fs-6 fw-bold">Compagnie</label>
-															{# <select class="form-select form-select-solid fw-bolder" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="role" data-hide-search="true">
-															</select> #}
-
-															{{ form_row(form6.Users) }}
-
-														</div>
-														
-													 
-														<div class="d-flex justify-content-end">
-															<button type="reset" class="btn btn-light btn-active-light-primary fw-bold me-2 px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="reset">Reset</button>
-															{{ form_row(form6.Submit) }}
-															{# <button type="submit" class="btn btn-primary fw-bold px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="filter">Apply</button> #}
-														
-														</div>
-														<!--end::Actions-->
-													</div>
-													    {{ form_end(form6) }}
-													<!--end::Content-->
-											 </div>
-												<!--end::Menu-3-->
-                                          </div>
-												<!--begin::Add Car-->
 												<button type="button" class="btn btn-primary" >  
 										         <a href="{{path("add_vehicule")}}" >	
 												<!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
-												<span class="svg-icon svg-icon-2">
+												 <span class="svg-icon svg-icon-2">
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 														<rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
 														<rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
 													</svg>
-												</span>
-											</a> Ajouter
+												 </span>
+										     	</a> Ajouter
 												<!--end::Svg Icon-->
-											   </button>
+											    </button>
 											</div> 
-											<!--begin::Modal - Add task-->
+										 
+
+		<!--begin::Modal - Add task-->
 											<div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
 												<!--begin::Modal dialog-->
-												<div class="modal-dialog modal-dialog-centered mw-650px">
+												<div class="modal-dialog modal-dialog-centered modal-xl">
 													<!--begin::Modal content-->
 													<div class="modal-content">
 														<!--begin::Modal header-->
 														<div class="modal-header" id="kt_modal_add_user_header">
 															<!--begin::Modal title-->
-															<h2 class="fw-bolder">Ajout Véhicule</h2>
+															<h2 class="fw-bolder">Filter Options</h2>
 															<!--end::Modal title-->
 															<!--begin::Close-->
 															<div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
@@ -282,20 +77,146 @@
 																<!--end::Svg Icon-->
 															</div>
 															<!--end::Close-->
-														</div> 
+														</div>
 														<!--end::Modal header-->
-														<!--begin::Modal body--> 
+														<!--begin::Modal body-->
+														<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+															<!--begin::Form-->
+ 															{{  form_start(form) }}
+																<!--begin::Scroll-->
+																<div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+																 
+																 <div class="row">
+																	<!--begin::Input group-->
+
+																	 <div class="col-4 mb-7   ">
+															             <!--begin::Form-->
+																		
+ 															            	<!--begin::Input group-->
+															               	<div class="fv-row mb-10">
+																            	<!--begin::Label-->
+																	          <label class="fs-6 fw-bold form-label mb-2"> Year </label> 
+																				  {{ form_row(form.Year) }}
+																				   
+																                    <!--end::Input-->
+															                </div>
+																 
+														        	</div>
+
+													                <div class="col-4 mb-7   ">
+															             <!--begin::Form-->
+ 															            	<!--begin::Input group-->
+															               	<div class="fv-row mb-10">
+																            	<!--begin::Label-->
+																	          <label class="fs-6 fw-bold form-label mb-2"> Modéle </label>
+																                <!--end::Label-->
+																                	<!--begin::Input-->
+
+																				  {{ form_row(form.Modele) }}
+																	               
+															                 </div>
+																		 
+														        	</div>
+															              
+																	<div  class="col-4 mb-7">
+
+                                                                       <form id="kt_modal_export_users_form" class="form" action="#">
+															            	<!--begin::Input group-->
+															               	<div class="fv-row mb-10">
+ 																	             <!--begin::Label-->
+																	            <label class=" fs-6 fw-bold form-label mb-2">Marque</label>
+																                	<!--end::Label-->
+
+														                          {{ form_row(form.Marque) }}
+																			 </div>
+													 
+														            </div>
+														                  <!--end::Modal body-->
+																</div>
+
+															<div class="row">
+															        <div  class="col-4 mb-7">
+ 															            	<!--begin::Input group-->
+															               	<div class="fv-row mb-10">
+ 																	             <!--begin::Label-->
+																	            <label class=" fs-6 fw-bold form-label mb-2">Compagnie</label>
+																                	<!--end::Label-->
+																                   	<!--begin::Input-->
+																               
+													                               {{ form_row(form.Users) }}
+																                	<!--end::Input-->
+ 																	
+																     	    </div>
+																
+																              <!--end::Actions-->
+															    
+															                 <!--end::Form-->
+														            </div>
+
+																	 <div  class="col-4 mb-7">
+
+ 															            	<!--begin::Input group-->
+															               	<div class="fv-row mb-10">
+ 																	             <!--begin::Label-->
+																	            <label class=" fs-6 fw-bold form-label mb-2">Inventaire</label>
+																                	<!--end::Label-->
+																                   	<!--begin::Input-->
+																                
+                                                                                	  {{ form_row(form.Inv) }}
+																     	    </div>
+														            </div>
+
+
+																	<div class="col-4 mb-7 ml-5">
+																		<!--begin::Label-->
+																		<label class="  fw-bold fs-6 mb-5">Status  </label>
+																		<!--end::Label-->
+																		<!--begin::Roles-->
+																		<!--begin::Input row-->
+																	 
+																		{{ form_row(form.Status) }}
+																	</div>
+
+
+														    </div>
+
+															 </div>
+																<!--end::Scroll-->
+															 <div class="text-center">
+																	{# <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">Discard</button> #}
+																	 {{ form_row(form.Submit) }}
+
+																	
+
+																</div>
+															    {{ form_end(form) }}
+
+
+															<!--end::Form-->
+														</div>
 														<!--end::Modal body-->
 													</div>
 													<!--end::Modal content-->
 												</div>
 												<!--end::Modal dialog-->
 											</div>
-											<!--end::Modal - Add Car-->
-										</div>
-										<!--end::Card toolbar-->
-									</div>
-									<!--end::Card header-->
+											<!--end::Modal - Add task-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 										<!--end::Card toolbar-->
+  									<!--end::Card header-->
 									<!--begin::Card body-->
 									<div class="card-body py-4">
 										<!--begin::Table-->
@@ -316,15 +237,18 @@
 															<tr>
                                                                 <td>
 																	<div class="d-flex align-items-center">
-																	
 																		<div class="d-flex justify-content-start flex-column">
-																		   
-																			<h3></h3><a href="#" class="text-dark fw-bolder text-hover-primary fs-6"><img src="{{asset(vehicule.media.lien)}}" alt={{vehicule.media.nom}} width="100"/></a></div>	
+																			<h3></h3>
+																			<a href="#" class="text-dark fw-bolder text-hover-primary fs-6"><img src="{{asset(vehicule.media.lien)}}" alt={{vehicule.media.nom}} width="100"/></a></div>	
 																		</div>
 																	</div>
 																</td>
 																<td class="col mb-4">
-																<b>{{vehicule.annee}}.{{vehicule.marque.nom}}.{{vehicule.modele.nom}}.{{vehicule.Couleurexterieur}}</b><br/>
+																<b>
+																{{vehicule.annee}}.{{vehicule.marque.nom}}.{{vehicule.modele.nom}}.{{vehicule.Couleurexterieur}}
+																</b>
+
+																<br/>
 																{{vehicule.carproof}}<br/>
 																{{vehicule.vin}}<br/>
 																{{vehicule.category.nom}}
@@ -524,5 +448,11 @@ $(document).ready(function(){
 
 </script>
 
+<script   type="text/javascript">
+
+        
+ 
+</script>   
+ 
 {% endblock %}
  

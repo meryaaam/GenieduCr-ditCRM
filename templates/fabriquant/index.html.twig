@@ -10,8 +10,6 @@
 
 
 
-
-    <!--begin::Body-->
     <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
     <!--begin::Main-->
     <!--begin::Root-->
@@ -20,8 +18,9 @@
         <div class="page d-flex flex-row flex-column-fluid">
 
             <!--begin::Wrapper-->
-            <div >
-             
+            <div>
+       
+
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                    
@@ -241,14 +240,12 @@
         <!--end::Post-->
 
     </div>
+    </div>
+    </div>
+    </div>
+
     <!--end::Content-->
  
-    </div>
-    <!--end::Wrapper-->
-    </div>
-    <!--end::Page-->
-    </div>
-    <!--end::Root-->
     <!--begin::Drawers-->
 
 
@@ -258,10 +255,8 @@
 
     <!--end::Engage drawers-->
 
-    
+  	 	{{ include('layout/pagination.html.twig') }}
 
- 		{{ include('layout/import.html.twig') }}
-			<script src="{{asset('/plugins/custom/datatables/datatables.bundle.js')}}"></script>
 
 
 

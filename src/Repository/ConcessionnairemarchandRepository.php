@@ -61,7 +61,7 @@ class ConcessionnairemarchandRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('c')
             ->addSelect('c')
             ->innerjoin('c.marchand', 'm')
-            ->where('m.id = :val')
+            ->where('m.id = c.id')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()

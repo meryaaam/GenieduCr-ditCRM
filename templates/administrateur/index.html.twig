@@ -7,7 +7,15 @@
  	
 {% block body %}
  
-		 
+     <!--begin::Main-->
+    <!--begin::Root-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Page-->
+        <div class="page d-flex flex-row flex-column-fluid">
+
+            <!--begin::Wrapper-->
+            <div>
+       
   					 
 						<!--begin::Post-->
 
@@ -95,7 +103,7 @@
 																		<!--end::Svg Icon-->
 																	</a>
 																	
-																 
+															
 																		   
 																	   
 																		
@@ -123,7 +131,7 @@
 																		</span>
 																		<!--end::Svg Icon-->
 
-																		</a>
+													</a>
                                                     </form>
 																		
 																						<div class="modal fade" tabindex="-1" id="kt_modal_1">
@@ -167,14 +175,17 @@
 										<!--end::Table-->
 									</div>
 									<!--end::Card body-->
-							 
+							 </di>
  				 
-				
-
+				</div>
+				</div>
+				</div>
+				</div>
+ 
  	 
 
 
-
+ 	{{ include('layout/pagination.html.twig') }}
 						<script>
 							$("#kt_datatable_example_5").DataTable({
  "language": {
@@ -236,6 +247,5 @@
 
 </script> 
   
-    
- 
+  
 {% endblock %} 

@@ -50,7 +50,12 @@
 														
 													 
 														<div class="d-flex justify-content-end">
-															<button type="reset" class="btn btn-light btn-active-light-primary fw-bold me-2 px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="reset">Reset</button>
+															<button id="reset_button" type="reset" class="btn btn-light btn-active-light-primary fw-bold me-2 px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="reset">
+															
+															Reset
+															</button>
+															
+															
 															{{ form_row(form.Submit) }}
 															{# <button type="submit" class="btn btn-primary fw-bold px-6" data-kt-menu-dismiss="true" data-kt-user-table-filter="filter">Apply</button> #}
 														
@@ -524,6 +529,8 @@ $(document).ready(function(){
 });
 
 </script>
+
+
 
 {% endblock %}
  

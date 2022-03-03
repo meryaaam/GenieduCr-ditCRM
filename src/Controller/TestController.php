@@ -41,6 +41,15 @@ class TestController extends AbstractController
     {
        $status = $Rstatus -> findAll();
        $F = $Frep -> findAll();
+       $M = $MRep -> findAll();
+       $u = $Users -> findAll();
+       $Mq = $MRep -> findAll();
+
+    //    $join = $repository->findAllByAll() ;
+       
+    //    dump($join);die();
+              
+       
 
             $form = $this->createFormBuilder()
             ->add('Year',
@@ -49,24 +58,8 @@ class TestController extends AbstractController
                 'label' => false,
                 'required' => false
             ])
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form -> handleRequest($request);
-            $y =$form->get('Year')->getData() ;
-         
-
-         
-            $SearchByYears = $repository->findByYear( $y);
-                        
 
 
-
-// ------------------------------------------------------------ 
-
-
-            $form2 = $this->createFormBuilder()
             ->add('Status',EntityType::class,array(
                 'class' => Status::class,
                 'choice_label' => function ($status) {
@@ -78,19 +71,7 @@ class TestController extends AbstractController
                  'label' => false 
   
             ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
 
-            $form2 -> handleRequest($request);
-            $Status =$form2->get('Status')->getData() ;
-         
-
-            $SearchByStatus = $repository->findBystatus($Status);
-            //    dump($Status);die();
-// ----------------------------------------------------------------------------
-
-            $form3 = $this->createFormBuilder()
             ->add('Marque',EntityType::class,array(
                 'class' => Fabriquant::class,
                 'choice_label' => function ($F) {
@@ -101,21 +82,7 @@ class TestController extends AbstractController
                  'label' => false 
   
             ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
 
-            $form3 -> handleRequest($request);
-            $marque =$form3->get('Marque')->getData() ;
-         
-
-            $SearchByMarque = $repository->findByMarque($marque);
-            //    dump($Marque);die();
-
-// ------------------------------------------------------------------------------------
-            $M = $MRep -> findAll();
-
-            $form4 = $this->createFormBuilder()
             ->add('Modele',EntityType::class,array(
                 'class' => Modele::class,
                 'choice_label' => function ($M) {
@@ -126,21 +93,8 @@ class TestController extends AbstractController
                  'label' => false 
   
             ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
 
-            $form4 -> handleRequest($request);
-            $Modele =$form4->get('Modele')->getData() ;
-         
 
-            $SearchbyModele = $repository->findByModel($Modele);
-            //    dump($Modele);die();
-
-///////////////////////////////////////////////---------------------------------------------------------
-              $users = $Users -> FindAll() ; 
-
-            $form6 = $this->createFormBuilder()
             ->add('Users',EntityType::class,array(
                 'class' => Utilisateur::class,
                 'choice_label' => function ($users) {
@@ -151,24 +105,7 @@ class TestController extends AbstractController
                  'label' => false 
   
             ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
 
-            $form6 -> handleRequest($request);
-            $Users =$form6->get('Users')->getData();  
-
-            //  dump($repository->findByUser(12));die();
-
-            // dump($Users->getId());die();
-             if($Users)
-            { $SearchByUser = $repository->findByUser($Users->getId());  }
-           
-
-                $vehicules = $repository -> findAll();
-                // dump($SearchByYears);die();
-
-            $form5 = $this->createFormBuilder()
             ->add('Inv',EntityType::class,array(
                 'class' => Vehicule::class,
                 'choice_label' => function ($vehicules) {
@@ -179,20 +116,58 @@ class TestController extends AbstractController
                  'label' => false 
   
             ))
+
+
+
             ->add('Submit', SubmitType::class)
             ->getForm();
             ;
 
-            $form5 -> handleRequest($request);
-       
-            $Inv =$form5->get('Inv')->getData();           
-            if ($Inv )
-             {  $SearchByInv = $repository->findByNumInv($Inv->getNuminventaire());}
-                // dump($SearchByInv);die();
+
           
+
+
+
+            $form -> handleRequest($request);
+            $y =$form->get('Year')->getData() ;
+         
+
+         
+            $SearchByYears = $repository->findByYear( $y);
+            $Status =$form->get('Status')->getData() ;
+         
+
+            $SearchByStatus = $repository->findBystatus($Status);
+            $marque =$form->get('Marque')->getData() ;
+         
+
+            $SearchByMarque = $repository->findByMarque($marque);
+            $Modele =$form->get('Modele')->getData() ;
+         
+
+            $SearchbyModele = $repository->findByModel($Modele);
+            $Users =$form->get('Users')->getData();  
+ 
+             if($Users)
+            { $SearchByUser = $repository->findByUser($Users->getId());  }
            
 
+            $vehicules = $repository -> findAll();
 
+
+            $Inv =$form->get('Inv')->getData();           
+                if ($Inv )
+                 {  $SearchByInv = $repository->findByNumInv($Inv->getNuminventaire());}
+                    // dump($SearchByInv);die();
+              
+
+// ------------------------------------------------------------ 
+
+
+    //   dump($form["Inv"]->getData()    );die();
+
+
+         
 
           if ($y)
                { $filter = $SearchByYears ;
@@ -213,30 +188,29 @@ class TestController extends AbstractController
                
           else 
                {$filter = $vehicules  ;}
-
+            //    dump($u);die();
+            //    dump($u);die();
                 
+            $years = $this->getYears(1960) ;
+
+             $emptyyearvalue ='' ;
         return $this->render('test/index.html.twig', [
             
             
             'form' => $form->createView(),
-            'form2' => $form2->createView() , 
-            'form3' =>  $form3->createView() , 
-            'form4' => $form4->createView() , 
-            'form5' => $form5->createView() , 
-            'form6' => $form6->createView() , 
-            // 'vehicules' => $vehicules , 
-            'vehicule' => $filter 
-            // 'Y' => $SearchByYears ,
-            // 'Status' =>  $SearchByStatus , 
-            // 'Model' => $Modele, 
-            // 'Marque' => $SearchByMarque , 
-            // 'Inv' => $SearchByInv , 
-            // 'Users' =>$SearchByUser 
-            
-       
+            'vehicule' => $filter ,
+            'Status' => $status ,
+            'modele' => $M,
+            'marque' => $F, 
+            'users' => $u , 
+            'Y' => $years ,
+            'emptyyear' =>  $emptyyearvalue
+
+        
             
         ]);   
-    }
+    
+     }
 
 
     public function configureOptions(OptionsResolver $resolver)

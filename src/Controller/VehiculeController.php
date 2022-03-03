@@ -71,31 +71,19 @@ class VehiculeController extends AbstractController
     }
 
     #[Route('/filter', name: 'filter')]
-    public function filter(VehiculeRepository $repository , ModeleRepository $MRepo , FabriquantRepository $Frep , StatusRepository $Rstatus)
+    public function index(VehiculeRepository $repository , ModeleRepository $MRepo , FabriquantRepository $Frep , StatusRepository $Rstatus)
     {
          $vehicule = $repository -> findAll();
-        $modele = $MRepo -> findAll();
-        $marque = $Frep -> findAll();
-        $status = $Rstatus -> findAll();
-        $minimumYear = 1980 ;
-
-        $searchbyVin = $repository -> findOneByVIN('5UXKR0C57F0K52986') ;
-        $searchbyYear = $repository -> findByYear(1970) ;
-        $searchbyInvNum  = $repository -> findByNumInv(25);
-        $searchbyStatus = $repository -> findBystatus(2) ;
-        $serachbyUser = $repository -> findByUser(72) ;
-        $serachbyMarque = $repository -> findByMarque(13) ;
-        $serachbyModel = $repository -> findByModel(2) ;
-        // dump($u.numinventaire);
-        // dd($serachbyModel);die;
-        $request = Request::createFromGlobals();
-        // $request->query->get('u.numinventaire') ;
         
+        
+         return $this->render('vehicule/index.html.twig', [
 
+             'vehicule' => $vehicule 
+        ]);  
     }
 
     #[Route('/vehicule', name: 'vehicule')]
-    public function index( ModeleRepository $MRep , VehiculeRepository $repository,FabriquantRepository $Frep,  StatusRepository $Rstatus , Request $request , UtilisateurRepository $Users)
+    public function filter( ModeleRepository $MRep , VehiculeRepository $repository,FabriquantRepository $Frep,  StatusRepository $Rstatus , Request $request , UtilisateurRepository $Users)
     {
         
        $status = $Rstatus -> findAll();
