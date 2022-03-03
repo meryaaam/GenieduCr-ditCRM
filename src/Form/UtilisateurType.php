@@ -11,6 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 
@@ -22,11 +24,24 @@ class UtilisateurType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $Constraints = [
+            
+            new NotNull([
+                'message' => 'Veuillez remplir ce champs'])
+        ] ;
+
+
         $builder
+
+
+        
             ->add('nom')
             ->add('courriel')
             ->add('telephone')
             ->add('nomutilisateur')
+
+
+            
             //->add('plainPassword', PasswordType::class); 
             
             ->add('password', PasswordType::class, [
@@ -56,6 +71,9 @@ class UtilisateurType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Utilisateur::class,
+           /* 'constraints' => [
+                new UniqueEntity(['fields' => ['nomutilisateur']]),
+            ]*/
         ]);
     }
 

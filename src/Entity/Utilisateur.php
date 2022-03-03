@@ -5,6 +5,7 @@ use App\Validator as AcmeAssert;
 use App\Repository\UtilisateurRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+
 //use Symfony\Component\Validator\Constraints\UniqueEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -77,6 +78,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+   
 
      */
     private $password;

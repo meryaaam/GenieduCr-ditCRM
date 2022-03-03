@@ -40,7 +40,7 @@ class FabriquantController extends AbstractController
     }
 
 
-    #[Route('/fabriquant/{id}', name: 'suppression_fabriquant', methods:'delete')]
+    #[Route('/delete-fabriquant/{id}', name: 'suppression_fabriquant')]
     public function suppression(Fabriquant $fabriquants, Request $request){
 
         $om=$this->om;
@@ -112,7 +112,7 @@ class FabriquantController extends AbstractController
         ]);
     }
 
-    #[Route('/fabriquant/creation', name: 'creation_fabriquant')]
+    #[Route('/creation', name: 'creation_fabriquant')]
     public function ajout_fab(Fabriquant $fabriquants = null, TypemediaRepository $repository, Request $request)
     {
 
@@ -147,6 +147,7 @@ class FabriquantController extends AbstractController
                 $media->setNom($name);
                 $media->setLien($lien);
 
+
                 //Ajoute le type du média
 
                 /* $type = 'photo';*/
@@ -170,7 +171,7 @@ class FabriquantController extends AbstractController
         ]);
     }
 
-    #[Route('/consultation-fabriquant/{id}', name: 'consultation_fabriquant', methods:'GET|POST')]
+    #[Route('/consultation-fabriquant/{id}', name: 'consultation_fabriquant')]
     public function consultation(Fabriquant $fabriquant): Response
     {
 
@@ -184,46 +185,4 @@ class FabriquantController extends AbstractController
         ]);
     }
 
-    #[Route('/security-fabriquant/{id}', name: 'security_fabriquant', methods:'GET|POST')]
-    public function secure(UserPasswordHasherInterface $userPasswordHasher, ObjectManager $objectManager, Request $request, $id)
-    {
-
-
-        $fabriquant = $this->FabriquantRepository->findOneById($id);
-
-        $user= $fabriquant->getUtilisateur();
-        $form = $this->createForm(SecUtilisateurType::class,$user);
-        $form -> handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-
-
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            );
-
-
-
-            $objectManager->persist($user);
-            $objectManager->flush();
-
-            return $this->redirectToRoute("fabriquant");
-
-
-        }
-
-
-
-        return $this->render('utilisateur/security.html.twig', [
-            'utilisateur' => $user,
-            'form' => $form->createView()
-
-
-        ]);
-
-    }
 }

@@ -73,7 +73,7 @@ class AdministrateurController extends AbstractController
 
  
   #[Route('/add-administrateur', name: 'add_administrateur')]
-  //#[Route('/administrateur/{id}', name: 'ajout_administrateur', methods:'GET|POST')]
+
   public function ajout(Administrateur $administrateurs = null, ObjectManager $objectManager,UserPasswordHasherInterface $userPasswordHasher, Request $request)
   {
       

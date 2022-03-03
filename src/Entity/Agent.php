@@ -64,7 +64,7 @@ class Agent
     /**
      * @ORM\ManyToOne(targetEntity=Typeagent::class, inversedBy="agents")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\Valid()
+    
      
      */
     
@@ -72,7 +72,7 @@ class Agent
 
     /**
      * @ORM\ManyToMany(targetEntity=Partenaire::class, mappedBy="agents")
-         * @Assert\Valid()
+     * @Assert\Valid()
      */
     private $partenaire;
 

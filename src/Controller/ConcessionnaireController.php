@@ -27,6 +27,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\Exception;
 
 class ConcessionnaireController extends AbstractController
 {
@@ -75,6 +76,7 @@ class ConcessionnaireController extends AbstractController
             return $this->redirectToRoute("concessionnaire");
         
       //  }
+   
  
     }
 
@@ -198,6 +200,7 @@ class ConcessionnaireController extends AbstractController
     public function add_concessionnaire(Concessionnaire $concessionnaires = null, TypemediaRepository $repository, UserPasswordHasherInterface $userPasswordHasher, ObjectManager $objectManager, Request $request)
     {
 
+        
         if(!$concessionnaires){
 
             $concessionnaires = new Concessionnaire();
@@ -288,6 +291,7 @@ class ConcessionnaireController extends AbstractController
             $this->om->persist($concessionnaires);
            
             $om->flush();
+       
             return $this->redirectToRoute("concessionnaire");
         }
 

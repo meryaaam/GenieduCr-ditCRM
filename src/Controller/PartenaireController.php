@@ -275,7 +275,7 @@ class PartenaireController extends AbstractController
          ]);
  
  }
- #[Route('/delete-partenaire/{id}', name: 'delete_partenaire', methods:'delete')]
+ #[Route('/delete-partenaire/{id}', name: 'delete_partenaire')]
  public function suppression(Partenaire $partenaire, Request $request,ObjectManager $objectManager){
    //  if($this->isCsrfTokenValid("SUP". $partenaire->getId(),$request->get('_token'))){
          $objectManager->remove($partenaire);
