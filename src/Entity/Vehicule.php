@@ -109,12 +109,13 @@ class Vehicule
     private $moteur;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
+     
      */
     private $portes;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $Passagers;
 
@@ -491,14 +492,19 @@ class Vehicule
 
     /**
      * @ORM\OneToMany(targetEntity=GalerieVehicule::class, mappedBy="vehicule", cascade={"persist", "remove"})
-     * * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $galerie;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $numinventaire;
+
+   /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $liquidation;
 
   
 
@@ -1662,6 +1668,18 @@ class Vehicule
     public function setNuminventaire(int $numinventaire): self
     {
         $this->numinventaire = $numinventaire;
+
+        return $this;
+    }
+
+    public function getLiquidation(): ?bool
+    {
+        return $this->liquidation;
+    }
+
+    public function setLiquidation(bool $liquidation): self
+    {
+        $this->liquidation = $liquidation;
 
         return $this;
     }

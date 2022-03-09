@@ -337,8 +337,21 @@
 													{{ form_widget(form.prixdetail, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
 												</div>
 											</div>
+											
 							</div>				
 							<div class="row mb-12">
+										
+
+												<div class="col-4 ">
+													<div class="col-lg-8 fv-row fv-plugins-icon-container">
+														
+														{{form_row(form.liquidation, {"label":"Liquidation : "}) }}
+													</div>
+													
+												
+													
+													
+												</div>
 											<div class="col mb-4">
 												
 												{{ form_label(form.prixwholesale, "	Prix Wholesale:", {'label_attr': {'class':"col-lg-6 col-form-label required fw-bold fs-6"}}) }}
@@ -347,6 +360,7 @@
 													{{ form_widget(form.prixwholesale, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
 												</div>
 											</div>
+											
 
 											<div class="col mb-4">
 												
@@ -356,21 +370,22 @@
 													{{ form_widget(form.conditions, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
 												</div>
 											</div>
-											<div class="col mb-4">
-												
-												{{ form_label(form.utilisateur, "Compagnie :", {'label_attr': {'class':"col-lg-6 col-form-label required fw-bold fs-6"}}) }}
-												
-												<div class="col-lg-8 fv-row fv-plugins-icon-container">
-													{{ form_widget(form.utilisateur, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
-												</div>
-											</div>
+											
 											
 											
 
 											
 							</div>
 							
-							<div class="row mb-8">
+							<div class="row mb-12">
+								<div class="col mb-4">
+												
+									{{ form_label(form.utilisateur, "Compagnie :", {'label_attr': {'class':"col-lg-6 col-form-label required fw-bold fs-6"}}) }}
+									
+									<div class="col-lg-8 fv-row fv-plugins-icon-container">
+										{{ form_widget(form.utilisateur, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
+									</div>
+								</div>
 								<div class="col mb-4">
 													
 									{{ form_label(form.annee, "Ajouter Année :", {'label': {'class':"col-lg-6 col-form-label required fw-bold fs-6"}}) }}
@@ -388,6 +403,7 @@
 										{{ form_widget(form.numinventaire, {'attr': {'class': 'form-control form-control-lg form-control-solid'}}) }}
 									</div>
 								</div>
+								
 								
 								
 								

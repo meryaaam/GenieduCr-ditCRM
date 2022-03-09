@@ -43,7 +43,8 @@ use Symfony\Component\Form\Extension\Core\Type\ResetType;
  use App\Form\TestType;
 use App\Entity\Status;
 use App\Entity\Utilisateur;
- use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
 
@@ -89,6 +90,10 @@ class VehiculeController extends AbstractController
        $status = $Rstatus -> findAll();
        $F = $Frep -> findAll();
 
+     
+
+
+
             $form = $this->createFormBuilder()
             ->add('Year',
                 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',[
@@ -106,6 +111,8 @@ class VehiculeController extends AbstractController
 
          
             $SearchByYears = $repository->findByYear( $y);
+
+
                         
 
 
@@ -213,8 +220,9 @@ class VehiculeController extends AbstractController
            
 
                 $vehicules = $repository -> findAll();
-                // dump($SearchByYears);die();
-
+               
+                
+              
             $form5 = $this->createFormBuilder()
             ->add('Inv',EntityType::class,array(
                 'class' => Vehicule::class,
@@ -260,11 +268,11 @@ class VehiculeController extends AbstractController
                
           else 
                {$filter = $vehicules  ;}
-
-                
+       
+         
         return $this->render('vehicule/index.html.twig', [
             
-            
+         
             'form' => $form->createView(),
             'form2' => $form2->createView() , 
             'form3' =>  $form3->createView() , 
@@ -272,8 +280,214 @@ class VehiculeController extends AbstractController
             'form5' => $form5->createView() , 
             'form6' => $form6->createView() , 
              'vehicule' => $filter 
-        ]);   
+        ]); 
     }
+  
+  
+    #[Route('/vehicule-liquidation', name: 'vehicule-liquidation')]
+    public function filterliquidation( ModeleRepository $MRep , VehiculeRepository $repository,FabriquantRepository $Frep,  StatusRepository $Rstatus , Request $request , UtilisateurRepository $Users)
+    {
+        
+       $status = $Rstatus -> findAll();
+       $F = $Frep -> findAll();
+
+     
+
+
+
+            $form = $this->createFormBuilder()
+            ->add('Year',
+                'Symfony\Component\Form\Extension\Core\Type\ChoiceType',[
+                'choices' => $this->getYears(1960) , 
+                'label' => false,
+                'required' => false
+            ])
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form -> handleRequest($request);
+            $y =$form->get('Year')->getData() ;
+         
+
+         
+            $SearchByYears = $repository->findByYear( $y);
+
+
+                        
+
+
+
+// ------------------------------------------------------------ 
+
+
+            $form2 = $this->createFormBuilder()
+            ->add('Status',EntityType::class,array(
+                'class' => Status::class,
+                'choice_label' => function ($status) {
+                 
+                    return $status->getNom();
+                 },
+                 'expanded' => false ,
+                 'required' => false ,
+                 'label' => false 
+  
+            ))
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form2 -> handleRequest($request);
+            $Status =$form2->get('Status')->getData() ;
+         
+
+            $SearchByStatus = $repository->findBystatus($Status);
+            //    dump($Status);die();
+// ----------------------------------------------------------------------------
+
+            $form3 = $this->createFormBuilder()
+            ->add('Marque',EntityType::class,array(
+                'class' => Fabriquant::class,
+                'choice_label' => function ($F) {
+                 
+                    return $F->getNom();
+                 },
+                 'required' => false ,
+                 'label' => false 
+  
+            ))
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form3 -> handleRequest($request);
+            $marque =$form3->get('Marque')->getData() ;
+         
+
+            $SearchByMarque = $repository->findByMarque($marque);
+            //    dump($Marque);die();
+
+// ------------------------------------------------------------------------------------
+            $M = $MRep -> findAll();
+
+            $form4 = $this->createFormBuilder()
+            ->add('Modele',EntityType::class,array(
+                'class' => Modele::class,
+                'choice_label' => function ($M) {
+                 
+                    return $M->getNom();
+                 },
+                 'required' => false ,
+                 'label' => false 
+  
+            ))
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form4 -> handleRequest($request);
+            $Modele =$form4->get('Modele')->getData() ;
+         
+
+            $SearchbyModele = $repository->findByModel($Modele);
+            //    dump($Modele);die();
+
+///////////////////////////////////////////////---------------------------------------------------------
+              $users = $Users -> FindAll() ; 
+
+            $form6 = $this->createFormBuilder()
+            ->add('Users',EntityType::class,array(
+                'class' => Utilisateur::class,
+                'choice_label' => function ($users) {
+                 
+                    return $users->getnom();
+                 },
+                 'required' => false ,
+                 'label' => false 
+  
+            ))
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form6 -> handleRequest($request);
+            $Users =$form6->get('Users')->getData();  
+
+            //  dump($repository->findByUser(12));die();
+
+            // dump($Users->getId());die();
+             if($Users)
+            { $SearchByUser = $repository->findByUser($Users->getId());  }
+           
+
+                $vehicules = $repository -> findAll();
+               
+                
+              
+            $form5 = $this->createFormBuilder()
+            ->add('Inv',EntityType::class,array(
+                'class' => Vehicule::class,
+                'choice_label' => function ($vehicules) {
+                 
+                    return $vehicules->getNuminventaire();
+                 },
+                 'required' => false ,
+                 'label' => false 
+  
+            ))
+            ->add('Submit', SubmitType::class)
+            ->getForm();
+            ;
+
+            $form5 -> handleRequest($request);
+       
+            $Inv =$form5->get('Inv')->getData();           
+            if ($Inv )
+             {  $SearchByInv = $repository->findByNumInv($Inv->getNuminventaire());}
+                // dump($SearchByInv);die();
+          
+           
+
+
+
+          if ($y)
+               { $filter = $SearchByYears ;
+            }
+          else if ($Inv)
+               { $filter = $SearchByInv ; }
+          else if ($Status )
+                { $filter = $SearchByStatus ;}
+          else if ($Modele)
+                {$filter = $SearchbyModele ;}
+          else if ($marque )
+                {$filter = $SearchByMarque ;}
+
+       
+          
+          else if ($Users  )
+               {$filter = $SearchByUser  ;}
+               
+          else 
+               {$filter = $vehicules  ;}
+       
+         
+        return $this->render('vehicule/index_liquidation.html.twig', [
+            
+         
+            'form' => $form->createView(),
+            'form2' => $form2->createView() , 
+            'form3' =>  $form3->createView() , 
+            'form4' => $form4->createView() , 
+            'form5' => $form5->createView() , 
+            'form6' => $form6->createView() , 
+             'vehicule' => $filter 
+        ]); 
+    }
+   
+
+
+
+
 
 
 
@@ -431,8 +645,6 @@ class VehiculeController extends AbstractController
     
    ]);
 }
-
-    
 
 
 

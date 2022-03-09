@@ -251,6 +251,10 @@ class MarchandController extends AbstractController
         $agents = $this->AgentRepository-> fillAgentsbyConcessionnairemarchand($concessmarchandvalue->getId());
 //On récupère la liste des vendeurs qui sont liés au concessionnairemarchand
         $vendeurs = $this->AgentRepository-> fillVendeursbyConcessionnairemarchand($concessmarchandvalue->getId());
+
+
+
+        
         //var_dump($marchand);die();
 
         return $this->render('marchand/consultation.html.twig', [
