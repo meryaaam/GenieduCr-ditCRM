@@ -86,401 +86,318 @@ class VehiculeController extends AbstractController
     #[Route('/vehicule', name: 'vehicule')]
     public function filter( ModeleRepository $MRep , VehiculeRepository $repository,FabriquantRepository $Frep,  StatusRepository $Rstatus , Request $request , UtilisateurRepository $Users)
     {
-        
-       $status = $Rstatus -> findAll();
-       $F = $Frep -> findAll();
+   
+        $form = $this->createFormBuilder()
+        ->add('Year',
+            'Symfony\Component\Form\Extension\Core\Type\ChoiceType',[
+            'choices' => $this->getYears(1960) , 
+            'label' => false,
+            'required' => false
+        ])
+
+
+        ->add('Status',EntityType::class,array(
+            'class' => Status::class,
+            'choice_label' => function ($status) {
+             
+                return $status->getNom();
+             },
+             'expanded' => false ,
+             'required' => false ,
+             'label' => false 
+
+        ))
+
+        ->add('Marque',EntityType::class,array(
+            'class' => Fabriquant::class,
+            'choice_label' => function ($F) {
+             
+                return $F->getNom();
+             },
+             'required' => false ,
+             'label' => false 
+
+        ))
+
+        ->add('Modele',EntityType::class,array(
+            'class' => Modele::class,
+            'choice_label' => function ($M) {
+             
+                return $M->getNom();
+             },
+             'required' => false ,
+             'label' => false 
+
+        ))
+
+
+        ->add('Users',EntityType::class,array(
+            'class' => Utilisateur::class,
+            'choice_label' => function ($users) {
+             
+                return $users->getnom();
+             },
+             'required' => false ,
+             'label' => false 
+
+        ))
+
+        ->add('Inv',EntityType::class,array(
+            'class' => Vehicule::class,
+            'choice_label' => function ($vehicules) {
+             
+                return $vehicules->getNuminventaire();
+             },
+             'required' => false ,
+             'label' => false 
+
+        ))
+        ->add('Submit', SubmitType::class)
+
+        ->add('Reset', ResetType::class )
+
+        ->getForm();
+        ;
+
+        $form -> handleRequest($request);
+        $y =$form->get('Year')->getData() ;
+        $Status =$form->get('Status')->getData() ;
+        $marque =$form->get('Marque')->getData() ;
+        $Modele =$form->get('Modele')->getData() ; 
+        $Users =$form->get('Users')->getData();  
+        $vehicules = $repository -> findAll();
+        $Inv =$form->get('Inv')->getData();           
+
+      
+
+       $phe ='' ;
+       $condition = '' ;
+       if ($marque)
+       { $marque_form = ($form->get('Marque')->getData( ))->getnom() ;
+        $condition .=  '$v->getmarque()->getnom()  ==   $marque_form '  ; }
+        if ($Modele) 
+        { $modele_form = ($form->get('Modele')->getData( ))->getnom()  ;
+            $condition .=  '&& $v->getmodele()->getnom() == $modele_form ' ; }
+            if ($Inv)
+            {   $Inv_form = ($form->get('Inv')->getData())->getNuminventaire()  ;
+                $condition .=  '&& $v->getNuminventaire() == $Inv_form ' ; }
+                if ($Users  )
+                { $U_form = $form->get('Users')->getData()->getNomutilisateur();
+
+                    $condition .=  '&& $v->getutilisateur()->getNomutilisateur() == $U_form ' ; }
+                    if ($y  )
+                    {$Y_form = $form->get('Year')->getData() ;
+                        $condition .=  '&& $v->getannee() == $Y_form ' ; } 
+                        if ($Status )
+                        {$S_form = $form->get('Status')->getData()->getnom();
+                            $condition .=  '&& $v->getstatus()->getnom() == $S_form  ' ; }
+
+
+
+
+                            if ( substr($condition, 0,2) == '&&' ) 
+
+                            { $condition[0] = " " ;
+                                $condition[1] = " " ;
+
+                            }
+
+
+                            {$cmd = ' if (' . $condition . ') ';
+                                $cmd .= ' {  ' ;
+          // $condition .= $phe . ' = true' ;
+          $cmd .= '$phe = true ;'   ;
+          $cmd .= '  } ' ;
+          $cmd .= ' else {  $phe = false ;}   ' ;
+
+
+
+
+          $i =0 ;
+          $filterr = $repository -> findAll() ;
+          if(!empty($condition))
+
+          {   $filterr = [] ;
+            foreach ( $vehicules as $v)
+            {
+                ++$i ;
+
+                if($condition)
+                { eval( $cmd );
+                    if($phe == 'true') 
+                    { 
+                        $filterr[$i] = $v ; }
+     
+                    }
+                }
+            }
+            else {$filterr = $repository -> findAll() ;}
+        }
 
      
-
-
-
-            $form = $this->createFormBuilder()
-            ->add('Year',
-                'Symfony\Component\Form\Extension\Core\Type\ChoiceType',[
-                'choices' => $this->getYears(1960) , 
-                'label' => false,
-                'required' => false
-            ])
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form -> handleRequest($request);
-            $y =$form->get('Year')->getData() ;
-         
-
-         
-            $SearchByYears = $repository->findByYear( $y);
-
-
-                        
-
-
-
-// ------------------------------------------------------------ 
-
-
-            $form2 = $this->createFormBuilder()
-            ->add('Status',EntityType::class,array(
-                'class' => Status::class,
-                'choice_label' => function ($status) {
-                 
-                    return $status->getNom();
-                 },
-                 'expanded' => false ,
-                 'required' => false ,
-                 'label' => false 
-  
-            ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form2 -> handleRequest($request);
-            $Status =$form2->get('Status')->getData() ;
-         
-
-            $SearchByStatus = $repository->findBystatus($Status);
-            //    dump($Status);die();
-// ----------------------------------------------------------------------------
-
-            $form3 = $this->createFormBuilder()
-            ->add('Marque',EntityType::class,array(
-                'class' => Fabriquant::class,
-                'choice_label' => function ($F) {
-                 
-                    return $F->getNom();
-                 },
-                 'required' => false ,
-                 'label' => false 
-  
-            ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form3 -> handleRequest($request);
-            $marque =$form3->get('Marque')->getData() ;
-         
-
-            $SearchByMarque = $repository->findByMarque($marque);
-            //    dump($Marque);die();
-
-// ------------------------------------------------------------------------------------
-            $M = $MRep -> findAll();
-
-            $form4 = $this->createFormBuilder()
-            ->add('Modele',EntityType::class,array(
-                'class' => Modele::class,
-                'choice_label' => function ($M) {
-                 
-                    return $M->getNom();
-                 },
-                 'required' => false ,
-                 'label' => false 
-  
-            ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form4 -> handleRequest($request);
-            $Modele =$form4->get('Modele')->getData() ;
-         
-
-            $SearchbyModele = $repository->findByModel($Modele);
-            //    dump($Modele);die();
-
-///////////////////////////////////////////////---------------------------------------------------------
-              $users = $Users -> FindAll() ; 
-
-            $form6 = $this->createFormBuilder()
-            ->add('Users',EntityType::class,array(
-                'class' => Utilisateur::class,
-                'choice_label' => function ($users) {
-                 
-                    return $users->getnom();
-                 },
-                 'required' => false ,
-                 'label' => false 
-  
-            ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form6 -> handleRequest($request);
-            $Users =$form6->get('Users')->getData();  
-
-            //  dump($repository->findByUser(12));die();
-
-            // dump($Users->getId());die();
-             if($Users)
-            { $SearchByUser = $repository->findByUser($Users->getId());  }
-           
-
-                $vehicules = $repository -> findAll();
-               
-                
-              
-            $form5 = $this->createFormBuilder()
-            ->add('Inv',EntityType::class,array(
-                'class' => Vehicule::class,
-                'choice_label' => function ($vehicules) {
-                 
-                    return $vehicules->getNuminventaire();
-                 },
-                 'required' => false ,
-                 'label' => false 
-  
-            ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form5 -> handleRequest($request);
-       
-            $Inv =$form5->get('Inv')->getData();           
-            if ($Inv )
-             {  $SearchByInv = $repository->findByNumInv($Inv->getNuminventaire());}
-                // dump($SearchByInv);die();
-          
-           
-
-
-
-          if ($y)
-               { $filter = $SearchByYears ;
-            }
-          else if ($Inv)
-               { $filter = $SearchByInv ; }
-          else if ($Status )
-                { $filter = $SearchByStatus ;}
-          else if ($Modele)
-                {$filter = $SearchbyModele ;}
-          else if ($marque )
-                {$filter = $SearchByMarque ;}
-
-       
-          
-          else if ($Users  )
-               {$filter = $SearchByUser  ;}
-               
-          else 
-               {$filter = $vehicules  ;}
-       
-         
         return $this->render('vehicule/index.html.twig', [
-            
-         
             'form' => $form->createView(),
-            'form2' => $form2->createView() , 
-            'form3' =>  $form3->createView() , 
-            'form4' => $form4->createView() , 
-            'form5' => $form5->createView() , 
-            'form6' => $form6->createView() , 
-             'vehicule' => $filter 
-        ]); 
-    }
-  
-  
-    #[Route('/vehicule-liquidation', name: 'vehicule-liquidation')]
+            'vehicule' => $filterr  ]);   
+     }
+
+
+
+    #[Route('/liquidation', name: 'liquidation')]
     public function filterliquidation( ModeleRepository $MRep , VehiculeRepository $repository,FabriquantRepository $Frep,  StatusRepository $Rstatus , Request $request , UtilisateurRepository $Users)
     {
-        
-       $status = $Rstatus -> findAll();
-       $F = $Frep -> findAll();
+        $form = $this->createFormBuilder()
+        ->add('Year',
+            'Symfony\Component\Form\Extension\Core\Type\ChoiceType',[
+            'choices' => $this->getYears(1960) , 
+            'label' => false,
+            'required' => false
+        ])
 
+
+        ->add('Status',EntityType::class,array(
+            'class' => Status::class,
+            'choice_label' => function ($status) {
+             
+                return $status->getNom();
+             },
+             'expanded' => false ,
+             'required' => false ,
+             'label' => false 
+
+        ))
+
+        ->add('Marque',EntityType::class,array(
+            'class' => Fabriquant::class,
+            'choice_label' => function ($F) {
+             
+                return $F->getNom();
+             },
+             'required' => false ,
+             'label' => false 
+
+        ))
+
+        ->add('Modele',EntityType::class,array(
+            'class' => Modele::class,
+            'choice_label' => function ($M) {
+             
+                return $M->getNom();
+             },
+             'required' => false ,
+             'label' => false 
+
+        ))
+
+
+        ->add('Users',EntityType::class,array(
+            'class' => Utilisateur::class,
+            'choice_label' => function ($users) {
+             
+                return $users->getnom();
+             },
+             'required' => false ,
+             'label' => false 
+
+        ))
+
+        ->add('Inv',EntityType::class,array(
+            'class' => Vehicule::class,
+            'choice_label' => function ($vehicules) {
+             
+                return $vehicules->getNuminventaire();
+             },
+             'required' => false ,
+             'label' => false 
+
+        ))
+        ->add('Submit', SubmitType::class)
+
+        ->add('Reset', ResetType::class )
+
+        ->getForm();
+        ;
+
+        $form -> handleRequest($request);
+        $y =$form->get('Year')->getData() ;
+        $Status =$form->get('Status')->getData() ;
+        $marque =$form->get('Marque')->getData() ;
+        $Modele =$form->get('Modele')->getData() ; 
+        $Users =$form->get('Users')->getData();  
+        $vehicules = $repository -> findAll();
+        $Inv =$form->get('Inv')->getData();           
+
+      
+
+       $phe ='' ;
+       $condition = '' ;
+       if ($marque)
+       { $marque_form = ($form->get('Marque')->getData( ))->getnom() ;
+        $condition .=  '$v->getmarque()->getnom()  ==   $marque_form '  ; }
+        if ($Modele) 
+        { $modele_form = ($form->get('Modele')->getData( ))->getnom()  ;
+            $condition .=  '&& $v->getmodele()->getnom() == $modele_form ' ; }
+            if ($Inv)
+            {   $Inv_form = ($form->get('Inv')->getData())->getNuminventaire()  ;
+                $condition .=  '&& $v->getNuminventaire() == $Inv_form ' ; }
+                if ($Users  )
+                { $U_form = $form->get('Users')->getData()->getNomutilisateur();
+
+                    $condition .=  '&& $v->getutilisateur()->getNomutilisateur() == $U_form ' ; }
+                    if ($y  )
+                    {$Y_form = $form->get('Year')->getData() ;
+                        $condition .=  '&& $v->getannee() == $Y_form ' ; } 
+                        if ($Status )
+                        {$S_form = $form->get('Status')->getData()->getnom();
+                            $condition .=  '&& $v->getstatus()->getnom() == $S_form  ' ; }
+
+
+
+
+                            if ( substr($condition, 0,2) == '&&' ) 
+
+                            { $condition[0] = " " ;
+                                $condition[1] = " " ;
+
+                            }
+
+
+                            {$cmd = ' if (' . $condition . ') ';
+                                $cmd .= ' {  ' ;
+          // $condition .= $phe . ' = true' ;
+          $cmd .= '$phe = true ;'   ;
+          $cmd .= '  } ' ;
+          $cmd .= ' else {  $phe = false ;}   ' ;
+
+
+
+
+          $i =0 ;
+          $filterr = $repository -> findAll() ;
+          if(!empty($condition))
+
+          {   $filterr = [] ;
+            foreach ( $vehicules as $v)
+            {
+                ++$i ;
+
+                if($condition)
+                { eval( $cmd );
+                    if($phe == 'true') 
+                    { 
+                        $filterr[$i] = $v ; }
      
-
-
-
-            $form = $this->createFormBuilder()
-            ->add('Year',
-                'Symfony\Component\Form\Extension\Core\Type\ChoiceType',[
-                'choices' => $this->getYears(1960) , 
-                'label' => false,
-                'required' => false
-            ])
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form -> handleRequest($request);
-            $y =$form->get('Year')->getData() ;
-         
-
-         
-            $SearchByYears = $repository->findByYear( $y);
-
-
-                        
-
-
-
-// ------------------------------------------------------------ 
-
-
-            $form2 = $this->createFormBuilder()
-            ->add('Status',EntityType::class,array(
-                'class' => Status::class,
-                'choice_label' => function ($status) {
-                 
-                    return $status->getNom();
-                 },
-                 'expanded' => false ,
-                 'required' => false ,
-                 'label' => false 
-  
-            ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form2 -> handleRequest($request);
-            $Status =$form2->get('Status')->getData() ;
-         
-
-            $SearchByStatus = $repository->findBystatus($Status);
-            //    dump($Status);die();
-// ----------------------------------------------------------------------------
-
-            $form3 = $this->createFormBuilder()
-            ->add('Marque',EntityType::class,array(
-                'class' => Fabriquant::class,
-                'choice_label' => function ($F) {
-                 
-                    return $F->getNom();
-                 },
-                 'required' => false ,
-                 'label' => false 
-  
-            ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form3 -> handleRequest($request);
-            $marque =$form3->get('Marque')->getData() ;
-         
-
-            $SearchByMarque = $repository->findByMarque($marque);
-            //    dump($Marque);die();
-
-// ------------------------------------------------------------------------------------
-            $M = $MRep -> findAll();
-
-            $form4 = $this->createFormBuilder()
-            ->add('Modele',EntityType::class,array(
-                'class' => Modele::class,
-                'choice_label' => function ($M) {
-                 
-                    return $M->getNom();
-                 },
-                 'required' => false ,
-                 'label' => false 
-  
-            ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form4 -> handleRequest($request);
-            $Modele =$form4->get('Modele')->getData() ;
-         
-
-            $SearchbyModele = $repository->findByModel($Modele);
-            //    dump($Modele);die();
-
-///////////////////////////////////////////////---------------------------------------------------------
-              $users = $Users -> FindAll() ; 
-
-            $form6 = $this->createFormBuilder()
-            ->add('Users',EntityType::class,array(
-                'class' => Utilisateur::class,
-                'choice_label' => function ($users) {
-                 
-                    return $users->getnom();
-                 },
-                 'required' => false ,
-                 'label' => false 
-  
-            ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form6 -> handleRequest($request);
-            $Users =$form6->get('Users')->getData();  
-
-            //  dump($repository->findByUser(12));die();
-
-            // dump($Users->getId());die();
-             if($Users)
-            { $SearchByUser = $repository->findByUser($Users->getId());  }
-           
-
-                $vehicules = $repository -> findAll();
-               
-                
-              
-            $form5 = $this->createFormBuilder()
-            ->add('Inv',EntityType::class,array(
-                'class' => Vehicule::class,
-                'choice_label' => function ($vehicules) {
-                 
-                    return $vehicules->getNuminventaire();
-                 },
-                 'required' => false ,
-                 'label' => false 
-  
-            ))
-            ->add('Submit', SubmitType::class)
-            ->getForm();
-            ;
-
-            $form5 -> handleRequest($request);
-       
-            $Inv =$form5->get('Inv')->getData();           
-            if ($Inv )
-             {  $SearchByInv = $repository->findByNumInv($Inv->getNuminventaire());}
-                // dump($SearchByInv);die();
-          
-           
-
-
-
-          if ($y)
-               { $filter = $SearchByYears ;
+                    }
+                }
             }
-          else if ($Inv)
-               { $filter = $SearchByInv ; }
-          else if ($Status )
-                { $filter = $SearchByStatus ;}
-          else if ($Modele)
-                {$filter = $SearchbyModele ;}
-          else if ($marque )
-                {$filter = $SearchByMarque ;}
+            else {$filterr = $repository -> findAll() ;}
+        }
 
-       
-          
-          else if ($Users  )
-               {$filter = $SearchByUser  ;}
-               
-          else 
-               {$filter = $vehicules  ;}
-       
-         
         return $this->render('vehicule/index_liquidation.html.twig', [
             
          
             'form' => $form->createView(),
-            'form2' => $form2->createView() , 
-            'form3' =>  $form3->createView() , 
-            'form4' => $form4->createView() , 
-            'form5' => $form5->createView() , 
-            'form6' => $form6->createView() , 
-             'vehicule' => $filter 
+            
+             'vehicule' => $filterr 
         ]); 
     }
    

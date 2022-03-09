@@ -65,6 +65,7 @@ class AdministrateurController extends AbstractController
        // if($this->isCsrfTokenValid("SUP". $request->get('id'),$request->get('_token'))){
             $objectManager->remove($administrateurs);
             $objectManager->flush();
+
             return $this->redirectToRoute("administrateur");
        // }
     }
@@ -107,7 +108,8 @@ class AdministrateurController extends AbstractController
                     
                     $objectManager->persist($administrateurs);
                     $objectManager->flush();
-                    $this->addFlash("success", ($modif) ? "La modification a été effectuée" : "L'ajout a été effectuée");
+                    // $this->addFlash("success", ($modif) ? "La modification a été effectuée" : "L'ajout a été effectuée");
+                    $this->addFlash('success', 'Article Created! Knowledge is power!');
                     return $this->redirectToRoute("administrateur");
                
                

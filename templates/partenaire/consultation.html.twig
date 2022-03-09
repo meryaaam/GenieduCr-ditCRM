@@ -200,12 +200,13 @@
                                          <div class="row mb-7">
                                                <div class="col-lg-4">
 										      	<label class="col-lg-4 fw-bold text-muted">Actif  : </label>
+										      	</div>
                                                     {% if partenaire.actif == 1  %}
-                                                         <span class="checkbox-switch">oui</span>
+                                                       <div class="col-lg-4">   <span class="checkbox-switch col-lg-4 fw-bold text-muted">oui</span> </div>
                                                      {% else %}
-                                                      <span class="checkbox-switch">Non</span>   
+                                                    <div class="col-lg-4">   <span class="checkbox-switch col-lg-4 fw-bold text-muted ">Non</span>   </div>
                                                       {% endif %}
-                                             </div>
+                                           
                                         </div>
 
 
@@ -275,7 +276,7 @@
 
                                         {% for agent in agents %}
 										
-											 <span class="fw-bolder fs-6 text-gray-800"> {{agent.utilisateur.nom}}</span>
+											 <span class="fw-bolder fs-6 text-gray-800"> {{agent.utilisateur.nom}}</span> <br>
 										{% endfor %}
                                                 </span>
 											</div>
@@ -292,7 +293,7 @@
 
                                         {% for vendeur in vendeurs %}
 										
-											 <span class="fw-bolder fs-6 text-gray-800"> {{vendeur.utilisateur.nom}}</span>
+											 <span class="fw-bolder fs-6 text-gray-800"> {{vendeur.utilisateur.nom}}</span> <br>
 										{% endfor %}
                                                 </span>
 											</div>

@@ -210,10 +210,10 @@
 									</a>
 								</div>
 								<div class="menu-item">
-									{% if (page_title == "Liste des Véhicules " or page_title == "Consultation Véhicule" or page_title == "Modification Véhicule" or page_title == "Ajouter Véhicule") %}
-											 <a class="menu-link active" href="{{path("vehicule-liquidation")}}">
+									{% if (page_title == "Inventaire de Liquidation"  ) %}
+											 <a class="menu-link active" href="{{path("liquidation")}}">
 											{% else %}
-								   <a class="menu-link" href="{{path('vehicule-liquidation')}}">
+								   <a class="menu-link" href="{{path('liquidation')}}">
 											{% endif %}	
 									   <span class="menu-icon">
 										   <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->

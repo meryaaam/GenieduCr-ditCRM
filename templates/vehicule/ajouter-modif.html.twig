@@ -162,15 +162,17 @@
 				<div id="kt_account_settings_profile_details" class="collapse show">
 					{{ form_start(form, {'attr': {'class': 'form fv-plugins-bootstrap5 fv-plugins-framework'}}) }}
 			
-					<div class="col-4 ">
-						<div class="col-lg-8 fv-row fv-plugins-icon-container">
-							{{ form_widget(form.actif, {'attr': {'class': ' form-check-input form-control  '}}) }}
-						</div>
-						
-						{{ form_label(form.actif, "Actif :", {'label': {'class':"col-lg-6 col-form-label required fw-bold fs-6"}}) }}
-						
-						
-					</div>
+				 
+				                	<div class="col-4 ">
+									<div class="col-lg-8 fv-row fv-plugins-icon-container">
+										
+										{{form_row(form.actif, {"label":"Actif "}) }}
+									</div>
+									
+								
+									
+									
+								</div>
 					<div class="row mb-4">
 							<div class="col mb-4">		
 								{{ form_label(form.stock, "Stock  :", {'label_attr': {'class':"col-lg-6 col-form-label required fw-bold fs-6"}}) }}

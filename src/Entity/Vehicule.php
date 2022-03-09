@@ -36,7 +36,7 @@ class Vehicule
     private $marque;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $actif;
 
@@ -712,24 +712,24 @@ class Vehicule
         return $this;
     }
 
-    public function getPortes(): ?string
+    public function getPortes(): ?int
     {
         return $this->portes;
     }
 
-    public function setPortes(string $portes): self
+    public function setPortes(int $portes): self
     {
         $this->portes = $portes;
 
         return $this;
     }
 
-    public function getPassagers(): ?string
+    public function getPassagers(): ?int
     {
         return $this->Passagers;
     }
 
-    public function setPassagers(string $Passagers): self
+    public function setPassagers(int $Passagers): self
     {
         $this->Passagers = $Passagers;
 
@@ -1660,12 +1660,12 @@ class Vehicule
         return $this;
     }
 
-    public function getNuminventaire(): ?int
+    public function getNuminventaire(): ?String
     {
         return $this->numinventaire;
     }
 
-    public function setNuminventaire(int $numinventaire): self
+    public function setNuminventaire(String $numinventaire): self
     {
         $this->numinventaire = $numinventaire;
 

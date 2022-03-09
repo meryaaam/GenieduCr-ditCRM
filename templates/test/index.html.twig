@@ -182,11 +182,16 @@
 
 															 </div>
 																<!--end::Scroll-->
-															 <div class="text-center">
+															 <div class="row">
 																	{# <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">Discard</button> #}
-																	 {{ form_row(form.Submit) }}
+																	<div class="col-6">
+																	  {{ form_row(form.Reset) }}
+																	  
+                                                                    </div>  
+		                                                            <div class="col-6">
+																	 {{ form_row(form.Submit) }} 
+																	 </div>
 
-																	
 
 																</div>
 															    {{ form_end(form) }}
@@ -233,7 +238,9 @@
 												</tr>
 											</thead>
 											<tbody>
-												{% for vehicule in vehicule %}
+											{# {{ dump(form.vars.value.Inv.numinventaire ) }} #}
+	 												{% for vehicule in vehicule %}
+													 	{% if vehicule.liquidation == false %}
 															<tr>
                                                                 <td>
 																	<div class="d-flex align-items-center">
@@ -349,8 +356,9 @@
 																</div></td>
 															
 															</tr>
-													
-												{% endfor %}
+
+												            {% endif %}
+									             	 {% endfor %}
 											</tbody>
 										</table>
 										<!--end::Table-->
@@ -393,7 +401,7 @@ $("#kt_datatable_example_5").DataTable({
         "lengthMenu": "Afficher _MENU_",
         "sSearch":        "Rechercher:",
 
-  "sLengthMenu":    "Mostrar _MENU_ registros",
+  {# "sLengthMenu":    "Mostrar _MENU_ registros", #}
         "sZeroRecords":   "Pas de données pour cette liste",
         "sEmptyTable":    "Pas de données pour cette liste",
         
