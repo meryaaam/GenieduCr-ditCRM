@@ -102,10 +102,10 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $concessionnairemarchand;
 
-    /**
-    * @ORM\ManyToOne(targetEntity=Vehicule::class, inversedBy="utilisateur")
-     */
-    private $vehicule;
+    // /**
+    // * @ORM\ManyToOne(targetEntity=Vehicule::class, inversedBy="utilisateur")
+    //  */
+    // private $vehicule;
 
     
     public function getId(): ?int
@@ -329,16 +329,16 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getVehicule(): ?Vehicule
-    {
-        return $this->vehicule;
-    }
+    // public function getVehicule(): ?Vehicule
+    // {
+    //     return $this->vehicule;
+    // }
 
-    public function setVehicule(?Vehicule $vehicule): self
-    {
-        $this->vehicule = $vehicule;
+    // public function setVehicule(?Vehicule $vehicule): self
+    // {
+    //     $this->vehicule = $vehicule;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
 }

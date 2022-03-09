@@ -474,8 +474,8 @@ class Vehicule
     private $volantajustable;
 
     /**
-    * @ORM\OneToMany(targetEntity=Utilisateur::class, mappedBy="vehicule", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     
+     * @ORM\ManyToOne(targetEntity=Utilisateur::class)
      */
     private $utilisateur;
 
@@ -1594,53 +1594,17 @@ class Vehicule
         
     }
 
-
- /**
-     * @return Collection|Utilisateur[]
-     */
-    public function getUtilisateur(): Collection
+    public function getUtilisateur(): ?Utilisateur
     {
         return $this->utilisateur;
     }
 
-    public function addUtilisateur(Utilisateur $utilisateur): self
+    public function setUtilisateur(Utilisateur $utilisateur): self
     {
-        if (!$this->utilisateur->contains($utilisateur)) {
-            $this->utilisateur[] = $utilisateur;
-            $utilisateur->setVehicule($this);
-        }
-        return $this;
-    }
-
-    public function removeUtilisateur(Utilisateur $utilisateur): self
-    {
-        if ($this->utilisateur->removeElement($utilisateur)) {
-            // set the owning side to null (unless already changed)
-            if ($utilisateur->getVehicule() === $this) {
-                $utilisateur->setVehicule(null);
-            }
-        }
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }
-
-
-
-
-
-
-
-    // public function getUtilisateur(): ?Utilisateur
-    // {
-    //     return $this->utilisateur;
-    // }
-
-    // public function setUtilisateur(Utilisateur $utilisateur): self
-    // {
-    //     $this->utilisateur = $utilisateur;
-
-    //     return $this;
-    // }
 
     public function getAnnee(): ?int
     {
