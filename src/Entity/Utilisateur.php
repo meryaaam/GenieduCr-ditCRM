@@ -103,7 +103,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private $concessionnairemarchand;
 
     /**
-     * @ORM\OneToOne(targetEntity=Vehicule::class, mappedBy="utilisateur", cascade={"persist", "remove"})
+    * @ORM\ManyToOne(targetEntity=Vehicule::class, inversedBy="utilisateur")
      */
     private $vehicule;
 
@@ -334,13 +334,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->vehicule;
     }
 
-    public function setVehicule(Vehicule $vehicule): self
+    public function setVehicule(?Vehicule $vehicule): self
     {
-        // set the owning side of the relation if necessary
-        if ($vehicule->getUtilisateur() !== $this) {
-            $vehicule->setUtilisateur($this);
-        }
-
         $this->vehicule = $vehicule;
 
         return $this;

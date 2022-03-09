@@ -73,15 +73,7 @@ class VehiculeRepository extends ServiceEntityRepository
     }
 
  
-    public function findOneByVIN($value): ?Vehicule
-    {
-        return $this->createQueryBuilder('vehicule')
-            ->andWhere('vehicule.vin = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
+    
 
     // public function findByYears($value): ?Vehicule
     // {
@@ -94,105 +86,8 @@ class VehiculeRepository extends ServiceEntityRepository
     //     ;
     // } 
     
-    public function findByYear($value)
-    {
-        
-        $query = $this->createQueryBuilder('vehicule')
-                ->andWhere('vehicule.annee = :val')
-                ->setParameter('val', $value)
-                ->getQuery()
-                ->getResult()
-              
-            ;
-            // $rsm = new ResultSetMapping();
-
-    // $query = $entityManager->createNativeQuery('SELECT * FROM vehicule WHERE vehicule.annee = :val', $rsm);
-    // $query->setParameter('val', $value);
-    $vehicule  = new vehicule ;
-    $vehicule = $query ;
-          
-         return $vehicule ;   
-    }
-    
-
-    public function findByNumInv($value) 
-    {
-        $query = $this->createQueryBuilder('vehicule')
-            ->andWhere('vehicule.numinventaire = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-              
-            ->getResult()
-        ;
-        $vehicule  = new vehicule ;
-        $vehicule = $query ;
-              
-             return $vehicule ;   
-    }
-
-    public function findBystatus($value) 
-    {
-        $query = $this->createQueryBuilder('vehicule')
-            ->andWhere('vehicule.status = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getResult()
-        ;
-
-        $vehicule  = new vehicule ;
-        $vehicule = $query ;
-              
-             return $vehicule ;   
-    }
-
-
-    public function findByUser($value) 
-    {
-        $query = $this->createQueryBuilder('vehicule')
-            ->andWhere('vehicule.utilisateur = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getResult()
-        ;
-
-        $vehicule  = new vehicule ;
-        $vehicule = $query ;
-              
-             return $vehicule ;   
-    }
-
-
-    public function findByMarque($value) 
-    {
-        $query =  $this->createQueryBuilder('vehicule')
-            ->andWhere('vehicule.marque = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getResult()
-        ;
-
-        $vehicule  = new vehicule ;
-        $vehicule = $query ;
-              
-             return $vehicule ;   
-    }
-
-
-    public function findByModel($value) 
-    {
-        $query = $this->createQueryBuilder('vehicule')
-            ->andWhere('vehicule.modele = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getResult()
-        ;
-
-        $vehicule  = new vehicule ;
-        $vehicule = $query ;
-              
-             return $vehicule ;   
-    }
-
+     
+   
 
     
 
